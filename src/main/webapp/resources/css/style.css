@@ -1,7 +1,7 @@
-@import "reset.css";
-@import "grid.css";
-@import "font-awesome.css";
-@import "superfish.css";
+@import url("../css/reset.css");
+@import url("../css/grid.css");
+@import url("../css/font-awesome.css");
+@import url("../css/superfish.css");
 
 @import url(//fonts.googleapis.com/css?family=Open+Sans:400);
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300);
@@ -173,7 +173,7 @@ ul.list1 li+li+li+li {
 ul.list1 li:after {
     left: 0;
     top: 3px;
-    content: '';
+    content: 'ï�¡';
     font-family: 'FontAwesome';
     position: absolute;
     display: block;
@@ -190,7 +190,7 @@ ul.list2 li {
     line-height: 18px;
     margin-top: -3px;
     padding-left: 33px;
-    background: url(../images/marker.png) 0 4px no-repeat;
+    background: url(../image/marker.png) 0 4px no-repeat;
     font-size: 16px;
 }
 
@@ -382,7 +382,7 @@ a.donate:hover {
 
 .bq1  p {
     margin-bottom: 11px;
-    background: url(../images/quotes.png) 19px 30px no-repeat;
+    background: url(../image/quotes.png) 19px 30px no-repeat;
     padding: 37px 20px 0 38px;
     font-style: italic;
 }
@@ -397,7 +397,7 @@ a.donate:hover {
     position: relative;
     padding-bottom: 33px;
     border-top: 1px solid #c2c2c2;
-    background: url(../images/bot_bg.png) 0 0 repeat;
+    background: url(../image/bot_bg.png) 0 0 repeat;
 }
 
 .bottom_block:after {
@@ -523,7 +523,7 @@ ul.list.l1 time {
     padding-left: 16px;
     padding-top: 4px;
     margin-bottom: 14px;
-    background: url(../images/quotes.png) 0 1px no-repeat;
+    background: url(../image/quotes.png) 0 1px no-repeat;
     font-style: italic;
 }
 
@@ -582,7 +582,7 @@ a.gal {
     display: block;
     margin-bottom: 16px;
     border: 1px solid #ccc;
-    background: url(../images/magnify.png) center center no-repeat #E14F42;
+    background: url(../image/magnify.png) center center no-repeat #E14F42;
 }
 
 a.gal img {
@@ -707,7 +707,7 @@ footer {
     border: none;
     text-indent: -999px;
     z-index: 20;
-    background: url(../images/totop.png) no-repeat left 0;
+    background: url(../image/totop.png) no-repeat left 0;
     transition: 0s ease;
     -o-transition: 0s ease;
     -webkit-transition: 0s ease;

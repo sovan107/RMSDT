@@ -12,26 +12,63 @@
 <html lang="en">
 
 	<spring:url value="/resources/css/form.css" var="formCSS"/>
-
+	<spring:url value="/resources/css/thumbs.css" var="thumbsCSS"/>
+	<spring:url value="/resources/css/slider.css" var="sliderCSS"/>
+	<spring:url value="/resources/css/style.css" var="styleCSS"/>
+	<spring:url value="/resources/css/ie.css" var="ieCSS"/>
+	
+	<!-- JS Files -->
+	<spring:url value="/resources/js/jquery.js" var="jqueryJS"/>
+	<spring:url value="/resources/js/jquery-migrate-1.2.1.js" var="migrateJS"/>
+	<spring:url value="/resources/js/script.js" var="scriptJS"/>
+	<spring:url value="/resources/js/superfish.js" var="superfishJS"/>
+	<spring:url value="/resources/js/sForm.js" var="sformJS"/>
+	<spring:url value="/resources/js/jquery.ui.totop.js" var="jqueryuiJS"/>
+	<spring:url value="/resources/js/jquery.equalheights.js" var="equalheightJS"/>
+	<spring:url value="/resources/js/jquery.easing.1.3.js" var="easingJS"/>
+	<spring:url value="/resources/js/superfish.js" var="superfishJS"/>
+	<spring:url value="/resources/js/jquery.iosslider.min.js" var="iossliderJS"/>
+	<spring:url value="/resources/js/html5shiv.js" var="html5shivJS"/>
+	<spring:url value="/resources/js/jquery.hoverdir.js" var="hoverdirJS"/>
+	
+	
+	<!-- Image Files -->
+	
+	<spring:url value="/resources/image/favicon.ico" var="faviconICO"/>
+	<spring:url value="/resources/image/logo.png" var="logoPNG"/>
+	<spring:url value="/resources/image/page1_img1.jpg" var="founderPNG"/>
+	
+	<!-- Events images -->
+	<spring:url value="/resources/image/th1.jpg" var="firstEventPNG"/>
+	<spring:url value="/resources/image/th2.jpg" var="secondEventPNG"/>
+	<spring:url value="/resources/image/th3.jpg" var="thirdEventPNG"/>
+	<spring:url value="/resources/image/th4.jpg" var="fourthEventPNG"/>
+	<spring:url value="/resources/image/th5.jpg" var="fifthEventPNG"/>
+	<spring:url value="/resources/image/th6.jpg" var="sixthEventPNG"/>
+	<spring:url value="/resources/image/th7.jpg" var="seventhEventPNG"/>
+	<spring:url value="/resources/image/th8.jpg" var="eighthEventPNG"/>
+	<spring:url value="/resources/image/th9.jpg" var="ninthEventPNG"/>
+	
+	
 	<head>
 	<title>Home</title>
 	<meta charset="utf-8">
 	<meta name = "format-detection" content = "telephone=no" />
-	<link rel="icon" href="images/favicon.ico">
-	<link rel="shortcut icon" href="images/favicon.ico" />
+	<link rel="icon" href="${faviconICO}">
+	<link rel="shortcut icon" href="${faviconICO}" />
 	<link rel="stylesheet" href="${formCSS}">
-	<link rel="stylesheet" href="css/thumbs.css">
-	<link rel="stylesheet" href="css/slider.css">
-	<link rel="stylesheet" href="css/style.css">
-	<script src="js/jquery.js"></script>
-	<script src="js/jquery-migrate-1.2.1.js"></script>
-	<script src="js/script.js"></script>
-	<script src="js/superfish.js"></script>
-	<script src="js/sForm.js"></script>
-	<script src="js/jquery.ui.totop.js"></script>
-	<script src="js/jquery.equalheights.js"></script>
-	<script src="js/jquery.easing.1.3.js"></script>
-	<script src="js/jquery.iosslider.min.js"></script>
+	<link rel="stylesheet" href="${thumbsCSS}">
+	<link rel="stylesheet" href="${sliderCSS}">
+	<link rel="stylesheet" href="${styleCSS}">
+	<script src="${jqueryJS}"></script>
+	<script src="${migrateJS}"></script>
+	<script src="${scriptJS}"></script>
+	<script src="${superfishJS}"></script>
+	<script src="${sformJS}"></script>
+	<script src="${jqueryuiJS}"></script>
+	<script src="${equalheightJS}"></script>
+	<script src="${easingJS}"></script>
+	<script src="${iossliderJS}"></script>
 	<script>
 	$(document).ready(function(){
 		$().UItoTop({ easingType: 'easeOutQuart' });
@@ -45,8 +82,8 @@
 	</div>
 	<![endif]-->
 	<!--[if lt IE 9]>
-	<script src="js/html5shiv.js"></script>
-	<link rel="stylesheet" media="screen" href="css/ie.css">
+	<script src="${html5shivJS}"></script>
+	<link rel="stylesheet" media="screen" href="${ieCSS}">
 	<![endif]-->
 	</head>
 	<body class="page1" id="top">
@@ -55,8 +92,8 @@
 			<div class="container_12">
 				<div class="grid_12">
 					<h1>
-						<a href="index.html">
-							<img src="images/logo.png" alt="Your Happy Family">
+						<a href="home.jsp">
+							<img src="${logoPNG}" alt="Your Happy Family">
 						</a>
 					</h1>
 					<div class="menu_block ">
@@ -64,7 +101,7 @@
 						<div class="clear"></div>
 						<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 							<ul class="sf-menu">
-								<li class="current"><a href="index.html">Home</a></li>
+								<li class="current"><a href="home.jsp">Home</a></li>
 								<li><a href="index-1.html">What We Do</a></li>
 								<li><a href="index-2.html">Media</a></li>
 								<li><a href="index-3.html">Get Involved</a></li>
@@ -109,7 +146,7 @@
 			<div class="container_12">
 				<div class="grid_6">
 					<h2>Meet Our Team</h2>
-					<img src="images/page1_img1.jpg" alt="" class="img_inner fleft">
+					<img src="${founderPNG}" alt="" class="img_inner fleft">
 					<div class="extra_wrapper">
 						<p class="col2"><a href="#">Cras facilisis, nulla vel viverra tor, leo magna sodales felis, quis </a></p>
 						Proin pharetra luctus diamer scelerisque eros convallisa <br>
@@ -174,55 +211,55 @@
 						<ul id="da-thumbs" class="da-thumbs">
 							<li>
 								<a href="#">
-								<img src="images/th1.jpg" alt="" />
+								<img src="${firstEventPNG}" alt="" />
 								<div><span>Helping Adults</span></div>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-								<img src="images/th2.jpg" alt="" />
+								<img src="${secondEventPNG}" alt="" />
 								<div><span>Helping Children</span></div>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-								<img src="images/th3.jpg" alt="" />
+								<img src="${thirdEventPNG}" alt="" />
 								<div><span>Empowering Women</span></div>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-								<img src="images/th4.jpg" alt="" />
+								<img src="${fourthEventPNG}" alt="" />
 								<div><span>Homes for Veterans</span></div>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-								<img src="images/th5.jpg" alt="" />
+								<img src="${fifthEventPNG}" alt="" />
 								<div><span>Saving Lives</span></div>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-								<img src="images/th6.jpg" alt="" />
+								<img src="${sixthEventPNG}" alt="" />
 								<div><span>Invest in Kids</span></div>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-								<img src="images/th7.jpg" alt="" />
+								<img src="${seventhEventPNG}" alt="" />
 								<div><span>Healthy Nutrition</span></div>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-								<img src="images/th8.jpg" alt="" />
+								<img src="${eighthEventPNG}" alt="" />
 								<div><span>Educated World</span></div>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-								<img src="images/th9.jpg" alt="" />
+								<img src="${ninthEventPNG}" alt="" />
 								<div><span>Against Hunger</span></div>
 								</a>
 							</li>
@@ -271,9 +308,11 @@
 				</div>
 			</div>
 		</footer>
-		<script src="js/jquery.hoverdir.js"></script>
+		<script src="${hoverdirJS}"></script>
 		<script>
 		$(document).ready(function() {
+			
+			console.log("Hello");
 		 $('.iosSlider').iosSlider({
 			desktopClickDrag: true,
 			snapToChildren: true,
@@ -288,6 +327,8 @@
 		 });
 		});
 		function slideChange(args) {
+			
+			console.log("Hello2");
 		 $('.sliderContainer .slideSelectors .item').removeClass('selected');
 		 $('.sliderContainer .slideSelectors .item:eq(' + (args.currentSlideNumber - 1) + ')').addClass('selected');
 		}

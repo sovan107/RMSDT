@@ -65,11 +65,11 @@
 	color: #fff; 
 }
 
-.iosSlider .slider .item1 .inner { background-image: url('../images/slide.jpg'); }
+.iosSlider .slider .item1 .inner { background-image: url('../image/slide.jpg'); }
 
-.iosSlider .slider .item2 .inner { background-image: url('../images/slide1.jpg'); }
+.iosSlider .slider .item2 .inner { background-image: url('../image/slide1.jpg'); }
 
-.iosSlider .slider .item3 .inner { background-image: url('../images/slide2.jpg'); }
+.iosSlider .slider .item3 .inner { background-image: url('../image/slide2.jpg'); }
 
 .sliderContainer .slideSelectors {
 	position: absolute;
