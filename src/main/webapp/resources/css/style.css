@@ -173,7 +173,6 @@ ul.list1 li+li+li+li {
 ul.list1 li:after {
     left: 0;
     top: 3px;
-    content: 'ï�¡';
     font-family: 'FontAwesome';
     position: absolute;
     display: block;

@@ -102,8 +102,8 @@
 						<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 							<ul class="sf-menu">
 								<li class="current"><a href="home.jsp">Home</a></li>
-								<li><a href="index-1.html">What We Do</a></li>
-								<li><a href="index-2.html">Media</a></li>
+								<li><a href="index-1.html">Our Objectives</a></li>
+								<li><a href="index-2.html">Media & Gallery</a></li>
 								<li><a href="index-3.html">Get Involved</a></li>
 								<li><a href="index-4.html">Contacts</a></li>
 							</ul>
