@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController {
+public class NavigationController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(HomeController.class);
+			.getLogger(NavigationController.class);
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -25,8 +25,23 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/objective", method = RequestMethod.GET)
-	public String objective(Model model) {
+	public String showObjective(Model model) {
 		return "objective";
+	}
+	
+	@RequestMapping(value = "/gallery", method = RequestMethod.GET)
+	public String showGallery(Model model) {
+		return "gallery";
+	}
+	
+	@RequestMapping(value = "/family_tree", method = RequestMethod.GET)
+	public String showFamilyTree(Model model) {
+		return "familyTree";
+	}
+	
+	@RequestMapping(value = "/contacts", method = RequestMethod.GET)
+	public String showContacts(Model model) {
+		return "contact";
 	}
 
 }

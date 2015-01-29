@@ -10,6 +10,14 @@
 	<!DOCTYPE html>
 	<html lang="en">
 	
+	<!-- Navigation URLs -->
+	<spring:url value="/" var="objectiveURL"/>
+	<spring:url value="/objective" var="objectiveURL"/>
+	<spring:url value="/gallery" var="galleryURL"/>
+	<spring:url value="/family_tree" var="familyTreeURL"/>
+	<spring:url value="/contacts" var="contactURL"/>
+	
+	<!-- CSS Files -->
 	<spring:url value="/resources/css/form.css" var="formCSS" />
 	<spring:url value="/resources/css/thumbs.css" var="thumbsCSS" />
 	<spring:url value="/resources/css/slider.css" var="sliderCSS" />
@@ -95,12 +103,12 @@
 						<div class="clear"></div>
 						<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 							<ul class="sf-menu">
-								<li><a href="index.html">Home</a></li>
-								<li class="current"><a href="index-1.html">Our
+								<li><a href="${homeURL}">Home</a></li>
+								<li class="current"><a href="${objectiveURL}">Our
 										Objectives</a></li>
-								<li><a href="index-2.html">Media &amp; Gallery</a></li>
-								<li><a href="index-3.html">Family Tree</a></li>
-								<li><a href="index-4.html">Contacts</a></li>
+								<li><a href="${galleryURL}">Media &amp; Gallery</a></li>
+								<li><a href="${familyTreeURL}">Family Tree</a></li>
+								<li><a href="${contactURL}">Contacts</a></li>
 							</ul>
 						</nav>
 						<div class="clear"></div>

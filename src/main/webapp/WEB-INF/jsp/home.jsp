@@ -11,9 +11,12 @@
 
 <html lang="en">
 
-	<!-- Navigation URL -->
+	<!-- Navigation URLs -->
+	<spring:url value="/" var="objectiveURL"/>
 	<spring:url value="/objective" var="objectiveURL"/>
-	<spring:url value="/" var="homeURL"/>
+	<spring:url value="/gallery" var="galleryURL"/>
+	<spring:url value="/family_tree" var="familyTreeURL"/>
+	<spring:url value="/contacts" var="contactURL"/>
 	
 
 	<spring:url value="/resources/css/form.css" var="formCSS"/>
@@ -108,9 +111,9 @@
 							<ul class="sf-menu">
 								<li class="current"><a href="${homeURL}">Home</a></li>
 								<li><a href="${objectiveURL}">Our Objectives</a></li>
-								<li><a href="index-2.html">Media & Gallery</a></li>
-								<li><a href="index-3.html">Get Involved</a></li>
-								<li><a href="index-4.html">Contacts</a></li>
+								<li><a href="${galleryURL}">Media &amp; Gallery</a></li>
+								<li><a href="${familyTreeURL}">Family Tree</a></li>
+								<li><a href="${contactURL}">Contacts</a></li>
 							</ul>
 						</nav>
 						<div class="clear"></div>
