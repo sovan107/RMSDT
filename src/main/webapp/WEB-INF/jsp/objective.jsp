@@ -11,7 +11,7 @@
 	<html lang="en">
 	
 	<!-- Navigation URLs -->
-	<spring:url value="/" var="objectiveURL"/>
+	<spring:url value="/" var="homeURL"/>
 	<spring:url value="/objective" var="objectiveURL"/>
 	<spring:url value="/gallery" var="galleryURL"/>
 	<spring:url value="/family_tree" var="familyTreeURL"/>

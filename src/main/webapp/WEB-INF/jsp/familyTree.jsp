@@ -12,7 +12,7 @@
 	<head>
 	
 	<!-- Navigation URLs -->
-	<spring:url value="/" var="objectiveURL"/>
+	<spring:url value="/" var="homeURL"/>
 	<spring:url value="/objective" var="objectiveURL"/>
 	<spring:url value="/gallery" var="galleryURL"/>
 	<spring:url value="/family_tree" var="familyTreeURL"/>
@@ -93,7 +93,7 @@
 						<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 							<ul class="sf-menu">
 								<li><a href="${homeURL}">Home</a></li>
-								<li><a href="${objectiveURL}">Objectives</a></li>
+								<li><a href="${objectiveURL}">Our Objectives</a></li>
 								<li><a href="${galleryURL}">Media &amp; Gallery</a></li>
 								<li class="current"><a href="${familyTree}">Family Tree</a></li>
 								<li><a href="${contactURL}">Contacts</a></li>
