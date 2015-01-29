@@ -21,7 +21,12 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		return "contact";
+		return "home";
+	}
+	
+	@RequestMapping(value = "/objective", method = RequestMethod.GET)
+	public String objective(Model model) {
+		return "objective";
 	}
 
 }

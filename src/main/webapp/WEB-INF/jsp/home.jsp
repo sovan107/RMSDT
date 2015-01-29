@@ -11,6 +11,11 @@
 
 <html lang="en">
 
+	<!-- Navigation URL -->
+	<spring:url value="/objective" var="objectiveURL"/>
+	<spring:url value="/" var="homeURL"/>
+	
+
 	<spring:url value="/resources/css/form.css" var="formCSS"/>
 	<spring:url value="/resources/css/thumbs.css" var="thumbsCSS"/>
 	<spring:url value="/resources/css/slider.css" var="sliderCSS"/>
@@ -101,8 +106,8 @@
 						<div class="clear"></div>
 						<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 							<ul class="sf-menu">
-								<li class="current"><a href="home.jsp">Home</a></li>
-								<li><a href="index-1.html">Our Objectives</a></li>
+								<li class="current"><a href="${homeURL}">Home</a></li>
+								<li><a href="${objectiveURL}">Our Objectives</a></li>
 								<li><a href="index-2.html">Media & Gallery</a></li>
 								<li><a href="index-3.html">Get Involved</a></li>
 								<li><a href="index-4.html">Contacts</a></li>
