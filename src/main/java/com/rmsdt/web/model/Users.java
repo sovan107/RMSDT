@@ -29,7 +29,6 @@ public class Users extends Person{
 	private Date creationDate;
 	
 	@Column(name = "modification_date")
-	@NotEmpty
 	private Date modificationDate;
 	
 	@Column(name = "password")

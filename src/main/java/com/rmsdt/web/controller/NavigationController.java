@@ -43,5 +43,11 @@ public class NavigationController {
 	public String showContacts(Model model) {
 		return "contact";
 	}
+	
+	@RequestMapping(value = "/admin" , method = RequestMethod.GET)
+	public String showAdminLogin(Model model){
+		return "/admin/login";
+		
+	}
 
 }

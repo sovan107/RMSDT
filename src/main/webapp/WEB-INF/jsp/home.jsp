@@ -17,8 +17,9 @@
 	<spring:url value="/gallery" var="galleryURL"/>
 	<spring:url value="/family_tree" var="familyTreeURL"/>
 	<spring:url value="/contacts" var="contactURL"/>
-	
+	<spring:url value="/admin" var="adminLoginURL"/>
 
+	<!-- CSS Files -->
 	<spring:url value="/resources/css/form.css" var="formCSS"/>
 	<spring:url value="/resources/css/thumbs.css" var="thumbsCSS"/>
 	<spring:url value="/resources/css/slider.css" var="sliderCSS"/>
@@ -105,7 +106,7 @@
 						</a>
 					</h1>
 					<div class="menu_block ">
-						<a href="#" class="donate">DONATE</a>
+						<a href="${adminLoginURL}" class="donate">Admin Login</a>
 						<div class="clear"></div>
 						<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 							<ul class="sf-menu">
