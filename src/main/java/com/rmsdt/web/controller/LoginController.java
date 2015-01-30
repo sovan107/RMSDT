@@ -10,7 +10,6 @@ public class LoginController {
 
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String showLogin(Model model) {
-		System.out.println("Coming here");
 		return "admin/login";
 	}
 }
