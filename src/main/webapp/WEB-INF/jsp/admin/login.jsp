@@ -29,6 +29,7 @@
 <spring:url value="/resources/js/jquery.easing.1.3.js" var="easingJS" />
 <spring:url value="/resources/js/touchTouch.jquery.js" var="touchJS" />
 <spring:url value="/resources/js/html5shiv.js" var="html5shivJS" />
+<spring:url var="loginUrl" value="/j_spring_security_check" />
 
 <!-- Image Files -->
 
@@ -93,24 +94,22 @@
 		</div>
 	</header>
 	<!--==============================Content=================================-->
-	<div style='margin:30px;'>
-		<form>
+	<div style='margin: 30px;'>
+		<form action="${loginUrl}" name="form" method="post">
 			<p>
 				<label>Username: </label>
 			</p>
 			<p>
-				<input type="text" name="login" value=""
-					placeholder="Username or Email">
+				<input type="text" name="j_username" value="" placeholder="Username"/>
 			</p>
 			<p>
 				<label>Password: </label>
 			</p>
 			<p>
-				<input type="password" name="password" value=""
-					placeholder="Password">
+				<input type="password" name="j_password" placeholder="Password"/>
 			</p>
 			<p>
-				<input type="submit" name="Login" value="Login">
+				<input type="submit" name="submit" value="LOGIN" />
 			</p>
 		</form>
 	</div>

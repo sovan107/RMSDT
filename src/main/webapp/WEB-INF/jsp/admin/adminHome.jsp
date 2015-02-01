@@ -17,7 +17,7 @@
 	<spring:url value="/gallery" var="galleryURL"/>
 	<spring:url value="/family_tree" var="familyTreeURL"/>
 	<spring:url value="/contacts" var="contactURL"/>
-	<spring:url value="/admin/login" var="adminLoginURL"/>
+	<spring:url value="/login" var="adminLoginURL"/>
 
 	<!-- CSS Files -->
 	<spring:url value="/resources/css/form.css" var="formCSS"/>
