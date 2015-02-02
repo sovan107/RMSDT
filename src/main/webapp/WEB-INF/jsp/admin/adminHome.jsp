@@ -106,7 +106,9 @@
 						</a>
 					</h1>
 					<div class="menu_block ">
-						<a href="${adminLoginURL}" class="donate">Admin Login</a>
+
+						<spring:message code="error.login.message"/>
+
 						<div class="clear"></div>
 						<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 							<ul class="sf-menu">
