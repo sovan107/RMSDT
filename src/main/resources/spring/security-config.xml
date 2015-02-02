@@ -21,7 +21,8 @@
 		<!--<intercept-url pattern="/**" access="hasRole('ROLE_USER') and hasRole('ROLE_ADMIN')"/> -->
 		<intercept-url pattern="/**" access="permitAll" />
 		<form-login login-page="/admin/login.html"
-			authentication-failure-url="/admin/login.html" default-target-url="/admin/adminHome" />
+			authentication-failure-url="/admin/loginFailed" 
+			default-target-url="/admin/adminHome"/>
 		<logout logout-success-url="/logout.html" />
 
 		<access-denied-handler error-page="/403.html" />
