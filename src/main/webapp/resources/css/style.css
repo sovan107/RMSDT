@@ -327,7 +327,7 @@ header h1 a img {
 	display: block;
 }
 
-a.donate {
+a.donate, a.logout {
     margin-bottom: 21px;
     margin-top: 12px;
     float: right;
@@ -339,8 +339,12 @@ a.donate {
     padding: 4px 26px 5px 25px;
 }
 
-a.donate:hover {
+a.donate:hover, a.logout:hover{
     background-color:  #60bf93;
+}
+a.logout{
+	
+	margin-right: 27px;
 }
 
 .rel1 {
