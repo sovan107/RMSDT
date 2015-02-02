@@ -72,55 +72,58 @@
 		<div class="container_12">
 			<div class="grid_12">
 				<h1>
-					<a href="index.html"> <img src="${logoPNG}"
-						alt="Your Happy Family">
+					<a href="index.html"> <img src="${logoPNG}" alt="RMSDT">
 					</a>
 				</h1>
 				<div class="menu_block ">
-					<a href="#" class="donate">DONATE</a>
-					<div class="clear"></div>
-					<nav class="horizontal-nav full-width horizontalNav-notprocessed">
-						<ul class="sf-menu">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="index-1.html">Objectives</a></li>
-							<li><a href="index-2.html">Media &amp; Gallery</a></li>
-							<li class="current"><a href="index-3.html">Family Tree</a></li>
-							<li><a href="index-4.html">Contacts</a></li>
-						</ul>
-					</nav>
-					<div class="clear"></div>
+					<a href="#" class="logout">Home</a>
 				</div>
 			</div>
 		</div>
+
 	</header>
 	<!--==============================Content=================================-->
-	<div style='margin: 30px;'>
-		<form action="${loginUrl}" name="form" method="post">
-			<p>
-				<label>Username: </label>
-			</p>
-			<p>
-				<input type="text" name="j_username" value="" placeholder="Username"/>
-			</p>
-			<p>
-				<label>Password: </label>
-			</p>
-			<p>
-				<input type="password" name="j_password" placeholder="Password"/>
-			</p>
-			<p>
-				<input type="submit" name="submit" value="LOGIN" />
-			</p>
-		</form>
+	<div class="content">
+
+		<div class="container_12">
+			<div class="grid_6">
+				<h2>Only Admin Access</h2>
+
+				<div class="extra_wrapper">
+					<br> <br> <br>
+					<p class="col2">This page can only be accessed by admin of the
+						website</p>
+					If you need an access please contact Admin <br>
+				</div>
+				<div class="clear"></div>
+			</div>
+
+			<div class="grid_5 prefix_1">
+				<h2>Admin Login</h2>
+				<div class="formholder">
+					<div class="randompad">
+						<fieldset>
+							<form action="${loginUrl}" name="form" method="post">
+								<label name="email">Username</label>
+								<input type="text" name="j_username" value="" placeholder="Username" />
+								<label name="password">Password</label>
+								<input type="password" name="j_password" placeholder="Password" />
+								<input type="submit" name="submit" value="LOGIN" />
+							</form>
+						</fieldset>
+
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<!--==============================footer=================================-->
 	<footer>
 		<div class="container_12">
 			<div class="grid_12">
 				<div class="copy">
-					Life &copy; 2014 | <a href="#">Privacy Policy</a> <br> Website
-					designed by <a href="http://www.templatemonster.com/"
-						rel="nofollow">TemplateMonster.com </a>
+					RMSDT &copy; 2014 | Cuttack <br> Website
+					designed by Developers @ RMSDT
 				</div>
 			</div>
 		</div>
