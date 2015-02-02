@@ -18,6 +18,7 @@
 	<spring:url value="/family_tree" var="familyTreeURL"/>
 	<spring:url value="/contacts" var="contactURL"/>
 	<spring:url value="/login" var="adminLoginURL"/>
+	<spring:url value="/j_spring_security_logout" var="adminLogout"/>
 
 	<!-- CSS Files -->
 	<spring:url value="/resources/css/form.css" var="formCSS"/>
@@ -107,7 +108,6 @@
 					</h1>
 					<div class="menu_block ">
 
-						<spring:message code="error.login.message"/>
 
 						<div class="clear"></div>
 						<nav class="horizontal-nav full-width horizontalNav-notprocessed">
@@ -117,6 +117,7 @@
 								<li><a href="${galleryURL}">Media &amp; Gallery</a></li>
 								<li><a href="${familyTreeURL}">Family Tree</a></li>
 								<li><a href="${contactURL}">Contacts</a></li>
+								<li><a href="${adminLogout}">Logout</a></li>
 							</ul>
 						</nav>
 						<div class="clear"></div>

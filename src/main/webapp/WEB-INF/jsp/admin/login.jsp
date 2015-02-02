@@ -105,9 +105,9 @@
 						<fieldset>
 							<form action="${loginUrl}" name="form" method="post">
 								<label name="email">Username</label> <input type="text"
-									name="j_username" value="" placeholder="Username" /> <label
+									name="username" value="" placeholder="Username" /> <label
 									name="password">Password</label> <input type="password"
-									name="j_password" placeholder="Password" /> <input
+									name="password" placeholder="Password" /> <input
 									type="submit" name="submit" value="LOGIN" />
 							</form>
 						</fieldset>

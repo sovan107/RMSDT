@@ -13,17 +13,17 @@
 
 	<http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/admin/login.html" access="permitAll" />
-		<intercept-url pattern="/admin/adminHome.html" access="hasRole('ROLE_SUPER_ADMIN')" />
+		<intercept-url pattern="/admin/**" access="hasRole('ROLE_SUPER_ADMIN')" />
 		<intercept-url pattern="/logout.html" access="hasRole('ROLE_SUPER_ADMIN')" />
 		<intercept-url pattern="/403.html" access="permitAll" />
 
 		<!--Mark "and" condition below -->
 		<!--<intercept-url pattern="/**" access="hasRole('ROLE_USER') and hasRole('ROLE_ADMIN')"/> -->
 		<intercept-url pattern="/**" access="permitAll" />
-		<form-login login-page="/admin/login.html"
+		<form-login username-parameter="username" password-parameter="password" login-page="/admin/login.html"
 			authentication-failure-url="/admin/loginFailed" 
 			default-target-url="/admin/adminHome"/>
-		<logout logout-success-url="/logout.html" />
+		<logout logout-success-url="/admin/login.html" />
 
 		<access-denied-handler error-page="/403.html" />
 

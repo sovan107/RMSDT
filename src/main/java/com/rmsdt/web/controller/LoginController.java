@@ -26,4 +26,11 @@ public class LoginController {
 
 		return "admin/login";
 	}
+
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(ModelMap model) {
+		model.addAttribute("error", "true");
+
+		return "admin/login";
+	}
 }
