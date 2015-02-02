@@ -104,14 +104,16 @@
 					<div class="randompad">
 						<fieldset>
 							<form action="${loginUrl}" name="form" method="post">
-								<label name="email">Username</label>
-								<input type="text" name="j_username" value="" placeholder="Username" />
-								<label name="password">Password</label>
-								<input type="password" name="j_password" placeholder="Password" />
-								<input type="submit" name="submit" value="LOGIN" />
+								<label name="email">Username</label> <input type="text"
+									name="j_username" value="" placeholder="Username" /> <label
+									name="password">Password</label> <input type="password"
+									name="j_password" placeholder="Password" /> <input
+									type="submit" name="submit" value="LOGIN" />
 							</form>
 						</fieldset>
-
+						<c:if test="${not empty error}">
+							<spring:message code="error.login.message" />
+						</c:if>
 					</div>
 				</div>
 			</div>
@@ -122,8 +124,8 @@
 		<div class="container_12">
 			<div class="grid_12">
 				<div class="copy">
-					RMSDT &copy; 2014 | Cuttack <br> Website
-					designed by Developers @ RMSDT
+					RMSDT &copy; 2014 | Cuttack <br> Website designed by
+					Developers @ RMSDT
 				</div>
 			</div>
 		</div>
