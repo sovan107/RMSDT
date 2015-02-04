@@ -14,7 +14,8 @@
 	<!-- import the dataSource definition -->
 	<import resource="datasource-config.xml" />
 
-	<!--<context:component-scan base-package="org.springframework.samples.petclinic.service"/> -->
+	<context:component-scan base-package="com.rmsdt.web.service" />
+	<context:component-scan base-package="com.rmsdt.web.repository.jpa" />
 
 	<context:property-placeholder location="classpath:spring/data-access.properties"
 		system-properties-mode="OVERRIDE" />
@@ -22,31 +23,26 @@
 	<!-- enables scanning for @Transactional annotations -->
 	<tx:annotation-driven />
 
-	<beans profile="jpa">
-		<!-- JPA EntityManagerFactory -->
-		<bean id="entityManagerFactory"
-			class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-			p:dataSource-ref="dataSource">
-			<property name="jpaVendorAdapter">
-				<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
-					p:database="${jpa.database}" p:showSql="${jpa.showSql}" />
-			</property>
 
-			<property name="persistenceUnitName" value="rmsdt" />
-			<property name="packagesToScan" value="org.rmsdt.web.mode." />
-		</bean>
+	<!-- JPA EntityManagerFactory -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		p:dataSource-ref="dataSource">
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+				p:database="${jpa.database}" p:showSql="${jpa.showSql}" />
+		</property>
 
-		<!-- Transaction manager for a single JPA EntityManagerFactory (alternative 
-			to JTA) -->
-		<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
-			p:entityManagerFactory-ref="entityManagerFactory" />
+		<property name="persistenceUnitName" value="rmsdt" />
+		<property name="packagesToScan" value="com.rmsdt.web.model" />
+	</bean>
 
-		<bean
-			class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	<!-- Transaction manager for a single JPA EntityManagerFactory (alternative 
+		to JTA) -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+		p:entityManagerFactory-ref="entityManagerFactory" />
 
-	</beans>
+	<bean
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
-	<beans profile="jpa">
-		<!-- <context:component-scan base-package="org.springframework.samples.petclinic.repository.jpa"/> -->
-	</beans>
 </beans>

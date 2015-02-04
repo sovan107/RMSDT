@@ -10,9 +10,15 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="com.rmsdt.web" />
+	<context:component-scan base-package="com.rmsdt.web.controller" />
 
-	<mvc:annotation-driven />
+	<mvc:annotation-driven validator="validator"/>
+
+	<!-- Configure JSR-303 validation -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
 
 	<!-- all resources inside folder src/main/webapp/resources are mapped so 
 		they can be refered to inside JSP files (see header.jsp for more details) -->
@@ -22,7 +28,6 @@
 		(Bootstrap, jQuery...) -->
 	<mvc:resources mapping="/webjars/**"
 		location="classpath:/META-INF/resources/webjars/" />
-	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<!-- serve static resources (*.html, ...) from src/main/webapp/ -->
 	<mvc:default-servlet-handler />
@@ -30,7 +35,8 @@
 	<!-- i18n settings -->
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basenames" value="classpath:i18n/messages,classpath:i18n/application" />
+		<property name="basenames"
+			value="classpath:i18n/messages,classpath:i18n/application" />
 	</bean>
 
 	<bean id="localeResolver"
