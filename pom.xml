@@ -6,7 +6,7 @@
 	<artifactId>app</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 
-	<name>petclinic</name>
+	<name>rmsdt</name>
 	<packaging>war</packaging>
 
 	<properties>
@@ -152,9 +152,6 @@
 			<version>${spring-framework.version}</version>
 		</dependency>
 
-
-		<!-- Database connection pool See here for more details on commons-dbcp 
-			versus tomcat-jdbc: http://blog.ippon.fr/2013/03/13/improving-the-performance-of-the-spring-petclinic-sample-application-part-3-of-5/ -->
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jdbc</artifactId>
@@ -435,7 +432,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.3</version>
 				<configuration>
-					<warName>petclinic</warName>
+					<warName>rmsdt</warName>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -481,11 +478,11 @@
 				<configuration>
 					<server>tomcat-development-server</server>
 					<port>9966</port>
-					<path>/petclinic</path>
+					<path>/rmsdt</path>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
-	<url>demopetclinic</url>
+	<url>rmsdt</url>
 </project>
