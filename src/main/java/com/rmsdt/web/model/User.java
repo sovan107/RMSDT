@@ -3,9 +3,12 @@ package com.rmsdt.web.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,17 +22,20 @@ public class User extends Person {
 	private String username;
 
 	@Column(name = "email")
-	@NotEmpty
+	@NotEmpty(message="{validaton.field.required}")
+	@Email
 	private String email;
 
 	@Column(name = "phone")
-	@NotEmpty
+	@NotEmpty(message="{validaton.field.required}")
 	@Size(min=10, max=10, message="{validation.phone.Size.message}")
 	private String phone;
 
 	@Column(name = "dob")
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@Past
+	@NotNull
 	private DateTime dob;
 
 	@Column(name = "creation_date")
@@ -43,7 +49,7 @@ public class User extends Person {
 	private DateTime modificationDate;
 
 	@Column(name = "password")
-	@NotEmpty
+	@NotEmpty(message="{validaton.field.required}")
 	private String password;
 
 	public String getPassword() {

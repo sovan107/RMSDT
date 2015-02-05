@@ -48,7 +48,7 @@
 			<tr>
 				<td>First Name :</td>
 				<td>
-					<b><form:input path="firstName" /></b><br/>
+					<b><form:input path="firstName" /></b>
 					<form:errors path="firstName" />
 				</td>
 			</tr>
@@ -56,30 +56,39 @@
 			<tr>
 				<td>Last Name :</td>
 				<td>
-					<b><form:input path="lastName" /></b><br/>
+					<b><form:input path="lastName" /></b>
 					<form:errors path="lastName" />
 				</td>
 			</tr>
 
 			<tr>
 				<td>Email :</td>
-				<td><b><form:input path="email" /></b></td>
+				<td><b>
+					<form:input path="email" /></b>
+					<form:errors path="email" />
+				</td>
 			</tr>
 			<tr>
 				<td>New Password :</td>
-				<td><b><form:password path="password" showPassword="true"/></b></td>
+				<td>
+					<b><form:password path="password" showPassword="true"/></b>
+					<form:errors path="password" />
+				</td>
 			</tr>
 			<tr>
 				<td>Phone :</td>
 				<td>
-					<b><form:input path="phone" /></b><br/>
+					<b><form:input path="phone" /></b>
 					<form:errors path="phone" />	
 				</td>
 			</tr>
 
 			<tr>
 				<td>Dob :</td>
-				<td><b><form:input path="dob" id="dob" /></b></td>
+				<td>
+					<b><form:input path="dob" id="dob" placeholder="yyyy/MM/dd"/></b>
+					<form:errors path="dob" />	
+				</td>
 			</tr>
 			<tr>
 				<td></td>
