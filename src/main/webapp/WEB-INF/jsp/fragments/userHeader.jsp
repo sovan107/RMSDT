@@ -22,7 +22,7 @@
 <spring:url value="/resources/css/form.css" var="formCSS" />
 <spring:url value="/resources/css/style.css" var="styleCSS" />
 <spring:url value="/resources/css/ie.css" var="ieCSS" />
-<c:if test="${param.callingPage == 'home' }">
+<c:if test="${param.callingPage == 'home'}">
 	<spring:url value="/resources/css/thumbs.css" var="thumbsCSS"/>
 	<spring:url value="/resources/css/slider.css" var="sliderCSS"/>
 </c:if>
@@ -128,15 +128,15 @@
 					<div class="clear"></div>
 					<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 						<ul class="sf-menu">
-							<li class="${param.callingPage=="home" ? 'current' : '' }"><a
+							<li class="${param.callingPage=='home' ? 'current' : '' }"><a
 								href="${homeURL}">Home</a></li>
-							<li class="${param.callingPage=="objective" ? 'current' : '' }"><a
+							<li class="${param.callingPage=='objective' ? 'current' : '' }"><a
 								href="${objectiveURL}">Our Objectives</a></li>
-							<li class="${param.callingPage=="gallery" ? 'current' : '' }"><a
+							<li class="${param.callingPage=='gallery' ? 'current' : '' }"><a
 								href="${galleryURL}">Media &amp; Gallery</a></li>
-							<li class="${param.callingPage=="familyTree" ? 'current' : '' }"><a
+							<li class="${param.callingPage=='familyTree' ? 'current' : '' }"><a
 								href="${familyTreeURL}">Family Tree</a></li>
-							<li class="${param.callingPage=="contacts" ? 'current' : '' }"><a
+							<li class="${param.callingPage=='contacts' ? 'current' : '' }"><a
 								href="${contactURL}">Contacts</a></li>
 						</ul>
 					</nav>
