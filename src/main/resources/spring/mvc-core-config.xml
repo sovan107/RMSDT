@@ -10,6 +10,8 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <import resource="mvc-view-config.xml"/>
+
 	<context:component-scan base-package="com.rmsdt.web.controller" />
 
 	<mvc:annotation-driven validator="validator"/>

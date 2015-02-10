@@ -7,4 +7,5 @@ public interface AdminRepository {
 	public User findAdminByID(Integer id);
 	public User findAdminByName(String name);
 	public User saveAdmin(User user);
+	public User findAdminCampaignByID(int id);
 }

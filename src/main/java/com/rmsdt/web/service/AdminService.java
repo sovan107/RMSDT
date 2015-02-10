@@ -14,5 +14,7 @@ public interface AdminService {
 	public User findAdminByName(String name);
 
 	public User saveAdmin(User user);
+
+	public User findAdminCampaignByID(int id);
 	
 }

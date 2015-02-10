@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.rmsdt.web.model.Campaigns;
 import com.rmsdt.web.model.User;
 import com.rmsdt.web.service.AdminService;
 
@@ -52,18 +54,19 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/editDetails", method = RequestMethod.POST)
-	public String editDetailsPost(@Valid User user, BindingResult result, HttpSession session) {
-		if(result.hasErrors()){
+	public String editDetailsPost(@Valid User user, BindingResult result,
+			HttpSession session) {
+		if (result.hasErrors()) {
 			return "admin/addAdminDetails";
-		}else{
-		user = adminService.saveAdmin(user);
-		return "redirect:/admin/" + user.getId();
+		} else {
+			user.setModificationDate(new DateTime());
+			user = adminService.saveAdmin(user);
+			return "redirect:/admin/" + user.getId();
 		}
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public String viewAdminByID(@PathVariable("id") int id,
-			Model model) {
+	public String viewAdminByID(@PathVariable("id") int id, Model model) {
 		User user = adminService.findAdminByID(id);
 		model.addAttribute("user", user);
 		return "admin/viewAdminDetails";

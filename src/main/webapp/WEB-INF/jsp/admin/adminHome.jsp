@@ -19,6 +19,7 @@
 	<spring:url value="/contacts" var="contactURL"/>
 	<spring:url value="/login" var="adminLoginURL"/>
 	<spring:url value="/admin/viewDetails" var="viewDetails"/>
+	<spring:url value="/admin/campaign/viewAllCampaign/${user.id}" var="viewAllCampaign"/>
 	<spring:url value="/j_spring_security_logout" var="adminLogout"/>
 
 	<!-- CSS Files -->
@@ -119,6 +120,7 @@
 								<li><a href="${galleryURL}">Media &amp; Gallery</a></li>
 								<li><a href="${familyTreeURL}">Family Tree</a></li>
 								<li><a href="${contactURL}">Contacts</a></li>
+								<li><a href="${viewAllCampaign}">Campaign</a></li>
 								<li><a href="${viewDetails}">Account Details</a></li>
 								<li><a href="${adminLogout}">Logout</a></li>
 							</ul>

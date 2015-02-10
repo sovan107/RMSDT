@@ -39,4 +39,10 @@ public class AdminServiceImpl implements AdminService {
 		return adminRepo.saveAdmin(user);
 	}
 
+	@Override
+	public User findAdminCampaignByID(int id) {
+		// TODO Auto-generated method stub
+		return adminRepo.findAdminCampaignByID(id);
+	}
+
 }

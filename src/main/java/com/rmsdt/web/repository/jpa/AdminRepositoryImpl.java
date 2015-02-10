@@ -34,4 +34,15 @@ public class AdminRepositoryImpl implements AdminRepository {
 		user = em.merge(user);
 		return user;
 	}
+
+	@Override
+	public User findAdminCampaignByID(int id) {
+		
+		Query query = em.createQuery(
+				"SELECT user FROM User user LEFT JOIN FETCH user.campaigns WHERE user.id=:id",
+				User.class);
+		query.setParameter("id", id);
+		
+		return (User) query.getSingleResult();
+	}
 }

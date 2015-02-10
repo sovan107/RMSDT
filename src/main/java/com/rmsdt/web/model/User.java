@@ -1,17 +1,27 @@
 package com.rmsdt.web.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.rmsdt.web.form.validator.Phone;
 
 @Entity
 @Table(name = "users")
@@ -27,8 +37,7 @@ public class User extends Person {
 	private String email;
 
 	@Column(name = "phone")
-	@NotEmpty(message="{validaton.field.required}")
-	@Size(min=10, max=10, message="{validation.phone.Size.message}")
+	@Phone
 	private String phone;
 
 	@Column(name = "dob")
@@ -44,6 +53,7 @@ public class User extends Person {
 	private DateTime creationDate;
 
 	@Column(name = "modification_date")
+	@Temporal(TemporalType.DATE)
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	@DateTimeFormat(pattern = "yyyy/MM/dd hh:mm:ss")
 	private DateTime modificationDate;
@@ -51,6 +61,9 @@ public class User extends Person {
 	@Column(name = "password")
 	@NotEmpty(message="{validaton.field.required}")
 	private String password;
+	
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Campaigns> campaigns;
 
 	public String getPassword() {
 		return password;
@@ -106,5 +119,26 @@ public class User extends Person {
 
 	public void setDob(DateTime dob) {
 		this.dob = dob;
+	}
+	
+	public void addCampaign(Campaigns campaign){
+		getInternalCampaign().add(campaign);
+		campaign.setUser(this);
+		
+	}
+
+	private List<Campaigns> getInternalCampaign() {
+		if(campaigns == null){
+			campaigns = new ArrayList<Campaigns>();
+		}
+		return campaigns;
+	}
+
+	public List<Campaigns> getCampaigns() {
+		return campaigns;
+	}
+
+	public void setCampaigns(List<Campaigns> campaigns) {
+		this.campaigns = campaigns;
 	}
 }
