@@ -12,4 +12,6 @@ public interface CampaignRepository {
 
 	Campaigns findCampaignByID(int campaignId);
 
+	List<Campaigns> findAllCampaigns();
+
 }

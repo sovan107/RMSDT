@@ -6,13 +6,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
-
-<spring:url value="/admin/campaign/newCampaign/${user.id}"
-	var="addNewCampaign" />
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -27,20 +26,30 @@
 			<th></th>
 		</tr>
 		<c:forEach var="campaign" items="${campaigns}">
-		<spring:url value="/common/campaignImage/${campaign.id}" var="campaignImageUrl"/>
-		<spring:url value="/admin/campaign/editCampaign/${campaign.user.id}/${campaign.id}" var="editCampaignUrl"/>
+			<spring:url value="/common/campaignImage/${campaign.id}"
+				var="campaignImageUrl" />
 
 			<tr>
 				<td><img src="${campaignImageUrl}" /></td>
 				<td>${campaign.campaignName}</td>
 				<td>${campaign.campaignDescription}</td>
-				<td><a href="${editCampaignUrl}">Edit Campaign</a></td>
+
+				<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
+					<spring:url
+						value="/admin/campaign/editCampaign/${campaign.user.id}/${campaign.id}"
+						var="editCampaignUrl" />
+					<td><a href="${editCampaignUrl}">Edit Campaign</a></td>
+				</sec:authorize>
 			</tr>
 
 		</c:forEach>
 	</table>
 	<div>
-		<a href="${addNewCampaign}">New Campaign</a>
+		<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
+			<spring:url value="/admin/campaign/newCampaign/${user.id}"
+				var="addNewCampaign" />
+			<a href="${addNewCampaign}">New Campaign</a>
+		</sec:authorize>
 	</div>
 
 </body>

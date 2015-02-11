@@ -66,7 +66,7 @@
 
 			<tr>
 				<td>Description :</td>
-				<td><b><form:input path="campaignDescription" /></b> <form:errors
+				<td><b><form:textarea path="campaignDescription" /></b> <form:errors
 						path="campaignDescription" /></td>
 			</tr>
 

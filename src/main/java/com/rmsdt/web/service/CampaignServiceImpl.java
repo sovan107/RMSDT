@@ -27,13 +27,21 @@ public class CampaignServiceImpl implements CampaignService {
 	}
 
 	@Override
+	@Transactional
 	public List<Campaigns> findAllCampaignByAdminID(int id) {
 		return campaignRepo.findAllCampaignByAdminID(id);
 	}
 
 	@Override
+	@Transactional
 	public Campaigns findCampaignByID(int campaignId) {
 		return campaignRepo.findCampaignByID(campaignId);
+	}
+
+	@Override
+	@Transactional
+	public List<Campaigns> findAllCampaigns() {
+		return campaignRepo.findAllCampaigns();
 	}
 
 }

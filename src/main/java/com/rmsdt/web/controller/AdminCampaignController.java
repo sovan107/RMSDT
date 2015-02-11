@@ -53,7 +53,7 @@ public class AdminCampaignController {
 				.findAllCampaignByAdminID(id);
 
 		model.addAttribute("campaigns", campaigns);
-		return "admin/viewAllCampaign";
+		return "common/viewAllCampaign";
 	}
 
 	@RequestMapping(value = "/newCampaign/{id}", method = RequestMethod.GET)

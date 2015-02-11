@@ -9,6 +9,8 @@ public interface CampaignService {
 	void saveCampaign(Campaigns campaign);
 
 	List<Campaigns> findAllCampaignByAdminID(int id);
+	
+	List<Campaigns> findAllCampaigns();
 
 	Campaigns findCampaignByID(int campaignId);
 

@@ -33,7 +33,7 @@ public class CampaignRepositoryImpl implements CampaignRepository {
 		return this.em
 				.createQuery(
 						"SELECT campaigns FROM Campaigns campaigns "
-								+ " WHERE campaigns.user.id = :id ORDER BY campaigns.creationDate")
+								+ " WHERE campaigns.user.id = :id ORDER BY campaigns.creationDate DESC ")
 				.setParameter("id", id).getResultList();
 	}
 
@@ -44,5 +44,13 @@ public class CampaignRepositoryImpl implements CampaignRepository {
 						"SELECT campaign FROM Campaigns campaign LEFT JOIN FETCH campaign.user "
 								+ " WHERE campaign.id = :id ", Campaigns.class)
 				.setParameter("id", campaignId).getSingleResult();
+	}
+
+	@Override
+	public List<Campaigns> findAllCampaigns() {
+		return this.em.createQuery(
+				"SELECT campaigns FROM Campaigns campaigns "
+						+ " ORDER BY campaigns.creationDate DESC ")
+				.getResultList();
 	}
 }

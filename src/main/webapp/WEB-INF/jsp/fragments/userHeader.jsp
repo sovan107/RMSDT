@@ -12,6 +12,7 @@
 
 <!-- Navigation URLs -->
 	<spring:url value="/" var="homeURL"/>
+	<spring:url value="/common/viewAllCampaign" var="campaignURL"/>
 	<spring:url value="/objective" var="objectiveURL"/>
 	<spring:url value="/gallery" var="galleryURL"/>
 	<spring:url value="/family_tree" var="familyTreeURL"/>
@@ -130,6 +131,8 @@
 						<ul class="sf-menu">
 							<li class="${param.callingPage=='home' ? 'current' : '' }"><a
 								href="${homeURL}">Home</a></li>
+								<li class="${param.callingPage=='campaign' ? 'current' : '' }"><a
+								href="${campaignURL}">Campaign</a></li>
 							<li class="${param.callingPage=='objective' ? 'current' : '' }"><a
 								href="${objectiveURL}">Our Objectives</a></li>
 							<li class="${param.callingPage=='gallery' ? 'current' : '' }"><a

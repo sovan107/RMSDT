@@ -319,12 +319,16 @@
 			<artifactId>spring-security-web</artifactId>
 			<version>3.2.4.RELEASE</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
 			<version>3.2.4.RELEASE</version>
 		</dependency>
+		       <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>3.2.0.RELEASE</version>
+        </dependency>
 
 		<!-- Apache Commons FileUpload -->
 		<dependency>
