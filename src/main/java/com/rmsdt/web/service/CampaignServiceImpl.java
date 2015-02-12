@@ -27,7 +27,7 @@ public class CampaignServiceImpl implements CampaignService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<Campaigns> findAllCampaignByAdminID(int id) {
 		return campaignRepo.findAllCampaignByAdminID(id);
 	}
@@ -42,6 +42,12 @@ public class CampaignServiceImpl implements CampaignService {
 	@Transactional
 	public List<Campaigns> findAllCampaigns() {
 		return campaignRepo.findAllCampaigns();
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Campaigns findSimpleCampaignByID(int campId) {
+		return campaignRepo.findSimpleCampaignByID(campId);
 	}
 
 }

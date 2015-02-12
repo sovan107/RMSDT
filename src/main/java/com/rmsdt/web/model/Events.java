@@ -1,22 +1,29 @@
 package com.rmsdt.web.model;
 
-import java.util.Date;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "events")
 public class Events extends BaseEntity {
 
-	// Need to create for FK camp_id_fk
-
-	// Need to create for FK admin_id_fk
-
-	// Need to create for FK address_id_fk
+	@ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.MERGE }, fetch = FetchType.EAGER)
+	@JoinTable(name = "campaigns_events", joinColumns = @JoinColumn(name = "event_id_fk"), inverseJoinColumns = @JoinColumn(name = "campaign_id_fk"))
+	private Campaigns campaign;
 
 	@Column(name = "event_name")
 	@NotEmpty
@@ -27,20 +34,31 @@ public class Events extends BaseEntity {
 	private String eventDescription;
 
 	@Column(name = "event_start_date")
-	@NotEmpty
-	private String eventStartDate;
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	private DateTime eventStartDate;
 
 	@Column(name = "event_end_date")
-	@NotEmpty
-	private String eventEndDate;
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	private DateTime eventEndDate;
 
 	@Column(name = "creation_date")
-	@NotEmpty
-	private Date creationDate;
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@DateTimeFormat(pattern = "yyyy/MM/dd hh:mm:ss")
+	private DateTime creationDate;
 
 	@Column(name = "modification_date")
-	@NotEmpty
-	private Date modificationDate;
+	@Temporal(TemporalType.DATE)
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@DateTimeFormat(pattern = "yyyy/MM/dd hh:mm:ss")
+	private DateTime modificationDate;
 
 	public String getEventName() {
 		return eventName;
@@ -58,36 +76,44 @@ public class Events extends BaseEntity {
 		this.eventDescription = eventDescription;
 	}
 
-	public String getEventStartDate() {
+	public DateTime getEventStartDate() {
 		return eventStartDate;
 	}
 
-	public void setEventStartDate(String eventStartDate) {
+	public void setEventStartDate(DateTime eventStartDate) {
 		this.eventStartDate = eventStartDate;
 	}
 
-	public String getEventEndDate() {
+	public DateTime getEventEndDate() {
 		return eventEndDate;
 	}
 
-	public void setEventEndDate(String eventEndDate) {
+	public void setEventEndDate(DateTime eventEndDate) {
 		this.eventEndDate = eventEndDate;
 	}
 
-	public Date getCreationDate() {
+	public DateTime getCreationDate() {
 		return creationDate;
 	}
 
-	public void setCreationDate(Date creationDate) {
+	public void setCreationDate(DateTime creationDate) {
 		this.creationDate = creationDate;
 	}
 
-	public Date getModificationDate() {
+	public DateTime getModificationDate() {
 		return modificationDate;
 	}
 
-	public void setModificationDate(Date modificationDate) {
+	public void setModificationDate(DateTime modificationDate) {
 		this.modificationDate = modificationDate;
+	}
+
+	public Campaigns getCampaign() {
+		return campaign;
+	}
+
+	public void setCampaign(Campaigns campaign) {
+		this.campaign = campaign;
 	}
 
 }

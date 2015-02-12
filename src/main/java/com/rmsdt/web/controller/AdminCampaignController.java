@@ -59,8 +59,14 @@ public class AdminCampaignController {
 	@RequestMapping(value = "/newCampaign/{id}", method = RequestMethod.GET)
 	public String addNewCampaign(@PathVariable("id") int id, Model model,
 			HttpSession session) {
+		
 		Campaigns campaign = new Campaigns();
+		
+		User user = adminService.findAdminCampaignByID(id);
+		user.addCampaign(campaign);
+		
 		model.addAttribute("campaigns", campaign);
+		
 		return "admin/addCampaign";
 	}
 
@@ -70,16 +76,15 @@ public class AdminCampaignController {
 			@RequestPart("image") Part campaignImage, HttpSession session)
 			throws IOException {
 
-		User user = adminService.findAdminCampaignByID(id);
+		
 
 		if (campaignImage != null && campaignImage.getSize() != 0) {
 			campaigns.setCampaignImage(IOUtils.toByteArray(campaignImage
 					.getInputStream()));
 		}
 		campaigns.setCreationDate(new DateTime());
-		user.addCampaign(campaigns);
 		campaignService.saveCampaign(campaigns);
-		return "redirect:/admin/campaign/viewAllCampaign/" + user.getId();
+		return "redirect:/admin/campaign/viewAllCampaign/" + campaigns.getUser().getId();
 	}
 
 	@RequestMapping(value = "/editCampaign/{adminId}/{campaignId}", method = RequestMethod.GET)

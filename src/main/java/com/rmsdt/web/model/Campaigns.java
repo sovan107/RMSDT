@@ -1,9 +1,16 @@
 package com.rmsdt.web.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,6 +27,10 @@ public class Campaigns extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "admin_id_fk")
 	private User user;
+
+	@OneToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
+	@JoinTable(name = "campaigns_events", joinColumns = @JoinColumn(name = "campaign_id_fk"), inverseJoinColumns = @JoinColumn(name = "event_id_fk"))
+	private List<Events> events;
 
 	@Column(name = "camp_name")
 	@NotEmpty
@@ -92,4 +103,26 @@ public class Campaigns extends BaseEntity {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public List<Events> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Events> events) {
+		this.events = events;
+	}
+
+	public void addEvents(Events event) {
+		getInternalEvents().add(event);
+		event.setCampaign(this);
+
+	}
+
+	private List<Events> getInternalEvents() {
+		if (events == null) {
+			events = new ArrayList<Events>();
+		}
+		return events;
+	}
+
 }

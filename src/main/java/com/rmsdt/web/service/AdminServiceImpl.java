@@ -40,8 +40,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	@Transactional
 	public User findAdminCampaignByID(int id) {
-		// TODO Auto-generated method stub
 		return adminRepo.findAdminCampaignByID(id);
 	}
 

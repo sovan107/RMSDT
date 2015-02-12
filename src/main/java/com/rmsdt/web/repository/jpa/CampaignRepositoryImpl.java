@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.springframework.stereotype.Repository;
 
 import com.rmsdt.web.model.Campaigns;
@@ -52,5 +50,10 @@ public class CampaignRepositoryImpl implements CampaignRepository {
 				"SELECT campaigns FROM Campaigns campaigns "
 						+ " ORDER BY campaigns.creationDate DESC ")
 				.getResultList();
+	}
+
+	@Override
+	public Campaigns findSimpleCampaignByID(int campId) {
+		return em.find(Campaigns.class, campId);
 	}
 }

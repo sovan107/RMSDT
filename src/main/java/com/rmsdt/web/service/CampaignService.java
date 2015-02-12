@@ -14,4 +14,6 @@ public interface CampaignService {
 
 	Campaigns findCampaignByID(int campaignId);
 
+	Campaigns findSimpleCampaignByID(int campId);
+
 }

@@ -38,7 +38,15 @@
 					<spring:url
 						value="/admin/campaign/editCampaign/${campaign.user.id}/${campaign.id}"
 						var="editCampaignUrl" />
-					<td><a href="${editCampaignUrl}">Edit Campaign</a></td>
+					<spring:url
+						value="/admin/event/addEvent/${campaign.user.id}/${campaign.id}"
+						var="addEventUrl" />
+						
+					<td>
+						<a href="${editCampaignUrl}">Edit Campaign</a>
+						<br/>
+						<a href="${addEventUrl}">Add Event</a>
+					</td>
 				</sec:authorize>
 			</tr>
 

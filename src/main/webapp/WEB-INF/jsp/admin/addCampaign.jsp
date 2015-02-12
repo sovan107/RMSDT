@@ -41,12 +41,12 @@
 
 <body>
 	<c:choose>
-		<c:when test="${campaigns['new']}">
-			<c:set var="headerText" value="Add Campaign" />
+		<c:when test="${events['new']}">
+			<c:set var="headerText" value="Add Event" />
 			<c:set var="btnText" value="Save" />
 		</c:when>
 		<c:otherwise>
-			<c:set var="headerText" value="Update Campaign" />
+			<c:set var="headerText" value="Update Event" />
 			<c:set var="btnText" value="Update" />
 		</c:otherwise>
 	</c:choose>
