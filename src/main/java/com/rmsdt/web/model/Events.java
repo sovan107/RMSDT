@@ -1,5 +1,7 @@
 package com.rmsdt.web.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,6 +27,10 @@ public class Events extends BaseEntity {
 	@ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.MERGE }, fetch = FetchType.EAGER)
 	@JoinTable(name = "campaigns_events", joinColumns = @JoinColumn(name = "event_id_fk"), inverseJoinColumns = @JoinColumn(name = "campaign_id_fk"))
 	private Campaigns campaign;
+
+	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.MERGE }, fetch = FetchType.LAZY)
+	@JoinTable(name = "events_address", joinColumns = @JoinColumn(name = "event_id_fk"), inverseJoinColumns = @JoinColumn(name = "address_id_fk"))
+	private List<Address> addresses;
 
 	@Column(name = "event_name")
 	@NotEmpty
@@ -114,6 +121,14 @@ public class Events extends BaseEntity {
 
 	public void setCampaign(Campaigns campaign) {
 		this.campaign = campaign;
+	}
+
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 
 }

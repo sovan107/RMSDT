@@ -43,6 +43,15 @@ public class CampaignRepositoryImpl implements CampaignRepository {
 								+ " WHERE campaign.id = :id ", Campaigns.class)
 				.setParameter("id", campaignId).getSingleResult();
 	}
+	
+	@Override
+	public Campaigns findCampaignEventsByID(int campaignId) {
+		return this.em
+				.createQuery(
+						"SELECT campaign FROM Campaigns campaign LEFT JOIN FETCH campaign.events "
+								+ " WHERE campaign.id = :id ", Campaigns.class)
+				.setParameter("id", campaignId).getSingleResult();
+	}
 
 	@Override
 	public List<Campaigns> findAllCampaigns() {

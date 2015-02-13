@@ -49,7 +49,7 @@ public class EventController {
 			@PathVariable("campId") int campId, Model model, HttpSession session) {
 		Events events = new Events();
 		
-		Campaigns campaign = campaignService.findSimpleCampaignByID(campId);
+		Campaigns campaign = campaignService.findCampaignEventsByID(campId);
 		campaign.addEvents(events);
 		
 		model.addAttribute("events", events);

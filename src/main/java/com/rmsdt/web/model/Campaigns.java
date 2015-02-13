@@ -28,7 +28,7 @@ public class Campaigns extends BaseEntity {
 	@JoinColumn(name = "admin_id_fk")
 	private User user;
 
-	@OneToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
+	@OneToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinTable(name = "campaigns_events", joinColumns = @JoinColumn(name = "campaign_id_fk"), inverseJoinColumns = @JoinColumn(name = "event_id_fk"))
 	private List<Events> events;
 

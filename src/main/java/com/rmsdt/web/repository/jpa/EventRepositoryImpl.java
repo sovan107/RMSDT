@@ -1,7 +1,10 @@
 package com.rmsdt.web.repository.jpa;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -22,4 +25,5 @@ public class EventRepositoryImpl implements EventRepository {
 			em.merge(event);
 		}
 	}
+
 }

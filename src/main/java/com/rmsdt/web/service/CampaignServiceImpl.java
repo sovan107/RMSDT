@@ -50,4 +50,9 @@ public class CampaignServiceImpl implements CampaignService {
 		return campaignRepo.findSimpleCampaignByID(campId);
 	}
 
+	@Override
+	public Campaigns findCampaignEventsByID(int campId) {
+		return campaignRepo.findCampaignEventsByID(campId);
+	}
+
 }

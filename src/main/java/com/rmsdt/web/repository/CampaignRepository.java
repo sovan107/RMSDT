@@ -16,4 +16,6 @@ public interface CampaignRepository {
 
 	Campaigns findSimpleCampaignByID(int campId);
 
+	Campaigns findCampaignEventsByID(int campaignId);
+
 }
