@@ -1,7 +1,13 @@
 package com.rmsdt.web.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -9,6 +15,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "address")
 public class Address extends BaseEntity {
+	
+	@ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.MERGE }, fetch=FetchType.EAGER)
+	@JoinTable(name = "events_address", joinColumns = @JoinColumn(name = "address_id_fk"), inverseJoinColumns = @JoinColumn(name = "event_id_fk"))
+	private Events event;
 
 	@Column(name = "house_no")
 	@NotEmpty
@@ -82,4 +92,11 @@ public class Address extends BaseEntity {
 		this.postalCode = postalCode;
 	}
 
+	public Events getEvent() {
+		return event;
+	}
+
+	public void setEvent(Events event) {
+		this.event = event;
+	}
 }

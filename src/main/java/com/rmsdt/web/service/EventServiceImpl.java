@@ -1,7 +1,5 @@
 package com.rmsdt.web.service;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +22,11 @@ public class EventServiceImpl implements EventService {
 	@Transactional
 	public void saveEvent(Events event) {
 		eventRepo.save(event);
+	}
+
+	@Override
+	public Events findEventById(int eventId) {
+		// TODO Auto-generated method stub
+		return eventRepo.findEventById(eventId);
 	}
 }

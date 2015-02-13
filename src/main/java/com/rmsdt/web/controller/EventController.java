@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.rmsdt.web.model.Address;
 import com.rmsdt.web.model.Campaigns;
 import com.rmsdt.web.model.Events;
 import com.rmsdt.web.service.AdminService;
@@ -48,18 +50,19 @@ public class EventController {
 	public String addEvent(@PathVariable("adminId") int adminId,
 			@PathVariable("campId") int campId, Model model, HttpSession session) {
 		Events events = new Events();
-		
+
 		Campaigns campaign = campaignService.findCampaignEventsByID(campId);
 		campaign.addEvents(events);
-		
+
 		model.addAttribute("events", events);
 		return "admin/addEvent";
 	}
 
 	@RequestMapping(value = "/addEvent/{adminId}/{campId}", method = RequestMethod.POST)
-	public String addEventPost(@ModelAttribute("events") Events events,@PathVariable("adminId") int adminId,
-			@PathVariable("campId") int campId, 
-			HttpSession session) throws IOException {
+	public String addEventPost(@ModelAttribute("events") Events events,
+			@PathVariable("adminId") int adminId,
+			@PathVariable("campId") int campId, HttpSession session)
+			throws IOException {
 
 		// Add creation date
 		events.setCreationDate(new DateTime());
@@ -67,5 +70,25 @@ public class EventController {
 		eventService.saveEvent(events);
 
 		return "redirect:/admin/campaign/viewAllCampaign/" + adminId;
+	}
+
+	@RequestMapping(value = "/addAddress/{eventId}", method = RequestMethod.GET)
+	public String addEventAddress(@PathVariable("eventId") int eventId,
+			Model model, HttpSession session) {
+
+		Events event = eventService.findEventById(eventId);
+		model.addAttribute("event", event);
+
+		return "admin/addAddress";
+	}
+
+	@RequestMapping(value = "/addAddress/{eventId}", method = RequestMethod.POST)
+	public @ResponseBody String addEventAddressPost(
+			@PathVariable("eventId") int eventId,
+			@ModelAttribute(value = "address") Address address) {
+		
+		System.out.println("------------"+address.getCity());
+
+		return "";
 	}
 }

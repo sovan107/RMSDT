@@ -1,5 +1,6 @@
 package com.rmsdt.web.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -123,12 +124,17 @@ public class Events extends BaseEntity {
 		this.campaign = campaign;
 	}
 
-	public List<Address> getAddresses() {
-		return addresses;
+	public void addAddress(Address address){
+		getInternalAddress().add(address);
+		address.setEvent(this);
+		
 	}
 
-	public void setAddresses(List<Address> addresses) {
-		this.addresses = addresses;
+	private List<Address> getInternalAddress() {
+		if(addresses == null){
+			addresses = new ArrayList<Address>();
+		}
+		return addresses;
 	}
 
 }

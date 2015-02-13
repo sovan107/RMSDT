@@ -33,7 +33,8 @@
 					Event End Date :<joda:format value="${event.eventEndDate}" pattern="yyyy/MM/dd" /> <br/>
 				</td>
 				<td>
-					<a href="">New Address</a>
+					<spring:url value="/admin/event/addAddress/${event.id}" var="addAddressUrl"></spring:url>
+					<a href="${addAddressUrl}">New Address</a>
 				</td>
 			</tr>
 		</c:forEach>
