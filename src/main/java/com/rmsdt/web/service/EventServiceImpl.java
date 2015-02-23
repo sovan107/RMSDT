@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rmsdt.web.model.Address;
 import com.rmsdt.web.model.Events;
 import com.rmsdt.web.repository.EventRepository;
 
@@ -25,8 +26,14 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
+	@Transactional
 	public Events findEventById(int eventId) {
-		// TODO Auto-generated method stub
 		return eventRepo.findEventById(eventId);
+	}
+
+	@Override
+	@Transactional
+	public void saveAddress(Address address) {
+		eventRepo.saveAddress(address);
 	}
 }

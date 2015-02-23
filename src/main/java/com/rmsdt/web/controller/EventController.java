@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.rmsdt.web.controller.util.JsonResponse;
+import com.rmsdt.web.form.util.FormUtil;
 import com.rmsdt.web.model.Address;
 import com.rmsdt.web.model.Campaigns;
 import com.rmsdt.web.model.Events;
@@ -83,12 +85,36 @@ public class EventController {
 	}
 
 	@RequestMapping(value = "/addAddress/{eventId}", method = RequestMethod.POST)
-	public @ResponseBody String addEventAddressPost(
+	public @ResponseBody JsonResponse addEventAddressPost(
 			@PathVariable("eventId") int eventId,
 			@ModelAttribute(value = "address") Address address) {
-		
-		System.out.println("------------"+address.getCity());
 
-		return "";
+		if (address.getAjaxId() != 0) {
+			address.setId(address.getAjaxId());
+		}
+
+		Events event = eventService.findEventById(eventId);
+		address.setEvent(event);
+
+		eventService.saveAddress(address);
+
+		// Response using json
+		JsonResponse jResponse = new JsonResponse();
+		jResponse.setId(address.getId());
+
+		return jResponse;
+	}
+
+	@RequestMapping(value = "/getAddressForm/{formLen}", method = RequestMethod.GET)
+	public @ResponseBody JsonResponse getAddressFormGET(
+			@PathVariable("formLen") int formLen) {
+
+		String form = new FormUtil().getAddressFrom(formLen + 1);
+
+		// Response using json
+		JsonResponse jResponse = new JsonResponse();
+		jResponse.setForm(form);
+
+		return jResponse;
 	}
 }

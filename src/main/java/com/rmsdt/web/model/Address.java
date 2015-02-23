@@ -9,6 +9,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -99,4 +100,18 @@ public class Address extends BaseEntity {
 	public void setEvent(Events event) {
 		this.event = event;
 	}
+	
+	
+	@Transient
+	int ajaxId;
+
+	public int getAjaxId() {
+		return ajaxId;
+	}
+
+	public void setAjaxId(int ajaxId) {
+		this.ajaxId = ajaxId;
+	}
+	
+	
 }

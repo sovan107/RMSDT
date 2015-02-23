@@ -5,6 +5,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
+import com.rmsdt.web.model.Address;
 import com.rmsdt.web.model.Events;
 import com.rmsdt.web.repository.EventRepository;
 
@@ -26,6 +27,17 @@ public class EventRepositoryImpl implements EventRepository {
 	@Override
 	public Events findEventById(int eventId) {
 		return em.find(Events.class, eventId);
+	}
+
+	@Override
+	public void saveAddress(Address address) {
+
+		if (address.getId() == null) {
+			em.persist(address);
+		} else {
+			em.merge(address);
+		}
+
 	}
 
 }

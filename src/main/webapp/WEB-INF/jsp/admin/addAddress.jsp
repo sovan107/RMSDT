@@ -31,28 +31,60 @@
 <script type="text/javascript">
 	jQuery(document).ready(function() {
 
-		$(".submit").click(function() {
+		//$(".submit").click(function() {
+			$(document).on('click', '.submit', function(){ 
 			var formId = this.id;
-			//var houseNumber = $('#houseNumber' + formId).val();
-			//var street = $('#street' + formId).val();
-			//var city = $('#city' + formId).val();
-			//var state = $('#state' + formId).val();
-			//var country = $('#country' + formId).val();
-			//var postalCode = $('#postalCode' + formId).val();
 
 			$.ajax({
 				type : "POST",
 				url : contexPath + "/admin/event/addAddress/${event.id}",
-				//data: "houseNumber=" + houseNumber + "&street=" + street + "&city=" + city + "&state=" + state + "&country=" + country + "&postalCode=" + postalCode,
 				data : $("#form" + formId).serialize(),
 				success : function(response) {
+					
+					alert($("#form" + formId).serialize());
+					
 					// we have the response
-					alert("do not care now");
+					alert("Just saving withoud validation");
+					
+					var addId;
+					// Json response.
+					addId = response.id;
+					alert(addId);
+					
+					var hdnId = "hdn" + formId;
+					
+					
+					if($("#" + hdnId).length == 0) {
+						alert("add");
+						$("#form" + formId).append( "<input type='hidden' id='" + hdnId + "' value='" + addId + "' name='ajaxId' />" );
+						$("#lbl" + formId).text("Edit");
+					}
 				},
 				error : function(e) {
 					alert('Error: ' + e);
 				}
 			});
+		});
+		
+		$("#newAdd").click(function() {
+			var formLen = $("form").length; 
+			alert($("form").length);
+			$.ajax({
+				type : "GET",
+				url : contexPath + "/admin/event/getAddressForm/"+formLen,
+				success : function(response) {
+					
+					// Json response.
+					var form = response.form;
+					alert(form);
+					
+					$("#form"+formLen).after(form);
+				},
+				error : function(e) {
+					alert('Error: ' + e);
+				}
+			});
+			
 		});
 
 	});
@@ -76,12 +108,18 @@
 	<form id="form1">
 		<table id="tbl1">
 			<tr>
+				<td style="background-color: olive;">
+					<label id="newAdd">New Address</label>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
 				<td>House no. :</td>
-				<td><b><input type="text" name="houseNumber" /></b>
+				<td><b><input type="text" name="houseNumber"/></b>
 			</tr>
 			<tr>
 				<td>Street. :</td>
-				<td><b><input type="text" name="street" /></b>
+				<td><b><input  type="text" name="street" /></b>
 			</tr>
 			<tr>
 				<td>City. :</td>
@@ -101,43 +139,11 @@
 			</tr>
 			<tr>
 				<td></td>
-				<td><div id="1" class="submit" style="background-color: olive;">
-						<label>Sumbit</label>
-					</div></td>
-			</tr>
-		</table>
-	</form>
-	<form id="form1">
-		<table id="tbl1">
-			<tr>
-				<td>House no. :</td>
-				<td><b><input type="text" name="houseNumber" /></b>
-			</tr>
-			<tr>
-				<td>Street. :</td>
-				<td><b><input type="text" name="street" /></b>
-			</tr>
-			<tr>
-				<td>City. :</td>
-				<td><b><input type="text" name="city" /></b>
-			</tr>
-			<tr>
-				<td>State. :</td>
-				<td><b><input type="text" name="state" /></b>
-			</tr>
-			<tr>
-				<td>Country. :</td>
-				<td><b><input type="text" name="country" /></b>
-			</tr>
-			<tr>
-				<td>Pincode. :</td>
-				<td><b><input type="text" name="postalCode" /></b>
-			</tr>
-			<tr>
-				<td></td>
-				<td><div id="1" class="submit" style="background-color: olive;">
-						<label>Sumbit</label>
-					</div></td>
+				<td>
+					<div id="1" class="submit" style="background-color: olive;">
+						<label id="lbl1">Save</label>
+					</div>
+				</td>
 			</tr>
 		</table>
 	</form>
