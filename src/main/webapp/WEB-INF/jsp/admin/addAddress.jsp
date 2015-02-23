@@ -68,7 +68,6 @@
 		
 		$("#newAdd").click(function() {
 			var formLen = $("form").length; 
-			alert($("form").length);
 			$.ajax({
 				type : "GET",
 				url : contexPath + "/admin/event/getAddressForm/"+formLen,
@@ -76,7 +75,6 @@
 					
 					// Json response.
 					var form = response.form;
-					alert(form);
 					
 					$("#form"+formLen).after(form);
 				},
