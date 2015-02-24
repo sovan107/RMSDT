@@ -37,9 +37,15 @@
 				<td>
 				<b>Addresses :</b> 
 					<c:forEach var="address" items="${event.addresses}">
-						<div>
-							House no: ${address.houseNumber}
+						<div style="border-color: black; border-style: solid;">
+							House no: ${address.houseNumber}<br/>
+							Street	: ${address.street}<br/>
+							City	: ${address.city}<br/>
+							State	: ${address.state}<br/>
+							Country	: ${address.country}<br/>
+							Zip code: ${address.postalCode}<br/>
 						</div>
+						<br/>
 					</c:forEach>
 				</td>
 				

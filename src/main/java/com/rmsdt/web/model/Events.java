@@ -33,6 +33,10 @@ public class Events extends BaseEntity {
 	@JoinTable(name = "events_address", joinColumns = @JoinColumn(name = "event_id_fk"), inverseJoinColumns = @JoinColumn(name = "address_id_fk"))
 	private List<Address> addresses;
 
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
 	@Column(name = "event_name")
 	@NotEmpty
 	private String eventName;
