@@ -29,7 +29,7 @@ public class Events extends BaseEntity {
 	@JoinTable(name = "campaigns_events", joinColumns = @JoinColumn(name = "event_id_fk"), inverseJoinColumns = @JoinColumn(name = "campaign_id_fk"))
 	private Campaigns campaign;
 
-	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.MERGE }, fetch = FetchType.LAZY)
+	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.MERGE }, fetch = FetchType.EAGER)
 	@JoinTable(name = "events_address", joinColumns = @JoinColumn(name = "event_id_fk"), inverseJoinColumns = @JoinColumn(name = "address_id_fk"))
 	private List<Address> addresses;
 
