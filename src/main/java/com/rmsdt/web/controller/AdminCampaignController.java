@@ -59,14 +59,14 @@ public class AdminCampaignController {
 	@RequestMapping(value = "/newCampaign/{id}", method = RequestMethod.GET)
 	public String addNewCampaign(@PathVariable("id") int id, Model model,
 			HttpSession session) {
-		
+
 		Campaigns campaign = new Campaigns();
-		
+
 		User user = adminService.findAdminCampaignByID(id);
 		user.addCampaign(campaign);
-		
+
 		model.addAttribute("campaigns", campaign);
-		
+
 		return "admin/addCampaign";
 	}
 
@@ -76,15 +76,14 @@ public class AdminCampaignController {
 			@RequestPart("image") Part campaignImage, HttpSession session)
 			throws IOException {
 
-		
-
 		if (campaignImage != null && campaignImage.getSize() != 0) {
 			campaigns.setCampaignImage(IOUtils.toByteArray(campaignImage
 					.getInputStream()));
 		}
 		campaigns.setCreationDate(new DateTime());
 		campaignService.saveCampaign(campaigns);
-		return "redirect:/admin/campaign/viewAllCampaign/" + campaigns.getUser().getId();
+		return "redirect:/admin/campaign/viewAllCampaign/"
+				+ campaigns.getUser().getId();
 	}
 
 	@RequestMapping(value = "/editCampaign/{adminId}/{campaignId}", method = RequestMethod.GET)
@@ -102,13 +101,20 @@ public class AdminCampaignController {
 			@PathVariable("campaignId") int campaignId,
 			@RequestPart("image") Part campaignImage) throws IOException {
 
-
 		if (campaignImage != null && campaignImage.getSize() != 0) {
 			campaign.setCampaignImage(IOUtils.toByteArray(campaignImage
 					.getInputStream()));
 		}
 		campaign.setModificationDate(new DateTime());
 		campaignService.saveCampaign(campaign);
+		return "redirect:/admin/campaign/viewAllCampaign/" + adminId;
+	}
+
+	@RequestMapping(value = "/deleteCampaign/{adminId}/{campaignId}", method = RequestMethod.GET)
+	public String editCampaignPost(@PathVariable("adminId") int adminId,
+			@PathVariable("campaignId") int campaignId) throws IOException {
+
+		campaignService.deleteCampaign(campaignId);
 		return "redirect:/admin/campaign/viewAllCampaign/" + adminId;
 	}
 }

@@ -65,4 +65,10 @@ public class CampaignRepositoryImpl implements CampaignRepository {
 	public Campaigns findSimpleCampaignByID(int campId) {
 		return em.find(Campaigns.class, campId);
 	}
+
+	@Override
+	public void deleteCampaign(int campaignId) {
+		em.remove(em.find(Campaigns.class, campaignId));
+		
+	}
 }

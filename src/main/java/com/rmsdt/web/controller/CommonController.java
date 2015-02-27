@@ -46,7 +46,7 @@ public class CommonController {
 	public byte[] getCampaignImage(@PathVariable("id") int id) {
 		return commonService.findCampaignImageByID(id);
 	}
-	
+
 	@RequestMapping(value = "/viewAllCampaign", method = RequestMethod.GET)
 	public String viewAllCampaign(Model model, HttpSession session) {
 		List<Campaigns> campaigns = campaignService.findAllCampaigns();
@@ -63,10 +63,10 @@ public class CommonController {
 		model.addAttribute("campaigns", campaign);
 		return "common/viewCampaign";
 	}
-	
+
 	@RequestMapping(value = "/viewAllCampaignList", method = RequestMethod.GET)
 	public String viewAllCampaignList(Model model, HttpSession session) {
-		
+
 		List<Campaigns> campaigns = campaignService.findAllCampaigns();
 
 		model.addAttribute("campaigns", campaigns);

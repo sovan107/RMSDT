@@ -17,7 +17,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "address")
 public class Address extends BaseEntity {
 	
-	@ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.MERGE }, fetch=FetchType.EAGER)
+	@ManyToOne(cascade = { CascadeType.REFRESH }, fetch=FetchType.EAGER)
 	@JoinTable(name = "events_address", joinColumns = @JoinColumn(name = "address_id_fk"), inverseJoinColumns = @JoinColumn(name = "event_id_fk"))
 	private Events event;
 
