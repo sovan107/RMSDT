@@ -18,4 +18,6 @@ public interface CampaignRepository {
 
 	Campaigns findCampaignEventsByID(int campaignId);
 
+	void deleteCampaign(int campaignId);
+
 }

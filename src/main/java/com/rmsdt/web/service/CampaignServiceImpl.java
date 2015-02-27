@@ -51,8 +51,15 @@ public class CampaignServiceImpl implements CampaignService {
 	}
 
 	@Override
+	@Transactional
 	public Campaigns findCampaignEventsByID(int campId) {
 		return campaignRepo.findCampaignEventsByID(campId);
+	}
+
+	@Override
+	@Transactional
+	public void deleteCampaign(int campaignId) {
+		campaignRepo.deleteCampaign(campaignId);
 	}
 
 }

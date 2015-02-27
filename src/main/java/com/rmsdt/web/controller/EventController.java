@@ -88,6 +88,8 @@ public class EventController {
 	public @ResponseBody JsonResponse addEventAddressPost(
 			@PathVariable("eventId") int eventId,
 			@ModelAttribute(value = "address") Address address) {
+		
+		System.out.println("------"+address.getAjaxId());
 
 		if (address.getAjaxId() != 0) {
 			address.setId(address.getAjaxId());
