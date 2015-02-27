@@ -1,13 +1,3 @@
-
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
 <div class="bottom_block">
 	<div class="container_12">
 		<div class="grid_4">
@@ -30,9 +20,9 @@
 			Cras facilisis, nulla vel viverra auctor, leo magna sodales felis,
 			quis malesuada nibh odio ut velit. Proin pharetra
 			<div class="socials">
-				<a href="#"><div class="fa fa-twitter"></div></a> <a href="#"><div
-						class="fa fa-facebook"></div></a> <a href="#"><div
-						class="fa fa-pinterest-square"></div></a> <a href="#"><div
+				<a href="#"><div class="fa fa-twitter"></div></a> <a href="#">
+					<div class="fa fa-facebook"></div></a> <a href="#">
+					<div class="fa fa-pinterest-square"></div></a> <a href="#"><div
 						class="fa fa-google-plus"></div></a> <a href="#"><div
 						class="fa fa-instagram"></div></a>
 			</div>

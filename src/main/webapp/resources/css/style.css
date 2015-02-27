@@ -216,8 +216,8 @@ a:hover {
 	color: #60bf93;
 }
 
-a.btn {
-    margin-top: 25px;
+a.btn,a.btnLong,a.btnMedium {
+    margin-top: 10px !important;
     color: #fff;
     font-size: 12px;
     line-height: 20px;
@@ -226,10 +226,21 @@ a.btn {
     background-color: #60bf93;
 }
 
-a.btn:hover {
+
+a.btn:hover, a.btnLong:hover,a.btnMedium:hover {
     background-color: #E14F42;
 }
+a.btnLong, a.btnMedium{
+	
+	width:186px;
+	margin-top:0px;
+	text-align: center;
+	
+}
 
+a.btnMedium{
+	width: 74px;
+}
 /****classes****/
 
 .mb0 {

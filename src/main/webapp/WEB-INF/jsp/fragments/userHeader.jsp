@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
@@ -27,6 +27,9 @@
 	<spring:url value="/resources/css/thumbs.css" var="thumbsCSS"/>
 	<spring:url value="/resources/css/slider.css" var="sliderCSS"/>
 </c:if>
+<c:if test="${param.callingPage == 'campaign'}">
+	<spring:url value="/resources/css/slider.css" var="sliderCSS"/>
+</c:if>
 
 <!-- JS Files -->
 <spring:url value="/resources/js/jquery.js" var="jqueryJS" />
@@ -44,7 +47,9 @@
 <c:if test="${param.callingPage == 'home' }">
 	<spring:url value="/resources/js/jquery.iosslider.min.js" var="iossliderJS"/>
 	<spring:url value="/resources/js/jquery.hoverdir.js" var="hoverdirJS"/>
-	
+</c:if>
+<c:if test="${param.callingPage == 'campaign' }">
+	<spring:url value="/resources/js/jquery.iosslider.min.js" var="iossliderJS"/>
 </c:if>
 <!-- Image Files -->
 
@@ -82,6 +87,10 @@
 	<link rel="stylesheet" href="${sliderCSS}">
 </c:if>
 
+<c:if test="${param.callingPage == 'campaign' }">
+	<link rel="stylesheet" href="${sliderCSS}">
+</c:if>
+
 <script src="${jqueryJS}"></script>
 <script src="${migrateJS}"></script>
 <script src="${scriptJS}"></script>
@@ -94,6 +103,10 @@
 <c:if test="${param.callingPage == 'home' }">
 	<script src="${iossliderJS}"></script>
 </c:if>
+<c:if test="${param.callingPage == 'campaign' }">
+	<script src="${iossliderJS}"></script>
+</c:if>
+
 
 <script>
 	$(document).ready(function() {

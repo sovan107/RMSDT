@@ -8,62 +8,46 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+	
+<jsp:include page="../fragments/userHeader.jsp">
+	<jsp:param value="campaign" name="callingPage" />
+</jsp:include>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<spring:url value="/common/viewAllCampaignList" var="campaignListURL"/>
 
-<html>
+<!--==============================Header=================================-->
 
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>View All Campaign</title>
-</head>
-<body>
-	<table border="1">
-		<tr>
-			<th>Image</th>
-			<th>Campaign</th>
-			<th>Description</th>
-			<th></th>
-		</tr>
-		<c:forEach var="campaign" items="${campaigns}">
-			<spring:url value="/common/campaignImage/${campaign.id}"
-				var="campaignImageUrl" />
-
-			<tr>
-				<td><img src="${campaignImageUrl}" /></td>
-				<td>${campaign.campaignName}</td>
-				<td>${campaign.campaignDescription}</td>
-
-				<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
-					<spring:url
-						value="/admin/campaign/editCampaign/${campaign.user.id}/${campaign.id}"
-						var="editCampaignUrl" />
-					<spring:url
-						value="/admin/event/addEvent/${campaign.user.id}/${campaign.id}"
-						var="addEventUrl" />
-					<spring:url
-						value="/common/viewAllEvent/${campaign.id}"
-						var="viewAllEventUrl" />
-						
-					<td>
-						<a href="${editCampaignUrl}">Edit Campaign</a>
-						<br/>
-						<a href="${addEventUrl}">Add Event</a>
-						<br/>
-						<a href="${viewAllEventUrl}">View All Event</a>
-					</td>
-				</sec:authorize>
-			</tr>
-
-		</c:forEach>
-	</table>
-	<div>
-		<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
-			<spring:url value="/admin/campaign/newCampaign/${user.id}"
-				var="addNewCampaign" />
-			<a href="${addNewCampaign}">New Campaign</a>
-		</sec:authorize>
+<div class="fluidHeight container_12">
+	<div class="sliderContainer">
+		<div class="iosSlider">
+			<div class="slider">
+				<c:forEach var="campaign" items="${campaigns}">
+					<spring:url value="/common/campaignImage/${campaign.id}"
+						var="campaignImageUrl" />
+					<div class="item">
+						<div class="inner"
+							style="background-image:url(${campaignImageUrl});">
+							<div class="text1">
+								<span>${campaign.campaignName}<br>${campaign.campaignDescription}</span>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+		<div class="slideSelectors">
+			<c:forEach var="campaign" items="${campaigns}">
+				<div class="item"></div>
+			</c:forEach>
+		</div>
 	</div>
-
-</body>
-</html>
+</div>
+<div>
+	<a href="${campaignListURL}" class="btn">Show Campaign List</a>
+</div>
+<br>
+<br>
+<!--==============================Footer=================================-->
+<jsp:include page="../fragments/footer.jsp">
+	<jsp:param value="home" name="footerFor" />
+</jsp:include>

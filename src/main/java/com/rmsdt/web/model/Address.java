@@ -101,7 +101,6 @@ public class Address extends BaseEntity {
 		this.event = event;
 	}
 	
-	
 	@Transient
 	int ajaxId;
 
