@@ -69,8 +69,6 @@
 	<spring:url value="/resources/image/th7.jpg" var="seventhEventPNG"/>
 	<spring:url value="/resources/image/th8.jpg" var="eighthEventPNG"/>
 	<spring:url value="/resources/image/th9.jpg" var="ninthEventPNG"/>
-	
-	
 </c:if>
 
 <head>

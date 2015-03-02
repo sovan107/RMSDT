@@ -8,10 +8,20 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+
+
+<sec:authorize access="isAuthenticated()">
+	<jsp:include page="../fragments/adminHeader.jsp">
+		<jsp:param value="allCampaign" name="callingPage" />
+	</jsp:include>
+</sec:authorize>
+
+<sec:authorize access="isAnonymous()">
+    <jsp:include page="../fragments/userHeader.jsp">
+		<jsp:param value="campaign" name="callingPage" />
+	</jsp:include>
+</sec:authorize>
 	
-<jsp:include page="../fragments/userHeader.jsp">
-	<jsp:param value="campaign" name="callingPage" />
-</jsp:include>
 
 <spring:url value="/common/viewAllCampaignList" var="campaignListURL"/>
 

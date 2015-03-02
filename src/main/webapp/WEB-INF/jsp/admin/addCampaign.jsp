@@ -6,22 +6,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+	
+<jsp:include page="../fragments/userHeader.jsp">
+	<jsp:param value="campaign" name="callingPage" />
+</jsp:include>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<spring:url value="/common/viewAllCampaignList" var="campaignListURL"/>
+
+<!--==============================Header=================================-->
 
 <spring:url value="/webjars/jquery/2.0.3/jquery.js" var="jQuery" />
-<script src="${jQuery}"></script>
-
-<spring:url value="/webjars/jquery-ui/1.10.3/ui/jquery.ui.datepicker.js"
-	var="jQueryUiDatePicker" />
-<script src="${jQueryUiDatePicker}"></script>
+<spring:url value="/webjars/jquery-ui/1.10.3/ui/jquery.ui.datepicker.js" var="jQueryUiDatePicker" />
+<spring:url value="/webjars/jquery-ui/1.10.3/ui/jquery.ui.core.js" var="jQueryUiCore" />
 
 <!-- jquery-ui.js file is really big so we only load what we need instead of loading everything -->
-<spring:url value="/webjars/jquery-ui/1.10.3/ui/jquery.ui.core.js"
-	var="jQueryUiCore" />
+<script src="${jQuery}"></script>
+<script src="${jQueryUiDatePicker}"></script>
 <script src="${jQueryUiCore}"></script>
 
 <script type="text/javascript">
@@ -50,7 +52,6 @@
 			<c:set var="btnText" value="Update" />
 		</c:otherwise>
 	</c:choose>
-
 	<div><ul><b>${headerText}</b></ul></div>
 	
 	<form:form modelAttribute="campaigns" method="post"
@@ -81,5 +82,9 @@
 			</tr>
 		</table>
 	</form:form>
-</body>
-</html>
+
+<!--==============================Footer=================================-->
+
+<jsp:include page="../fragments/footer.jsp">
+	<jsp:param value="home" name="footerFor" />
+</jsp:include>

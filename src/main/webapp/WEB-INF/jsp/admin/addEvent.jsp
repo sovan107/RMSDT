@@ -6,11 +6,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+	
+<jsp:include page="../fragments/adminHeader.jsp">
+	<jsp:param value="addEvent" name="callingPage" />
+</jsp:include>
 
 <spring:url value="/webjars/jquery/2.0.3/jquery.js" var="jQuery" />
 <script src="${jQuery}"></script>
@@ -94,5 +95,7 @@
 			</tr>
 		</table>
 	</form:form>
-</body>
-</html>
+	<!--==============================Footer=================================-->
+<jsp:include page="../fragments/footer.jsp">
+	<jsp:param value="home" name="footerFor" />
+</jsp:include>
