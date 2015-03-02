@@ -8,14 +8,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-</head>
+<jsp:include page="../fragments/userHeader.jsp">
+	<jsp:param value="view_detail" name="callingPage" />
+</jsp:include>
 
 <spring:url value="/admin/editDetails" var="editAdminDetails" />
-
-<body>
+<!--==============================Header=================================-->
 	<table>
 
 		<tr>
@@ -49,5 +47,7 @@
 
 
 	</table>
-</body>
-</html>
+<!--==============================Footer=================================-->
+<jsp:include page="../fragments/footer.jsp">
+	<jsp:param value="view_detail" name="footerFor" />
+</jsp:include>

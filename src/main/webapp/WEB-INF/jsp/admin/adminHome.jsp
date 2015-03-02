@@ -9,7 +9,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 	
-<jsp:include page="../fragments/adminHeader.jsp"/>
+<jsp:include page="../fragments/userHeader.jsp"/>
 
 <!--==============================Content=================================-->
 		<div class="content"><div class="ic">More Website Templates @ TemplateMonster.com - March 24, 2014!</div>

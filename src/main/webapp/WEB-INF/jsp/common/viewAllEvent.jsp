@@ -13,7 +13,7 @@
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
 
 
-<jsp:include page="../fragments/adminHeader.jsp">
+<jsp:include page="../fragments/userHeader.jsp">
 	<jsp:param value="viewAllEvent" name="callingPage" />
 </jsp:include>
 
@@ -54,5 +54,7 @@
 		</tr>
 	</c:forEach>
 	</table>
-</body>
-</html>
+<!--==============================Footer=================================-->
+<jsp:include page="../fragments/footer.jsp">
+	<jsp:param value="viewAllEvent" name="footerFor" />
+</jsp:include>

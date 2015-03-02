@@ -6,6 +6,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,17 +20,36 @@
 	<spring:url value="/gallery" var="galleryURL"/>
 	<spring:url value="/family_tree" var="familyTreeURL"/>
 	<spring:url value="/contacts" var="contactURL"/>
-	<spring:url value="/admin/login" var="adminLoginURL"/>
+	
+	<!-- Show Admin Login only in not logged in users -->
+	<sec:authorize access="isAnonymous()">
+		<spring:url value="/admin/login" var="adminLoginURL"/>
+	</sec:authorize>
+	
+	<!-- Show Show Admin specific stuffs to logged in and super admins -->
+	<sec:authorize access="isAuthenticated()">
+		<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
+			<spring:url value="/admin/viewDetails" var="viewDetails"/>
+			<spring:url value="/admin/campaign/viewAllCampaign/${user.id}" var="viewAllCampaign"/>
+			<spring:url value="/j_spring_security_logout" var="adminLogout"/>
+		</sec:authorize>
+	</sec:authorize>
 	
 <!-- CSS Files -->
 <spring:url value="/resources/css/form.css" var="formCSS" />
 <spring:url value="/resources/css/style.css" var="styleCSS" />
 <spring:url value="/resources/css/ie.css" var="ieCSS" />
+
 <c:if test="${param.callingPage == 'home'}">
 	<spring:url value="/resources/css/thumbs.css" var="thumbsCSS"/>
 	<spring:url value="/resources/css/slider.css" var="sliderCSS"/>
 </c:if>
+
 <c:if test="${param.callingPage == 'campaign'}">
+	<spring:url value="/resources/css/slider.css" var="sliderCSS"/>
+</c:if>
+
+<c:if test="${param.callingPage == 'all_campaign'}">
 	<spring:url value="/resources/css/slider.css" var="sliderCSS"/>
 </c:if>
 
@@ -48,7 +70,12 @@
 	<spring:url value="/resources/js/jquery.iosslider.min.js" var="iossliderJS"/>
 	<spring:url value="/resources/js/jquery.hoverdir.js" var="hoverdirJS"/>
 </c:if>
+
 <c:if test="${param.callingPage == 'campaign' }">
+	<spring:url value="/resources/js/jquery.iosslider.min.js" var="iossliderJS"/>
+</c:if>
+
+<c:if test="${param.callingPage == 'all_campaign'}">
 	<spring:url value="/resources/js/jquery.iosslider.min.js" var="iossliderJS"/>
 </c:if>
 <!-- Image Files -->
@@ -88,6 +115,9 @@
 <c:if test="${param.callingPage == 'campaign' }">
 	<link rel="stylesheet" href="${sliderCSS}">
 </c:if>
+<c:if test="${param.callingPage == 'all_campaign' }">
+	<link rel="stylesheet" href="${sliderCSS}">
+</c:if>
 
 <script src="${jqueryJS}"></script>
 <script src="${migrateJS}"></script>
@@ -104,7 +134,9 @@
 <c:if test="${param.callingPage == 'campaign' }">
 	<script src="${iossliderJS}"></script>
 </c:if>
-
+<c:if test="${param.callingPage == 'all_campaign' }">
+	<script src="${iossliderJS}"></script>
+</c:if>
 
 <script>
 	$(document).ready(function() {
@@ -130,13 +162,25 @@
 	<header>
 		<div class="container_12">
 			<div class="grid_12">
+			<sec:authorize access="isAuthenticated()">
+				<h1 style="float: right;">Welcome : <c:out value="${user.firstName} ${user.lastName}" /></h1>
+			</sec:authorize>
 				<h1>
 					<a href="home.jsp"> <img src="${logoPNG}"
 						alt="Your Happy Family">
 					</a>
 				</h1>
 				<div class="menu_block ">
-					<a href="${adminLoginURL}" class="donate">Admin Login</a>
+				
+					<!-- Show Admin Login only in not logged in users -->
+					<sec:authorize access="isAnonymous()">
+						<a href="${adminLoginURL}" class="donate">Admin Login</a>
+					</sec:authorize>
+					
+					<sec:authorize access="isAuthenticated()">
+						<a href="${adminLogout}" class="donate">Logout</a>
+					</sec:authorize>
+					
 					<div class="clear"></div>
 					<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 						<ul class="sf-menu">
@@ -153,6 +197,18 @@
 							<li class="${param.callingPage=='contacts' ? 'current' : '' }"><a
 								href="${contactURL}">Contacts</a></li>
 						</ul>
+							<sec:authorize access="isAuthenticated()">
+								<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
+							<ul class="sf-menu">	
+								<li class="${param.callingPage=='all_campaign' ? 'current' : '' }"><a
+								href="${viewAllCampaign}">All Campaign</a></li>
+								
+								<li class="${param.callingPage=='view_detail' ? 'current' : '' }"><a
+								href="${viewDetails}">Account Details</a></li>
+							</ul>		
+								</sec:authorize>
+							</sec:authorize>
+						
 					</nav>
 					<div class="clear"></div>
 				</div>

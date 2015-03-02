@@ -1,3 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <div class="bottom_block">
 	<div class="container_12">
 		<div class="grid_4">
@@ -44,7 +53,6 @@
 		<script>
 		$(document).ready(function() {
 			
-			console.log("Hello");
 		 $('.iosSlider').iosSlider({
 			desktopClickDrag: true,
 			snapToChildren: true,
@@ -60,7 +68,6 @@
 		});
 		function slideChange(args) {
 			
-			console.log("Hello2");
 		 $('.sliderContainer .slideSelectors .item').removeClass('selected');
 		 $('.sliderContainer .slideSelectors .item:eq(' + (args.currentSlideNumber - 1) + ')').addClass('selected');
 		}

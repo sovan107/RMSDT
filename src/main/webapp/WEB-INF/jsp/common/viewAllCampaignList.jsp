@@ -10,7 +10,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 
 <jsp:include page="../fragments/userHeader.jsp">
-	<jsp:param value="campaign" name="callingPage" />
+	<jsp:param value="all_campaign" name="callingPage" />
 </jsp:include>
 
 <spring:url value="/common/viewAllCampaignList" var="campaignListURL" />
@@ -70,5 +70,5 @@
 </div>
 <!--==============================Footer=================================-->
 <jsp:include page="../fragments/footer.jsp">
-	<jsp:param value="home" name="footerFor" />
+	<jsp:param value="all_campaign" name="footerFor" />
 </jsp:include>
