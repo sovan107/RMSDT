@@ -9,7 +9,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 	
-<jsp:include page="../fragments/adminHeader.jsp">
+<jsp:include page="../fragments/userHeader.jsp">
 	<jsp:param value="addEvent" name="callingPage" />
 </jsp:include>
 
