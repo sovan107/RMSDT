@@ -43,45 +43,48 @@
 
 <body>
 	<c:choose>
-		<c:when test="${events['new']}">
-			<c:set var="headerText" value="Add Event" />
+		<c:when test="${campaingns['new']}">
+			<c:set var="headerText" value="Add New Campaign" />
+			<c:set var="headerTextDetail" value="Plese fill the fields to add a campaign" />
 			<c:set var="btnText" value="Save" />
 		</c:when>
 		<c:otherwise>
-			<c:set var="headerText" value="Update Event" />
+			<c:set var="headerText" value="Update Campaign" />
+			<c:set var="headerTextDetail" value="Plese update the fields for this Campaign" />
 			<c:set var="btnText" value="Update" />
 		</c:otherwise>
 	</c:choose>
-	<div><ul><b>${headerText}</b></ul></div>
 	
 	<form:form modelAttribute="campaigns" method="post"
-		class="form-horizontal" id="add-campaign-form"
+		class="form-basic-grey" id="add-campaign-form"
 		enctype="multipart/form-data">
-
-		<table>
-			<tr>
-				<td>Name :</td>
-				<td><b><form:input path="campaignName" /></b> <form:errors
-						path="campaignName" /></td>
-			</tr>
-
-			<tr>
-				<td>Description :</td>
-				<td><b><form:textarea path="campaignDescription" /></b> <form:errors
-						path="campaignDescription" /></td>
-			</tr>
-
-			<tr>
-				<td>Upload Image :</td>
-				<td><input type="file" name="image" />
-			</tr>
-
-			<tr>
-				<td></td>
-				<td><button type="submit" value="Submit">${btnText}</button></td>
-			</tr>
-		</table>
+		
+		<h1>${headerText}
+      		<span>${headerTextDetail}</span>
+		</h1>
+		
+		<label>
+	        <span>Campaign Name :</span>
+	        <form:input path="campaignName" id="name" type="text" name="name" placeholder="Enter campaign name"/>
+	      	<form:errors path="campaignName" />
+    	</label>
+		
+		<label>
+	        <span>Description :</span>
+	        <form:textarea path="campaignDescription" id="description" name="description" placeholder="Description about the campaign"/>
+	        <form:errors path="campaignDescription" />
+	    </label>
+    	<label>
+	        <span>Upload Image :</span>
+	        <input type="file" name="image" />
+   		</label>
+   		<br>
+	    <label>
+	    	<span>&nbsp;</span> 
+	        <input type="submit" value="${btnText}"/>
+    	</label>
 	</form:form>
+	
 
 <!--==============================Footer=================================-->
 

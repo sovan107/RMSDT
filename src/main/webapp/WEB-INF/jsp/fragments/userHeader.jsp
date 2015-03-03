@@ -166,7 +166,7 @@
 				<h1 style="float: right;">Welcome : <c:out value="${user.firstName} ${user.lastName}" /></h1>
 			</sec:authorize>
 				<h1>
-					<a href="home.jsp"> <img src="${logoPNG}"
+					<a href="${homeURL}"> <img src="${logoPNG}"
 						alt="Your Happy Family">
 					</a>
 				</h1>

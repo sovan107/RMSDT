@@ -8,9 +8,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags"%>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<jsp:include page="../fragments/userHeader.jsp">
+	<jsp:param value="campaign" name="callingPage" />
+</jsp:include>
 
 <spring:url value="/webjars/jquery/2.0.3/jquery.js" var="jQuery" />
 <script src="${jQuery}"></script>
@@ -34,7 +34,6 @@
 		//$(".submit").click(function() {
 			$(document).on('click', '.submit', function(){ 
 			var formId = this.id;
-
 			$.ajax({
 				type : "POST",
 				url : contexPath + "/admin/event/addAddress/${event.id}",
@@ -67,7 +66,7 @@
 		});
 		
 		$("#newAdd").click(function() {
-			var formLen = $("form").length; 
+			var formLen = $("form").length;
 			$.ajax({
 				type : "GET",
 				url : contexPath + "/admin/event/getAddressForm/"+formLen,
@@ -75,8 +74,9 @@
 					
 					// Json response.
 					var form = response.form;
-					
-					$("#form"+formLen).after(form);
+					alert(form);
+					alert("#form"+formLen);
+					$("#form"+(formLen - 1)).after(form);
 				},
 				error : function(e) {
 					alert('Error: ' + e);
@@ -96,54 +96,46 @@
 </head>
 
 <body>
-
-	<div>
-		<b>
-			<ul>Add address for event : ${event.eventName}
-			</ul>
-		</b>
-	</div>
-	<form id="form1">
-		<table id="tbl1">
-			<tr>
-				<td style="background-color: olive;">
-					<label id="newAdd">New Address</label>
-				</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>House no. :</td>
-				<td><b><input type="text" name="houseNumber"/></b>
-			</tr>
-			<tr>
-				<td>Street. :</td>
-				<td><b><input  type="text" name="street" /></b>
-			</tr>
-			<tr>
-				<td>City. :</td>
-				<td><b><input type="text" name="city" /></b>
-			</tr>
-			<tr>
-				<td>State. :</td>
-				<td><b><input type="text" name="state" /></b>
-			</tr>
-			<tr>
-				<td>Country. :</td>
-				<td><b><input type="text" name="country" /></b>
-			</tr>
-			<tr>
-				<td>Pincode. :</td>
-				<td><b><input type="text" name="postalCode" /></b>
-			</tr>
-			<tr>
-				<td></td>
-				<td>
-					<div id="1" class="submit" style="background-color: olive;">
-						<label id="lbl1">Save</label>
-					</div>
-				</td>
-			</tr>
-		</table>
+	<label id="newAdd" class="addAddress">New Address</label>
+	
+	<form id="form1" class="form-basic-grey">
+		<h1>Add address for event 
+      		<span>This is a new event 123</span>
+		</h1>
+		<label>
+	        <span>House no. :</span>
+	        <input type="text" name="houseNumber"/>
+    	</label>
+    	
+    	<label>
+	        <span>Street :</span>
+	        <input type="text" name="street"/>
+    	</label>
+    	
+    	<label>
+	        <span>City :</span>
+	        <input type="text" name="city"/>
+    	</label>
+    	
+    	<label>
+	        <span>State :</span>
+	        <input type="text" name="state"/>
+    	</label>
+    	
+    	<label>
+	        <span>Country :</span>
+	        <input type="text" name="country"/>
+    	</label>
+    	
+    	<label>
+	        <span>Pin Code :</span>
+	        <input type="text" name="postalCode"/>
+    	</label>
+    	
+    	<div id="1" class="submit">
+			<label id="lbl1" class="btn">Save</label>
+		</div>  	
 	</form>
-</body>
-</html>
+<jsp:include page="../fragments/footer.jsp">
+	<jsp:param value="home" name="footerFor" />
+</jsp:include>

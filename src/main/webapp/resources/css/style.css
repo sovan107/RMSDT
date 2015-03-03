@@ -216,7 +216,7 @@ a:hover {
 	color: #60bf93;
 }
 
-a.btn,a.btnLong,a.btnMedium {
+a.btn,a.btnLong,a.btnMedium, label.btn {
     margin-top: 10px !important;
     color: #fff;
     font-size: 12px;
@@ -226,8 +226,12 @@ a.btn,a.btnLong,a.btnMedium {
     background-color: #60bf93;
 }
 
-
-a.btn:hover, a.btnLong:hover,a.btnMedium:hover {
+label.btn{
+	margin-left: 25px !important;
+	margin-right: 25px !important;
+	text-align: center;
+}
+a.btn:hover, a.btnLong:hover,a.btnMedium:hover, label.btn:hover {
     background-color: #E14F42;
 }
 a.btnLong, a.btnMedium{
@@ -338,7 +342,7 @@ header h1 a img {
 	display: block;
 }
 
-a.donate, a.logout {
+a.donate, a.logout, label.addAddress {
     margin-bottom: 21px;
     margin-top: 12px;
     float: right;
@@ -349,8 +353,11 @@ a.donate, a.logout {
     background-color: #e14f42;
     padding: 4px 26px 5px 25px;
 }
+label.addAddress{
+	margin-right: 379px;
+}
 
-a.donate:hover, a.logout:hover{
+a.donate:hover, a.logout:hover, label.addAddress:hover{
     background-color:  #60bf93;
 }
 a.logout{
@@ -731,3 +738,116 @@ footer {
     background-position: right 0;
 }
 
+
+/* Basic Grey */
+.form-basic-grey {
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:45px;
+    margin-bottom:10px;
+    max-width: 500px;
+    background: #F7F7F7;
+    padding: 25px 15px 25px 10px;
+    font: 12px Georgia, "Times New Roman", Times, serif;
+    color: #888;
+    text-shadow: 1px 1px 1px #FFF;
+    border:1px solid #E4E4E4;
+}
+.form-basic-grey h1 {
+    font-size: 25px;
+    padding: 0px 0px 10px 40px;
+    display: block;
+    border-bottom:1px solid #E4E4E4;
+    margin: -10px -15px 30px -10px;;
+    color: #888;
+}
+.form-basic-grey h1>span {
+    display: block;
+    font-size: 11px;
+}
+.form-basic-grey label {
+    display: block;
+    margin: 0px;
+}
+.form-basic-grey label>span {
+    float: left;
+    width: 20%;
+    text-align: right;
+    padding-right: 10px;
+    margin-top: 10px;
+    color: #888;
+}
+.form-basic-grey input[type="text"], .form-basic-grey input[type="email"], .form-basic-grey textarea, .form-basic-grey select {
+    border: 1px solid #DADADA;
+    color: #888;
+    height: 30px;
+    margin-bottom: 16px;
+    margin-right: 6px;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px 3px 3px 5px;
+    width: 70%;
+    font-size: 12px;
+    line-height:15px;
+    box-shadow: inset 0px 1px 4px #ECECEC;
+    -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+    -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.form-basic-grey textarea{
+    padding: 5px 3px 3px 5px;
+}
+.form-basic-grey select {
+    background: #FFF url('down-arrow.png') no-repeat right;
+    background: #FFF url('down-arrow.png') no-repeat right);
+    appearance:none;
+    -webkit-appearance:none; 
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    width: 70%;
+    height: 35px;
+    line-height: 25px;
+}
+.form-basic-grey textarea{
+    height:100px;
+}
+.form-basic-grey .button {
+    background: #E27575;
+    border: none;
+    padding: 10px 25px 10px 25px;
+    color: #FFF;
+    box-shadow: 1px 1px 5px #B6B6B6;
+    border-radius: 3px;
+    text-shadow: 1px 1px 1px #9E3F3F;
+    cursor: pointer;
+}
+.form-basic-grey .button:hover {
+    background: #CF7A7A
+}
+.form-basic-grey textarea:focus, 
+.form-basic-grey input[type=text]:focus{
+    -moz-box-shadow: 0 0 8px 6CB58B;
+    -webkit-box-shadow: 0 0 8px #88D5E9;
+    box-shadow: 0 0 8px #88D5E9;
+    border: 1px solid #88D5E9;
+}
+
+.form-basic-grey input[type=submit], .form-basic-grey input[type=button]{
+    background: #4B99AD;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+}
+.form-basic-grey input[type=submit]:hover, .form-basic-grey input[type=button]:hover{
+    background: #4691A4;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}

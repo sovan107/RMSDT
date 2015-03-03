@@ -47,54 +47,54 @@
 <body>
 	<c:choose>
 		<c:when test="${events['new']}">
-			<c:set var="headerText" value="Add Event" />
+			<c:set var="headerText" value="Add New Event" />
+			<c:set var="headerTextDetail" value="Plese fill the fields to add an event" />
 			<c:set var="btnText" value="Save" />
 		</c:when>
 		<c:otherwise>
 			<c:set var="headerText" value="Update Event" />
+			<c:set var="headerTextDetail" value="Please update all information related to event" />
 			<c:set var="btnText" value="Update" />
 		</c:otherwise>
 	</c:choose>
 
-	<div>
-		<ul>
-			<b>${headerText}</b>
-		</ul>
-	</div>
-
 	<form:form modelAttribute="events" method="post"
-		class="form-horizontal" id="add-event-form">
+		class="form-basic-grey" id="add-event-form">
+		
+	
+	<h1>${headerText}
+      		<span>${headerTextDetail}</span>
+	</h1>
+	
+    <label>
+        <span>Event Name :</span>
+        <form:input path="eventName" id="name" type="text" name="name" placeholder="Enter event name"/>
+      	<form:errors path="eventName" />
+    </label>
+    
+    <label>
+        <span>Event Start Date :</span>
+        <form:input path="eventStartDate" id="esd" type="text" name="esd" placeholder="yyyy/MM/dd"/>
+        <form:errors path="eventStartDate" />
+    </label>
+    
+    <label>
+        <span>Event End Date :</span>
+        <form:input path="eventEndDate" id="eed" type="text" name="eed" placeholder="yyyy/MM/dd" />
+        <form:errors path="eventEndDate" />
+    </label> 
+     <label>
+        <span>Description :</span>
+        <form:textarea path="eventDescription" id="description" name="description" placeholder="Description about the event"/>
+        <form:errors path="eventDescription" />
+    </label>    
+     <label>
+        <span>&nbsp;</span> 
+        <input type="submit" value="${btnText}"/>
+    </label>    
+</form:form>
 
-		<table>
-			<tr>
-				<td>Name :</td>
-				<td><b><form:input path="eventName" /></b> <form:errors
-						path="eventName" /></td>
-			</tr>
 
-			<tr>
-				<td>Description :</td>
-				<td><b><form:textarea path="eventDescription" /></b> <form:errors
-						path="eventDescription" /></td>
-			</tr>
-
-			<tr>
-			<td>Event Start Date :</td>
-				<td><b><form:input path="eventStartDate" id="esd"
-							placeholder="yyyy/MM/dd" /></b> <form:errors path="eventStartDate" /></td>
-			</tr>
-				<tr>
-				<td>Event End Date :</td>
-				<td><b><form:input path="eventEndDate" id="eed"
-							placeholder="yyyy/MM/dd" /></b> <form:errors path="eventEndDate" /></td>
-			</tr>
-
-			<tr>
-				<td></td>
-				<td><button type="submit" value="Submit">${btnText}</button></td>
-			</tr>
-		</table>
-	</form:form>
 	<!--==============================Footer=================================-->
 <jsp:include page="../fragments/footer.jsp">
 	<jsp:param value="home" name="footerFor" />

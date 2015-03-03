@@ -30,6 +30,7 @@
 <spring:url value="/resources/js/touchTouch.jquery.js" var="touchJS" />
 <spring:url value="/resources/js/html5shiv.js" var="html5shivJS" />
 <spring:url var="loginUrl" value="/j_spring_security_check" />
+<spring:url var="homeUrl" value="../" />
 
 <!-- Image Files -->
 
@@ -76,7 +77,7 @@
 					</a>
 				</h1>
 				<div class="menu_block ">
-					<a href="#" class="logout">Home</a>
+					<a href="${homeUrl}" class="logout">Home</a>
 				</div>
 			</div>
 		</div>

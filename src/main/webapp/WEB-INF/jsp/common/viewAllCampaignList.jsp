@@ -46,7 +46,7 @@
 						<spring:url value="/admin/campaign/deleteCampaign/${campaign.user.id}/${campaign.id}"
 						var="deleteCampaign" />
 						
-						<a href="${editCampaignUrl}" class="btnMedium">Learn More</a>
+						<a href="${editCampaignUrl}" class="btnMedium">Edit Camp</a>
 						<a href="${addEventUrl}" class="btnMedium">Add Event</a>
 						<br />
 						<a href="${viewAllEventUrl}" class="btnLong">View All Event</a>

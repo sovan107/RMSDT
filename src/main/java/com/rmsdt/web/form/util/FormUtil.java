@@ -12,45 +12,41 @@ package com.rmsdt.web.form.util;
 public class FormUtil {
 
 	public String getAddressFrom(int id) {
+		
+		String formHTML = ""+ 
+		"<form id=\"form" + (id-1) + "\" class=\"form-basic-grey\">"+
+		"<h1>Add address for event "+
+      	"	<span>This is a new event 123</span>"+
+		"</h1>"+
+		"<label>"+
+	    "    <span>House no. :</span>"+
+	    "    <input type=\"text\" name=\"houseNumber\"/>"+
+    	"</label>"+
+    	"<label>"+
+	    "   <span>Street :</span>"+
+	    "    <input type=\"text\" name=\"street\"/>"+
+    	"</label>"+
+	    "<label>"+
+	    "   <span>City :</span>"+
+	    "    <input type=\"text\" name=\"city\"/>"+
+    	"</label>"+
+    	"<label>"+
+	    "    <span>State :</span>"+
+	    "    <input type=\"text\" name=\"state\"/>"+
+    	"</label>"+
+    	"<label>"+
+	    "    <span>Country :</span>"+
+	    "    <input type=\"text\" name=\"country\"/>"+
+    	"</label>"+
+    	"<label>"+
+	    "    <span>Pin Code :</span>"+
+	    "    <input type=\"text\" name=\"postalCode\"/>"+
+    	"</label>"+
+    	"<div id=\"" + (id-1) + "\" class=\"submit\">"+
+		"	<label id=\"lbl" + (id-1) + "\">Save</label>"+
+		"</div>"+
+	"</form>";
 
-		String formHTML = "<form id=\"form" + id + "\">";
-		formHTML += "<table id=\"tbl" + id + "\">";
-
-		formHTML += "<tr>";
-		formHTML += "<td>House no. :</td>";
-		formHTML += "<td><b><input type=\"text\" name=\"houseNumber\"/></b>";
-		formHTML += "</tr>";
-		formHTML += "<tr>";
-		formHTML += "<td>Street. :</td>";
-		formHTML += "<td><b><input  type=\"text\" name=\"street\" /></b>";
-		formHTML += "</tr>";
-		formHTML += "<tr>";
-		formHTML += "<td>City. :</td>";
-		formHTML += "<td><b><input type=\"text\" name=\"city\" /></b>";
-		formHTML += "</tr>";
-		formHTML += "<tr>";
-		formHTML += "<td>State. :</td>";
-		formHTML += "<td><b><input type=\"text\" name=\"state\" /></b>";
-		formHTML += "</tr>";
-		formHTML += "<tr>";
-		formHTML += "<td>Country. :</td>";
-		formHTML += "<td><b><input type=\"text\" name=\"country\" /></b>";
-		formHTML += "</tr>";
-		formHTML += "<tr>";
-		formHTML += "<td>Pincode. :</td>";
-		formHTML += "<td><b><input type=\"text\" name=\"postalCode\" /></b>";
-		formHTML += "</tr>";
-		formHTML += "<tr>";
-		formHTML += "<td></td>";
-		formHTML += "<td>";
-		formHTML += "<div id=\"" + id + "\" class=\"submit\" style=\"background-color: olive;\">";
-		formHTML += "<label id=\"lbl" + id + "\">Save</label>";
-		formHTML += "</div>";
-		formHTML += "</td>";
-		formHTML += "</tr>";
-		formHTML += "</table>";
-		formHTML += "</form>";
-
-		return formHTML;
+	return formHTML;
 	}
 }
