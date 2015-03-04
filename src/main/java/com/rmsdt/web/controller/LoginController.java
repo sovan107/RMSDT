@@ -1,6 +1,7 @@
 package com.rmsdt.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,7 @@ public class LoginController {
 		return "admin/login";
 	}
 
+	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
 	@RequestMapping(value = "/adminHome", method = RequestMethod.GET)
 	public String adminHome(Model model) {
 		
