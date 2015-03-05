@@ -3,11 +3,13 @@ package com.rmsdt.web.controller;
 import java.io.IOException;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -87,22 +89,23 @@ public class EventController {
 	@RequestMapping(value = "/addAddress/{eventId}", method = RequestMethod.POST)
 	public @ResponseBody JsonResponse addEventAddressPost(
 			@PathVariable("eventId") int eventId,
-			@ModelAttribute(value = "address") Address address) {
-		
-		System.out.println("------"+address.getAjaxId());
+			@ModelAttribute(value = "address") @Valid Address address,
+			BindingResult result) {
 
-		if (address.getAjaxId() != 0) {
-			address.setId(address.getAjaxId());
-		}
-
-		Events event = eventService.findEventById(eventId);
-		address.setEvent(event);
-
-		eventService.saveAddress(address);
-
-		// Response using json
 		JsonResponse jResponse = new JsonResponse();
-		jResponse.setId(address.getId());
+
+		if (result.hasErrors()) {
+			jResponse.setErrors(result.getAllErrors());
+			jResponse.setStatus("fail");
+		} else {
+			address.setId(address.getAjaxId());
+			Events event = eventService.findEventById(eventId);
+			address.setEvent(event);
+			eventService.saveAddress(address);
+			// Response using json
+			jResponse.setId(address.getId());
+			jResponse.setStatus("success");
+		}
 
 		return jResponse;
 	}

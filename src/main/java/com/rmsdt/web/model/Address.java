@@ -22,27 +22,27 @@ public class Address extends BaseEntity {
 	private Events event;
 
 	@Column(name = "house_no")
-	@NotEmpty
+	@NotEmpty(message="{validation.houseNo.required}")
 	private String houseNumber;
 
 	@Column(name = "street")
-	@NotEmpty
+	@NotEmpty(message="{validation.street.required}")
 	private String street;
 
 	@Column(name = "city")
-	@NotEmpty
+	@NotEmpty(message="{validation.city.required}")
 	private String city;
 
 	@Column(name = "state")
-	@NotEmpty
+	@NotEmpty(message="{validation.state.required}")
 	private String state;
 
 	@Column(name = "country")
-	@NotEmpty
+	@NotEmpty(message="{validation.country.required}")
 	private String country;
 
 	@Column(name = "postal_code")
-	@NotEmpty
+	@NotEmpty(message="{validation.postalCode.required}")
 	private String postalCode;
 
 	public String getHouseNumber() {

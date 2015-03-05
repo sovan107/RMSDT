@@ -39,6 +39,7 @@
 <spring:url value="/resources/css/form.css" var="formCSS" />
 <spring:url value="/resources/css/style.css" var="styleCSS" />
 <spring:url value="/resources/css/ie.css" var="ieCSS" />
+<spring:url value="/resources/css/error.css" var="errorCSS" />
 
 <c:if test="${param.callingPage == 'home'}">
 	<spring:url value="/resources/css/thumbs.css" var="thumbsCSS"/>
@@ -106,6 +107,7 @@
 <link rel="shortcut icon" href="${faviconICO}" />
 <link rel="stylesheet" href="${formCSS}">
 <link rel="stylesheet" href="${styleCSS}">
+<link rel="stylesheet" href="${errorCSS}">
 
 <c:if test="${param.callingPage == 'home' }">
 	<link rel="stylesheet" href="${thumbsCSS}">

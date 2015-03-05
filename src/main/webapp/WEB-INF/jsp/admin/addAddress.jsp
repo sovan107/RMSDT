@@ -40,33 +40,38 @@
 				data : $("#form" + formId).serialize(),
 				success : function(response) {
 					
-					alert($("#form" + formId).serialize());
+					if(response.status == "success"){
+						var addId;
+						// Json response.
+						addId = response.id;
 					
-					// we have the response
-					alert("Just saving withoud validation");
+						var hdnId = "hdn" + formId;
 					
-					var addId;
-					// Json response.
-					addId = response.id;
-					alert(addId);
-					
-					var hdnId = "hdn" + formId;
-					
-					
-					if($("#" + hdnId).length == 0) {
-						alert("add");
-						$("#form" + formId).append( "<input type='hidden' id='" + hdnId + "' value='" + addId + "' name='ajaxId' />" );
-						$("#lbl" + formId).text("Edit");
+						if($("#" + hdnId).length == 0) {
+							// This hidden ID wil help for edit purpose.
+							$("#form" + formId).append( "<input type='hidden' id='" + hdnId + "' value='" + addId + "' name='ajaxId' />" );
+							$("#lbl" + formId).text("Edit");
+							$('#errLbl' + formId).hide();
+						}
+					}else{
+						var errorInfo = "";
+						
+						// Loop through all available errors.
+						for(i =0 ; i < response.errors.length ; i++){
+						   errorInfo += "<br>" + (i + 1) +". " + response.errors[i].defaultMessage;
+						}
+						$('#errLbl' + formId).html("Please correct following errors: " + errorInfo);
+						$('#errLbl' + formId).show('slow');
 					}
 				},
 				error : function(e) {
-					alert('Error: ' + e);
+					alert(e);
 				}
 			});
 		});
 		
 		$("#newAdd").click(function() {
-			var formLen = $("form").length;
+			var formLen = $("form.addressForm").length;
 			$.ajax({
 				type : "GET",
 				url : contexPath + "/admin/event/getAddressForm/"+formLen,
@@ -76,7 +81,7 @@
 					var form = response.form;
 					alert(form);
 					alert("#form"+formLen);
-					$("#form"+(formLen - 1)).after(form);
+					$("#form"+(formLen)).after(form);
 				},
 				error : function(e) {
 					alert('Error: ' + e);
@@ -98,10 +103,12 @@
 <body>
 	<label id="newAdd" class="addAddress">New Address</label>
 	
-	<form id="form1" class="form-basic-grey">
+	<form id="form1" class="form-basic-grey addressForm">
 		<h1>Add address for event 
       		<span>This is a new event 123</span>
 		</h1>
+		<label id="errLbl1" class="errorMessageSmall">
+		</label>
 		<label>
 	        <span>House no. :</span>
 	        <input type="text" name="houseNumber"/>
