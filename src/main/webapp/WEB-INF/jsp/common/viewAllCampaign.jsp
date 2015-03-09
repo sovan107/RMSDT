@@ -12,9 +12,15 @@
 <jsp:include page="../fragments/userHeader.jsp">
 	<jsp:param value="all_campaign" name="callingPage" />
 </jsp:include>
-	
 
-<spring:url value="/common/viewAllCampaignList" var="campaignListURL"/>
+<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
+	<spring:url value="/admin/campaign/viewAllCampaignList/${userId}" var="campaignListURL" />
+</sec:authorize>
+
+<sec:authorize access="isAnonymous()">
+	<spring:url value="/common/viewAllCampaignList" var="campaignListURL" />
+</sec:authorize>
+
 
 <!--==============================Header=================================-->
 

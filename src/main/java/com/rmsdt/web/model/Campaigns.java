@@ -33,15 +33,15 @@ public class Campaigns extends BaseEntity {
 	private List<Events> events;
 
 	@Column(name = "camp_name")
-	@NotEmpty
+	@NotEmpty(message="{validaton.field.required}")
 	private String campaignName;
 
 	@Column(name = "camp_description")
-	@NotEmpty
+	@NotEmpty(message="{validaton.field.required}")
 	private String campaignDescription;
 
 	@Column(name = "camp_image")
-	@NotEmpty
+	//@NotEmpty
 	private byte[] campaignImage;
 
 	@Column(name = "creation_date")

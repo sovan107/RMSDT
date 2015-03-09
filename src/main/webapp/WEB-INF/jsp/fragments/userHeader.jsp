@@ -15,7 +15,7 @@
 
 <!-- Navigation URLs -->
 	<spring:url value="/" var="homeURL"/>
-	<spring:url value="/common/viewAllCampaign" var="campaignURL"/>
+	<spring:url value="/common/viewAllCampaign" var="viewAllCampaign"/>
 	<spring:url value="/objective" var="objectiveURL"/>
 	<spring:url value="/gallery" var="galleryURL"/>
 	<spring:url value="/family_tree" var="familyTreeURL"/>
@@ -189,7 +189,7 @@
 							<li class="${param.callingPage=='home' ? 'current' : '' }"><a
 								href="${homeURL}">Home</a></li>
 								<li class="${param.callingPage=='campaign' ? 'current' : '' }"><a
-								href="${campaignURL}">Campaign</a></li>
+								href="${viewAllCampaign}">Campaign</a></li>
 							<li class="${param.callingPage=='objective' ? 'current' : '' }"><a
 								href="${objectiveURL}">Our Objectives</a></li>
 							<li class="${param.callingPage=='gallery' ? 'current' : '' }"><a
@@ -202,8 +202,9 @@
 							<sec:authorize access="isAuthenticated()">
 								<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
 							<ul class="sf-menu">	
-								<li class="${param.callingPage=='all_campaign' ? 'current' : '' }"><a
-								href="${viewAllCampaign}">All Campaign</a></li>
+							<!--  	<li class="${param.callingPage=='all_campaign' ? 'current' : '' }"><a
+								href="${viewAllCampaign}">All Campaign</a></li> 
+							-->
 								
 								<li class="${param.callingPage=='view_detail' ? 'current' : '' }"><a
 								href="${viewDetails}">Account Details</a></li>

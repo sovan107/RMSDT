@@ -5,12 +5,15 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -53,7 +56,18 @@ public class AdminCampaignController {
 				.findAllCampaignByAdminID(id);
 
 		model.addAttribute("campaigns", campaigns);
+		model.addAttribute("userId", id);
 		return "common/viewAllCampaign";
+	}
+	
+	@RequestMapping(value = "/viewAllCampaignList/{id}", method = RequestMethod.GET)
+	public String viewAllCampaignList(@PathVariable("id") int id, Model model,
+			HttpSession session) {
+		List<Campaigns> campaigns = campaignService
+				.findAllCampaignByAdminID(id);
+
+		model.addAttribute("campaigns", campaigns);
+		return "common/viewAllCampaignList";
 	}
 
 	@RequestMapping(value = "/newCampaign/{id}", method = RequestMethod.GET)
@@ -61,17 +75,15 @@ public class AdminCampaignController {
 			HttpSession session) {
 
 		Campaigns campaign = new Campaigns();
-
 		User user = adminService.findAdminCampaignByID(id);
 		user.addCampaign(campaign);
-
 		model.addAttribute("campaigns", campaign);
-
 		return "admin/addCampaign";
 	}
 
 	@RequestMapping(value = "/newCampaign/{id}", method = RequestMethod.POST)
-	public String addNewCampaignPost(@ModelAttribute Campaigns campaigns,
+	public String addNewCampaignPost(
+			@ModelAttribute @Valid Campaigns campaigns, BindingResult result,
 			@PathVariable("id") int id,
 			@RequestPart("image") Part campaignImage, HttpSession session)
 			throws IOException {
@@ -79,11 +91,19 @@ public class AdminCampaignController {
 		if (campaignImage != null && campaignImage.getSize() != 0) {
 			campaigns.setCampaignImage(IOUtils.toByteArray(campaignImage
 					.getInputStream()));
+		} else {
+			ValidationUtils.rejectIfEmpty(result, "campaignImage",
+					"validation.image.select");
 		}
-		campaigns.setCreationDate(new DateTime());
-		campaignService.saveCampaign(campaigns);
-		return "redirect:/admin/campaign/viewAllCampaign/"
-				+ campaigns.getUser().getId();
+
+		if (result.hasErrors()) {
+			return "admin/addCampaign";
+		} else {
+			campaigns.setCreationDate(new DateTime());
+			campaignService.saveCampaign(campaigns);
+			return "redirect:/admin/campaign/viewAllCampaign/"
+					+ campaigns.getUser().getId();
+		}
 	}
 
 	@RequestMapping(value = "/editCampaign/{adminId}/{campaignId}", method = RequestMethod.GET)
@@ -96,18 +116,26 @@ public class AdminCampaignController {
 	}
 
 	@RequestMapping(value = "/editCampaign/{adminId}/{campaignId}", method = RequestMethod.POST)
-	public String editCampaignPost(@ModelAttribute Campaigns campaign,
-			@PathVariable("adminId") int adminId,
+	public String editCampaignPost(@ModelAttribute @Valid Campaigns campaign,
+			BindingResult result, @PathVariable("adminId") int adminId,
 			@PathVariable("campaignId") int campaignId,
 			@RequestPart("image") Part campaignImage) throws IOException {
 
 		if (campaignImage != null && campaignImage.getSize() != 0) {
 			campaign.setCampaignImage(IOUtils.toByteArray(campaignImage
 					.getInputStream()));
+		} else {
+			ValidationUtils.rejectIfEmpty(result, "campaignImage",
+					"validation.image.select");
 		}
-		campaign.setModificationDate(new DateTime());
-		campaignService.saveCampaign(campaign);
-		return "redirect:/admin/campaign/viewAllCampaign/" + adminId;
+
+		if (result.hasErrors()) {
+			return "admin/addCampaign";
+		} else {
+			campaign.setModificationDate(new DateTime());
+			campaignService.saveCampaign(campaign);
+			return "redirect:/admin/campaign/viewAllCampaign/" + adminId;
+		}
 	}
 
 	@RequestMapping(value = "/deleteCampaign/{adminId}/{campaignId}", method = RequestMethod.GET)

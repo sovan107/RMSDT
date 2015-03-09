@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
@@ -21,6 +22,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.rmsdt.web.validator.DateFieldEqualOrAfter;
+
+@DateFieldEqualOrAfter(first = "eventStartDate", second = "eventEndDate", message = "{validation.date.equalOrAfter}")
 @Entity
 @Table(name = "events")
 public class Events extends BaseEntity {
@@ -50,17 +54,17 @@ public class Events extends BaseEntity {
 	@Temporal(TemporalType.DATE)
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@Future(message="{validation.date.future}")
 	private DateTime eventStartDate;
 
 	@Column(name = "event_end_date")
-	@NotNull
 	@Temporal(TemporalType.DATE)
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@Future(message="{validation.date.future}")
 	private DateTime eventEndDate;
 
 	@Column(name = "creation_date")
-	@NotNull
 	@Temporal(TemporalType.DATE)
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	@DateTimeFormat(pattern = "yyyy/MM/dd hh:mm:ss")

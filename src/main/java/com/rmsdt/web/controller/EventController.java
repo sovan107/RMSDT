@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -63,17 +64,20 @@ public class EventController {
 	}
 
 	@RequestMapping(value = "/addEvent/{adminId}/{campId}", method = RequestMethod.POST)
-	public String addEventPost(@ModelAttribute("events") Events events,
-			@PathVariable("adminId") int adminId,
+	public String addEventPost(@ModelAttribute("events") @Valid Events events,
+			BindingResult result, @PathVariable("adminId") int adminId,
 			@PathVariable("campId") int campId, HttpSession session)
 			throws IOException {
-
-		// Add creation date
+		
+		// Set creation data and validate.
 		events.setCreationDate(new DateTime());
 
-		eventService.saveEvent(events);
-
-		return "redirect:/admin/campaign/viewAllCampaign/" + adminId;
+		if (result.hasErrors()) {
+			return "admin/addEvent";
+		} else {
+			eventService.saveEvent(events);
+			return "redirect:/admin/campaign/viewAllCampaign/" + adminId;
+		}
 	}
 
 	@RequestMapping(value = "/addAddress/{eventId}", method = RequestMethod.GET)
