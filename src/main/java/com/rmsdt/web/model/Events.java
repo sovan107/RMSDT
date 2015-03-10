@@ -22,7 +22,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.rmsdt.web.validator.DateFieldEqualOrAfter;
+import com.rmsdt.web.form.validator.DateFieldEqualOrAfter;
 
 @DateFieldEqualOrAfter(first = "eventStartDate", second = "eventEndDate", message = "{validation.date.equalOrAfter}")
 @Entity

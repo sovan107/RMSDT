@@ -1,4 +1,4 @@
-package com.rmsdt.web.validator;
+package com.rmsdt.web.form.validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
