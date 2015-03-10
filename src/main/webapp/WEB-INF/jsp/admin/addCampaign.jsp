@@ -66,18 +66,17 @@
 		<label>
 	        <span>Campaign Name :</span>
 	        <form:input path="campaignName" id="name" type="text" name="name" placeholder="Enter campaign name"/>
-	      	<div><form:errors path="campaignName" cssClass="errorMessageSmall"/></div>
+	        <form:errors path="campaignName" cssClass="error" element="div"/>
     	</label>
-		
 		<label>
 	        <span>Description :</span>
 	        <form:textarea path="campaignDescription" id="description" name="description" placeholder="Description about the campaign"/>
-	        <div><form:errors path="campaignDescription" cssClass="errorMessageSmall"/></div>
+	        <form:errors path="campaignDescription" cssClass="error" element="div"/>
 	    </label>
     	<label>
 	        <span>Upload Image :</span>
 	        <input type="file" name="image" />
-	        <div><form:errors path="campaignImage" cssClass="errorMessageSmall"/></div>
+	         <form:errors path="campaignImage" cssClass="error" element="div"/>
    		</label>
    		<br>
 	    <label>

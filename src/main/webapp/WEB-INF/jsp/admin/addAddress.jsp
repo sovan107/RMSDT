@@ -30,8 +30,9 @@
 
 <script type="text/javascript">
 	jQuery(document).ready(function() {
-
-		//$(".submit").click(function() {
+			
+			$('.validation').hide();
+			
 			$(document).on('click', '.submit', function(){ 
 			var formId = this.id;
 			$.ajax({
@@ -79,15 +80,13 @@
 					
 					// Json response.
 					var form = response.form;
-					alert(form);
-					alert("#form"+formLen);
-					$("#form"+(formLen)).after(form);
+					$("#form" + formLen).after(form);
+					$('#errLbl' + (formLen + 1)).hide();
 				},
 				error : function(e) {
 					alert('Error: ' + e);
 				}
 			});
-			
 		});
 
 	});
@@ -107,7 +106,7 @@
 		<h1>Add address for event 
       		<span>This is a new event 123</span>
 		</h1>
-		<label id="errLbl1" class="errorMessageSmall">
+		<label id="errLbl1" class="validation">
 		</label>
 		<label>
 	        <span>House no. :</span>

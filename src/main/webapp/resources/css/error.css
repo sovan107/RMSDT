@@ -3,3 +3,50 @@
 .errorMessageSmall{
 	color: red;
 }
+
+.info, .success, .warning, .form-basic-grey label>.error, .validation {
+	border: 1px solid;
+	margin: 10px 0px;
+	padding: 5px 5px 5px 25px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	border-radius: 5px;
+}
+
+.info {
+	color: #00529B;
+	background-color: #BDE5F8;
+	background-image: url(../image/info.png);
+}
+
+.success {
+	color: #4F8A10;
+	background-color: #DFF2BF;
+	background-image: url(../image/success.png);
+}
+
+.warning {
+	color: #9F6000;
+	background-color: #FEEFB3;
+	background-image: url(../image/warning.png);
+}
+
+.form-basic-grey label>.error {
+	color: #D8000C;
+	background-color: #FFBABA;
+	background-image: url(../image/error.png);
+	background-position: left;
+	background-size: 20px 20px;
+	margin-bottom: 20px;
+	margin-left: 111px;
+	margin-right: 39px;
+	margin-top: 5px;
+}
+
+.validation {
+	color: #D63301;
+	background-color: #FFCCBA;
+	background-image: url(../image/validation.png);
+	background-position: left;
+	background-size: 20px 20px;
+}

@@ -16,7 +16,7 @@ public class FormUtil {
 		String formHTML = ""+ 
 		"<form id=\"form" + (id) + "\" class=\"form-basic-grey addressForm\">"+
 
-		"<label id=\"errLbl" + id +"\" class=\"errorMessageSmall\">" +
+		"<label id=\"errLbl" + id +"\" class=\"validation\">" +
 		"</label>" +
 		"<label>"+
 	    "    <span>House no. :</span>"+

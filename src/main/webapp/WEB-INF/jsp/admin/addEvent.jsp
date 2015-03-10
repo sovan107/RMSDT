@@ -69,24 +69,24 @@
     <label>
         <span>Event Name :</span>
         <form:input path="eventName" id="name" type="text" name="name" placeholder="Enter event name"/>
-      	<form:errors path="eventName" />
+      	<form:errors path="eventName" cssClass="error" element="div" />
     </label>
     
     <label>
         <span>Event Start Date :</span>
         <form:input path="eventStartDate" id="esd" type="text" name="esd" placeholder="yyyy/MM/dd"/>
-        <form:errors path="eventStartDate" />
+        <form:errors path="eventStartDate" cssClass="error" element="div"/>
     </label>
     
     <label>
         <span>Event End Date :</span>
         <form:input path="eventEndDate" id="eed" type="text" name="eed" placeholder="yyyy/MM/dd" />
-        <form:errors path="eventEndDate" />
+        <form:errors path="eventEndDate" cssClass="error" element="div"/>
     </label> 
      <label>
         <span>Description :</span>
         <form:textarea path="eventDescription" id="description" name="description" placeholder="Description about the event"/>
-        <form:errors path="eventDescription" />
+        <form:errors path="eventDescription" cssClass="error" element="div"/>
     </label>    
      <label>
         <span>&nbsp;</span> 
