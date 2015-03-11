@@ -40,7 +40,7 @@
 						<spring:url
 							value="/admin/event/addEvent/${campaign.id}"
 							var="addEventUrl" />
-						<spring:url value="/common/viewAllEvent/${campaign.id}"
+						<spring:url value="/admin/event/viewAllEvent/${campaign.id}"
 							var="viewAllEventUrl" />
 						<spring:url
 							value="/admin/campaign/deleteCampaign/${campaign.id}"

@@ -152,7 +152,7 @@ public class AdminCampaignController {
 		} else {
 			campaign.setModificationDate(new DateTime());
 			campaignService.saveCampaign(campaign);
-			return "redirect:/admin/campaign/viewAllCampaign/";
+			return "redirect:/admin/campaign/viewAllCampaignList";
 		}
 	}
 

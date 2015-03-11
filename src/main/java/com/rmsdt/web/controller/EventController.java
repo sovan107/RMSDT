@@ -56,9 +56,7 @@ public class EventController {
 	public String addEvent(@PathVariable("campId") int campId, Model model,
 			HttpSession session) {
 		Events event = new Events();
-
 		User user = getCurrentUser(session);
-
 		Campaigns campaign = campaignService.findCampaignByUserCampaignID(
 				user.getId(), campId);
 		event.setCampaign(campaign);
@@ -81,7 +79,7 @@ public class EventController {
 			return "admin/addEvent";
 		} else {
 			eventService.saveEvent(events);
-			return "redirect:/admin/campaign/viewAllCampaign/";
+			return "redirect:/common/viewAllEvent/" + campId;
 		}
 	}
 
@@ -131,6 +129,18 @@ public class EventController {
 
 		return jResponse;
 	}
+	
+	@RequestMapping(value = "/viewAllEvent/{id}", method = RequestMethod.GET)
+	public String viewAllEvent(@PathVariable("id") int campId, Model model,
+			HttpSession session) {
+		User user = getCurrentUser(session);
+		
+		Campaigns campaign = campaignService.findCampaignEventsByUserID(user.getId(), campId);
+
+		model.addAttribute("campaign", campaign);
+		return "common/viewAllEvent";
+	}
+	
 
 	/**
 	 * Get user from session

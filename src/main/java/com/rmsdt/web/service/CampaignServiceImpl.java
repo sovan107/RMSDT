@@ -67,4 +67,9 @@ public class CampaignServiceImpl implements CampaignService {
 		return campaignRepo.findCampaignByUserCampaignID(userId, campaignId);
 	}
 
+	@Override
+	public Campaigns findCampaignEventsByUserID(int userId, int campId) {
+		return campaignRepo.findCampaignEventsByUserID(userId, campId);
+	}
+
 }
