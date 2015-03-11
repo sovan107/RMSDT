@@ -45,7 +45,7 @@ public class CampaignServiceImpl implements CampaignService {
 	}
 
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public Campaigns findSimpleCampaignByID(int campId) {
 		return campaignRepo.findSimpleCampaignByID(campId);
 	}
@@ -58,8 +58,13 @@ public class CampaignServiceImpl implements CampaignService {
 
 	@Override
 	@Transactional
-	public void deleteCampaign(int campaignId) {
-		campaignRepo.deleteCampaign(campaignId);
+	public void deleteCampaign(int adminId, int campaignId) {
+		campaignRepo.deleteCampaign(adminId, campaignId);
+	}
+
+	@Override
+	public Campaigns findCampaignByUserCampaignID(int userId, int campaignId) {
+		return campaignRepo.findCampaignByUserCampaignID(userId, campaignId);
 	}
 
 }

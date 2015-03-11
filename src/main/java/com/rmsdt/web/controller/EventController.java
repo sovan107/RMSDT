@@ -25,6 +25,7 @@ import com.rmsdt.web.form.util.FormUtil;
 import com.rmsdt.web.model.Address;
 import com.rmsdt.web.model.Campaigns;
 import com.rmsdt.web.model.Events;
+import com.rmsdt.web.model.User;
 import com.rmsdt.web.service.AdminService;
 import com.rmsdt.web.service.CampaignService;
 import com.rmsdt.web.service.EventService;
@@ -51,24 +52,28 @@ public class EventController {
 		dataBinder.setDisallowedFields("id");
 	}
 
-	@RequestMapping(value = "/addEvent/{adminId}/{campId}", method = RequestMethod.GET)
-	public String addEvent(@PathVariable("adminId") int adminId,
-			@PathVariable("campId") int campId, Model model, HttpSession session) {
-		Events events = new Events();
+	@RequestMapping(value = "/addEvent/{campId}", method = RequestMethod.GET)
+	public String addEvent(@PathVariable("campId") int campId, Model model,
+			HttpSession session) {
+		Events event = new Events();
 
-		Campaigns campaign = campaignService.findCampaignEventsByID(campId);
-		campaign.addEvents(events);
+		User user = getCurrentUser(session);
 
-		model.addAttribute("events", events);
+		Campaigns campaign = campaignService.findCampaignByUserCampaignID(
+				user.getId(), campId);
+		event.setCampaign(campaign);
+		// Campaigns campaign = campaignService.findCampaignEventsByID(campId);
+		// campaign.addEvents(events);
+
+		model.addAttribute("events", event);
 		return "admin/addEvent";
 	}
 
-	@RequestMapping(value = "/addEvent/{adminId}/{campId}", method = RequestMethod.POST)
+	@RequestMapping(value = "/addEvent/{campId}", method = RequestMethod.POST)
 	public String addEventPost(@ModelAttribute("events") @Valid Events events,
-			BindingResult result, @PathVariable("adminId") int adminId,
-			@PathVariable("campId") int campId, HttpSession session)
-			throws IOException {
-		
+			BindingResult result, @PathVariable("campId") int campId,
+			HttpSession session) throws IOException {
+
 		// Set creation data and validate.
 		events.setCreationDate(new DateTime());
 
@@ -76,7 +81,7 @@ public class EventController {
 			return "admin/addEvent";
 		} else {
 			eventService.saveEvent(events);
-			return "redirect:/admin/campaign/viewAllCampaign/" + adminId;
+			return "redirect:/admin/campaign/viewAllCampaign/";
 		}
 	}
 
@@ -125,5 +130,15 @@ public class EventController {
 		jResponse.setForm(form);
 
 		return jResponse;
+	}
+
+	/**
+	 * Get user from session
+	 * 
+	 * @param session
+	 * @return
+	 */
+	private User getCurrentUser(HttpSession session) {
+		return (User) session.getAttribute("user");
 	}
 }

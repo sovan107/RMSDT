@@ -26,31 +26,31 @@
 					var="campaignImageUrl" />
 				<div class="grid_3">
 					<h2>${campaign.campaignName}</h2>
-					<a href="images/big1.jpg" class="gal"> 
-						<img src="${campaignImageUrl}" alt="" style="height: 218px; width: 218px;"/>
+					<a href="images/big1.jpg" class="gal"> <img
+						src="${campaignImageUrl}" alt=""
+						style="height: 218px; width: 218px;" />
 					</a>
 					<spring:url
-							value="/common/viewCampaign/${campaign.user.id}/${campaign.id}"
-							var="editCampaignUrl" />
-					<a href="${editCampaignUrl}" class="btnLong">Learn More</a>
-					<br />
+						value="/common/viewCampaign/${campaign.user.id}/${campaign.id}"
+						var="editCampaignUrl" />
+					<a href="${editCampaignUrl}" class="btnLong">Learn More</a> <br />
 					<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
-						<spring:url
-							value="/admin/campaign/editCampaign/${campaign.user.id}/${campaign.id}"
+						<spring:url value="/admin/campaign/editCampaign/${campaign.id}"
 							var="editCampaignUrl" />
 						<spring:url
-							value="/admin/event/addEvent/${campaign.user.id}/${campaign.id}"
+							value="/admin/event/addEvent/${campaign.id}"
 							var="addEventUrl" />
 						<spring:url value="/common/viewAllEvent/${campaign.id}"
 							var="viewAllEventUrl" />
-						<spring:url value="/admin/campaign/deleteCampaign/${campaign.user.id}/${campaign.id}"
-						var="deleteCampaign" />
-						
+						<spring:url
+							value="/admin/campaign/deleteCampaign/${campaign.id}"
+							var="deleteCampaign" />
+
 						<a href="${editCampaignUrl}" class="btnMedium">Edit Camp</a>
 						<a href="${addEventUrl}" class="btnMedium">Add Event</a>
 						<br />
 						<a href="${viewAllEventUrl}" class="btnLong">View All Event</a>
-						<br/>
+						<br />
 						<a href="${deleteCampaign}" class="btnLong">Delete Campaign</a>
 					</sec:authorize>
 				</div>

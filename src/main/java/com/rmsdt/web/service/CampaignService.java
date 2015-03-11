@@ -18,6 +18,8 @@ public interface CampaignService {
 
 	Campaigns findCampaignEventsByID(int campId);
 
-	void deleteCampaign(int campaignId);
+	void deleteCampaign(int adminId, int campaignId);
+
+	Campaigns findCampaignByUserCampaignID(int userId, int campaignId);
 
 }

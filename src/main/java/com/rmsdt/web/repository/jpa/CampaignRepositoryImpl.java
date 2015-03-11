@@ -43,7 +43,7 @@ public class CampaignRepositoryImpl implements CampaignRepository {
 								+ " WHERE campaign.id = :id ", Campaigns.class)
 				.setParameter("id", campaignId).getSingleResult();
 	}
-	
+
 	@Override
 	public Campaigns findCampaignEventsByID(int campaignId) {
 		return this.em
@@ -67,8 +67,22 @@ public class CampaignRepositoryImpl implements CampaignRepository {
 	}
 
 	@Override
-	public void deleteCampaign(int campaignId) {
-		em.remove(em.find(Campaigns.class, campaignId));
-		
+	public void deleteCampaign(int adminId, int campaignId) {
+		this.em.createQuery(
+				"DELETE FROM Campaigns campaign "
+						+ " WHERE campaign.id = :id AND campaign.user.id =:userId")
+				.setParameter("id", campaignId).setParameter("userId", adminId)
+				.executeUpdate();
+
+	}
+
+	@Override
+	public Campaigns findCampaignByUserCampaignID(int userId, int campaignId) {
+		return this.em
+				.createQuery(
+						"SELECT campaign FROM Campaigns campaign LEFT JOIN FETCH campaign.user user "
+								+ " WHERE campaign.id = :id AND user.id =:userId",
+						Campaigns.class).setParameter("id", campaignId)
+				.setParameter("userId", userId).getSingleResult();
 	}
 }

@@ -30,7 +30,7 @@
 	<sec:authorize access="isAuthenticated()">
 		<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
 			<spring:url value="/admin/viewDetails" var="viewDetails"/>
-			<spring:url value="/admin/campaign/viewAllCampaign/${user.id}" var="viewAllCampaign"/>
+			<spring:url value="/admin/campaign/viewAllCampaign" var="viewAllCampaign"/>
 			<spring:url value="/j_spring_security_logout" var="adminLogout"/>
 		</sec:authorize>
 	</sec:authorize>

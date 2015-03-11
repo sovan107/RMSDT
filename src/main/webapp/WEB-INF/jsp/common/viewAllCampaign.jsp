@@ -14,7 +14,7 @@
 </jsp:include>
 
 <sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
-	<spring:url value="/admin/campaign/viewAllCampaignList/${userId}" var="campaignListURL" />
+	<spring:url value="/admin/campaign/viewAllCampaignList" var="campaignListURL" />
 </sec:authorize>
 
 <sec:authorize access="isAnonymous()">
