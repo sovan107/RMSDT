@@ -34,18 +34,17 @@
 						value="/common/viewCampaign/${campaign.user.id}/${campaign.id}"
 						var="editCampaignUrl" />
 					<a href="${editCampaignUrl}" class="btnLong">Learn More</a> <br />
+					
+					<!-- For authorised user -->
 					<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
 						<spring:url value="/admin/campaign/editCampaign/${campaign.id}"
 							var="editCampaignUrl" />
-						<spring:url
-							value="/admin/event/addEvent/${campaign.id}"
+						<spring:url value="/admin/event/addEvent/${campaign.id}"
 							var="addEventUrl" />
 						<spring:url value="/admin/event/viewAllEvent/${campaign.id}"
 							var="viewAllEventUrl" />
-						<spring:url
-							value="/admin/campaign/deleteCampaign/${campaign.id}"
+						<spring:url value="/admin/campaign/deleteCampaign/${campaign.id}"
 							var="deleteCampaign" />
-
 						<a href="${editCampaignUrl}" class="btnMedium">Edit Camp</a>
 						<a href="${addEventUrl}" class="btnMedium">Add Event</a>
 						<br />
@@ -53,6 +52,14 @@
 						<br />
 						<a href="${deleteCampaign}" class="btnLong">Delete Campaign</a>
 					</sec:authorize>
+					
+					<!-- For annonymous user -->
+					<sec:authorize access="isAnonymous()">
+						<spring:url value="/common/viewAllEvent/${campaign.id}"
+							var="viewAllEventUrl" />
+						<a href="${viewAllEventUrl}" class="btnLong">View All Event</a>
+					</sec:authorize>
+					
 				</div>
 				<c:if test="${count.count % 4 == 0}">
 					<div class="clear"></div>

@@ -104,7 +104,7 @@
 	
 	<form id="form1" class="form-basic-grey addressForm">
 		<h1>Add address for event 
-      		<span>This is a new event 123</span>
+      		<span>${event.eventName}</span>
 		</h1>
 		<label id="errLbl1" class="validation">
 		</label>

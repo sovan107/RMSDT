@@ -6,6 +6,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import com.rmsdt.web.model.Address;
+import com.rmsdt.web.model.Campaigns;
 import com.rmsdt.web.model.Events;
 import com.rmsdt.web.repository.EventRepository;
 
@@ -38,6 +39,16 @@ public class EventRepositoryImpl implements EventRepository {
 			em.merge(address);
 		}
 
+	}
+
+	@Override
+	public Events findEventByEventUserId(int userId, int eventId) {
+		return this.em
+				.createQuery(
+						"SELECT event FROM Events event LEFT JOIN FETCH event.campaign campaign "
+								+ " WHERE event.id = :eventId AND campaign.user.id =:userId",
+						Events.class).setParameter("eventId", eventId)
+				.setParameter("userId", userId).getSingleResult();
 	}
 
 }

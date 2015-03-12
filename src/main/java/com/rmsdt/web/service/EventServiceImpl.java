@@ -36,4 +36,10 @@ public class EventServiceImpl implements EventService {
 	public void saveAddress(Address address) {
 		eventRepo.saveAddress(address);
 	}
+
+	@Override
+	@Transactional
+	public Events findEventByEventUserId(int id, int eventId) {
+		return eventRepo.findEventByEventUserId(id, eventId);
+	}
 }

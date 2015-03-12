@@ -63,11 +63,13 @@ public class CampaignServiceImpl implements CampaignService {
 	}
 
 	@Override
+	@Transactional
 	public Campaigns findCampaignByUserCampaignID(int userId, int campaignId) {
 		return campaignRepo.findCampaignByUserCampaignID(userId, campaignId);
 	}
 
 	@Override
+	@Transactional
 	public Campaigns findCampaignEventsByUserID(int userId, int campId) {
 		return campaignRepo.findCampaignEventsByUserID(userId, campId);
 	}

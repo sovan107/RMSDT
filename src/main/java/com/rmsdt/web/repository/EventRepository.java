@@ -11,4 +11,6 @@ public interface EventRepository {
 	Events findEventById(int eventId);
 
 	void saveAddress(Address address);
+
+	Events findEventByEventUserId(int id, int eventId);
 }

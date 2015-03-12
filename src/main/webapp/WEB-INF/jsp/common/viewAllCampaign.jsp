@@ -21,7 +21,6 @@
 	<spring:url value="/common/viewAllCampaignList" var="campaignListURL" />
 </sec:authorize>
 
-
 <!--==============================Header=================================-->
 
 <div class="fluidHeight container_12">
@@ -29,15 +28,31 @@
 		<div class="iosSlider">
 			<div class="slider">
 				<c:forEach var="campaign" items="${campaigns}">
-					<spring:url value="/common/campaignImage/${campaign.id}"
-						var="campaignImageUrl" />
+				
+					<!-- Campaign related URL ==========================-->
+					<spring:url value="/common/campaignImage/${campaign.id}" var="campaignImageUrl" />
+					<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
+						<spring:url value="/admin/event/viewAllEvent/${campaign.id}" var="viewAllEventUrl" />
+					</sec:authorize>
+
+					<sec:authorize access="isAnonymous()">
+						<spring:url value="/common/viewAllEvent/${campaign.id}" var="viewAllEventUrl" />
+					</sec:authorize>
+
+					<a href="${viewAllEventUrl}" class="btnLong">View All Event</a>
+					
+					<!-- ========================= -->
+						
+						
 					<div class="item">
+					<a href="${viewAllEventUrl}">
 						<div class="inner"
 							style="background-image:url(${campaignImageUrl});">
 							<div class="text1">
 								<span>${campaign.campaignName}<br>${campaign.campaignDescription}</span>
 							</div>
 						</div>
+						</a>
 					</div>
 				</c:forEach>
 			</div>

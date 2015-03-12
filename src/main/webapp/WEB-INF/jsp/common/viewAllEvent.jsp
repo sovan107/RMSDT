@@ -48,8 +48,10 @@
 			</td>
 			
 			<td>
+			<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
 				<spring:url value="/admin/event/addAddress/${event.id}" var="addAddressUrl"></spring:url>
 				<a href="${addAddressUrl}">New Address</a>
+			</sec:authorize>
 			</td>
 		</tr>
 	</c:forEach>

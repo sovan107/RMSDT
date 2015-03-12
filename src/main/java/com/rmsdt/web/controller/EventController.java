@@ -2,6 +2,7 @@ package com.rmsdt.web.controller;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -86,10 +88,10 @@ public class EventController {
 	@RequestMapping(value = "/addAddress/{eventId}", method = RequestMethod.GET)
 	public String addEventAddress(@PathVariable("eventId") int eventId,
 			Model model, HttpSession session) {
-
-		Events event = eventService.findEventById(eventId);
+		User user = getCurrentUser(session);
+		Events event = eventService.findEventByEventUserId(user.getId(),
+				eventId);
 		model.addAttribute("event", event);
-
 		return "admin/addAddress";
 	}
 
@@ -129,18 +131,18 @@ public class EventController {
 
 		return jResponse;
 	}
-	
+
 	@RequestMapping(value = "/viewAllEvent/{id}", method = RequestMethod.GET)
 	public String viewAllEvent(@PathVariable("id") int campId, Model model,
 			HttpSession session) {
 		User user = getCurrentUser(session);
-		
-		Campaigns campaign = campaignService.findCampaignEventsByUserID(user.getId(), campId);
+
+		Campaigns campaign = campaignService.findCampaignEventsByUserID(
+				user.getId(), campId);
 
 		model.addAttribute("campaign", campaign);
 		return "common/viewAllEvent";
 	}
-	
 
 	/**
 	 * Get user from session
