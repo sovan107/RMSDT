@@ -111,8 +111,7 @@ public class AdminCampaignController {
 		} else {
 			campaigns.setCreationDate(new DateTime());
 			campaignService.saveCampaign(campaigns);
-			return "redirect:/admin/campaign/viewAllCampaign/"
-					+ campaigns.getUser().getId();
+			return "redirect:/admin/campaign/viewAllCampaignList";
 		}
 	}
 
@@ -134,7 +133,7 @@ public class AdminCampaignController {
 	}
 
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
-	@RequestMapping(value = "/editCampaign/{campaignId}", method = RequestMethod.POST)
+	@RequestMapping(value = "/editCampaign/{campaignId}", method = RequestMethod.PUT)
 	public String editCampaignPost(@ModelAttribute @Valid Campaigns campaign,
 			BindingResult result, @PathVariable("campaignId") int campaignId,
 			@RequestPart("image") Part campaignImage) throws IOException {

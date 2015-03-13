@@ -51,4 +51,18 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 		<location>/WEB-INF/jsp/error/404.jsp</location>
 	</error-page>
 
+	<!-- used so we can use forms of method type 'PUT' and 'DELETE' (such as 
+		in the Pet form) see here: http://static.springsource.org/spring/docs/current/spring-framework-reference/html/view.html#rest-method-conversion -->
+	<!-- used so we can use forms of method type 'PUT' and 'DELETE' (such as 
+		in the Pet form) see here: http://static.springsource.org/spring/docs/current/spring-framework-reference/html/view.html#rest-method-conversion -->
+	<filter>
+		<filter-name>httpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>httpMethodFilter</filter-name>
+		<servlet-name>appServlet</servlet-name>
+	</filter-mapping>
+
 </web-app>

@@ -47,15 +47,17 @@
 			<c:set var="headerText" value="Add New Campaign" />
 			<c:set var="headerTextDetail" value="Plese fill the fields to add a campaign" />
 			<c:set var="btnText" value="Save" />
+			<c:set var="method" value="post" />
 		</c:when>
 		<c:otherwise>
 			<c:set var="headerText" value="Update Campaign" />
 			<c:set var="headerTextDetail" value="Plese update the fields for this Campaign" />
 			<c:set var="btnText" value="Update" />
+			<c:set var="method" value="put" />
 		</c:otherwise>
 	</c:choose>
 	
-	<form:form modelAttribute="campaigns" method="post"
+	<form:form modelAttribute="campaigns" method="${method}"
 		class="form-basic-grey" id="add-campaign-form"
 		enctype="multipart/form-data">
 		
