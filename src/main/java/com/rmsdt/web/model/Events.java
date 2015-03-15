@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -14,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
@@ -23,7 +25,9 @@ import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.rmsdt.web.form.validator.DateFieldEqualOrAfter;
+import com.rmsdt.web.model.entityListener.EventListener;
 
+@EntityListeners(EventListener.class)
 @DateFieldEqualOrAfter(first = "eventStartDate", second = "eventEndDate", message = "{validation.date.equalOrAfter}")
 @Entity
 @Table(name = "events")
@@ -75,6 +79,9 @@ public class Events extends BaseEntity {
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	@DateTimeFormat(pattern = "yyyy/MM/dd hh:mm:ss")
 	private DateTime modificationDate;
+	
+	@Transient
+	private int eventStatus;
 
 	public String getEventName() {
 		return eventName;
@@ -145,4 +152,11 @@ public class Events extends BaseEntity {
 		return addresses;
 	}
 
+	public int getEventStatus() {
+		return eventStatus;
+	}
+
+	public void setEventStatus(int eventStatus) {
+		this.eventStatus = eventStatus;
+	}
 }

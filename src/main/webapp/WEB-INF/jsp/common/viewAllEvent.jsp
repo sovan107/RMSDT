@@ -25,7 +25,15 @@
 
 		<tr>
 			<td>
-				Event Name : ${event.eventName} <br/>
+				Event Name : ${event.eventName} 
+				&nbsp;&nbsp;&nbsp;
+				<b>[
+				<c:if test="${event.eventStatus == -1}">Not Started</c:if>
+				<c:if test="${event.eventStatus == 0}">In Progress</c:if>
+				<c:if test="${event.eventStatus == 1}">Event Closed</c:if>
+				]</b>
+				
+				<br/>
 				Event Description : ${event.eventDescription} <br/>
 				Event Start Date : <joda:format value="${event.eventStartDate}" pattern="yyyy/MM/dd" /> <br/>
 				Event End Date :<joda:format value="${event.eventEndDate}" pattern="yyyy/MM/dd" /> <br/>
