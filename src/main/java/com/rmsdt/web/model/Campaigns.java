@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -24,6 +25,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "campaigns")
 public class Campaigns extends BaseEntity {
 
+	private static final int MAX_NAME_LENGTH = 12;
+	private static final String THREE_DOTS = "...";
+
 	@ManyToOne
 	@JoinColumn(name = "admin_id_fk")
 	private User user;
@@ -33,15 +37,15 @@ public class Campaigns extends BaseEntity {
 	private List<Events> events;
 
 	@Column(name = "camp_name")
-	@NotEmpty(message="{validaton.field.required}")
+	@NotEmpty(message = "{validaton.field.required}")
 	private String campaignName;
 
 	@Column(name = "camp_description")
-	@NotEmpty(message="{validaton.field.required}")
+	@NotEmpty(message = "{validaton.field.required}")
 	private String campaignDescription;
 
 	@Column(name = "camp_image")
-	//@NotEmpty
+	// @NotEmpty
 	private byte[] campaignImage;
 
 	@Column(name = "creation_date")
@@ -125,4 +129,14 @@ public class Campaigns extends BaseEntity {
 		return events;
 	}
 
+	@Transient
+	public String getShortCampaignName() {
+		if (campaignName.length() <= MAX_NAME_LENGTH)
+			return campaignName;
+		StringBuffer result = new StringBuffer(MAX_NAME_LENGTH + 3);
+		result.append(campaignName.substring(0, MAX_NAME_LENGTH));
+		result.append(THREE_DOTS);
+
+		return result.toString();
+	}
 }

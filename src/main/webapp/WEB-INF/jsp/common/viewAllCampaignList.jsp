@@ -25,7 +25,7 @@
 				<spring:url value="/common/campaignImage/${campaign.id}"
 					var="campaignImageUrl" />
 				<div class="grid_3">
-					<h2>${campaign.campaignName}</h2>
+					<h2>${campaign.shortCampaignName}</h2>
 					<a href="images/big1.jpg" class="gal"> <img
 						src="${campaignImageUrl}" alt=""
 						style="height: 218px; width: 218px;" />

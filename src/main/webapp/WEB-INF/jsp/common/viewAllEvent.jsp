@@ -36,7 +36,7 @@
 				<br/>
 				Event Description : ${event.eventDescription} <br/>
 				Event Start Date : <joda:format value="${event.eventStartDate}" pattern="yyyy/MM/dd" /> <br/>
-				Event End Date :<joda:format value="${event.eventEndDate}" pattern="yyyy/MM/dd" /> <br/>
+				Event End Date :<joda:format value="${event.eventEndDate}" pattern="yyyy/MM/dd" /> <br/><br>
 			</td>
 			
 
