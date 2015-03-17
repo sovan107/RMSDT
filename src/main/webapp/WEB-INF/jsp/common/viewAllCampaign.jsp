@@ -39,17 +39,16 @@
 						<spring:url value="/common/viewAllEvent/${campaign.id}" var="viewAllEventUrl" />
 					</sec:authorize>
 
-					<a href="${viewAllEventUrl}" class="btnLong">View All Event</a>
-					
-					<!-- ========================= -->
-						
-						
 					<div class="item">
 					<a href="${viewAllEventUrl}">
 						<div class="inner"
 							style="background-image:url(${campaignImageUrl});">
 							<div class="text1">
-								<span>${campaign.campaignName}<br>${campaign.campaignDescription}</span>
+								<span>
+								${campaign.campaignName}<br>
+								${campaign.campaignDescription}<br>
+								<a href="${viewAllEventUrl}" class="btnMedium">View All Event</a>
+								</span>
 							</div>
 						</div>
 						</a>

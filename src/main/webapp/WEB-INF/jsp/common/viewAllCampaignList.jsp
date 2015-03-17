@@ -17,9 +17,17 @@
 
 <!--==============================Header=================================-->
 <div class="content">
-	<div class="ic">More Website Templates @ TemplateMonster.com -
-		March 24, 2014!</div>
+	
 	<div class="container_12">
+	
+		<div id="addCampBtn">
+			<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
+				<spring:url value="/admin/campaign/newCampaign/${user.id}"
+					var="addNewCampaign" />
+				<a href="${addNewCampaign}" class="btn">New Campaign</a>
+			</sec:authorize>
+		</div>
+		
 		<div class="gallery">
 			<c:forEach var="campaign" items="${campaigns}" varStatus="count">
 				<spring:url value="/common/campaignImage/${campaign.id}"
@@ -66,13 +74,6 @@
 				</c:if>
 			</c:forEach>
 		</div>
-	</div>
-	<div>
-		<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
-			<spring:url value="/admin/campaign/newCampaign/${user.id}"
-				var="addNewCampaign" />
-			<a href="${addNewCampaign}" class="btn">New Campaign</a>
-		</sec:authorize>
 	</div>
 </div>
 <!--==============================Footer=================================-->

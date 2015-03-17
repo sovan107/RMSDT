@@ -851,3 +851,79 @@ footer {
     -moz-box-shadow:none;
     -webkit-box-shadow:none;
 }
+#addCampBtn{
+	position: relative;
+	top: 53px;
+  	left: 831px;
+  	
+}
+#eventName{
+	/*font-family: "Lucida Grande", Tahoma;*/
+	font-family: 'Lato', sans-serif;
+	font-size: 20px;
+  	padding-left: 5px;
+	font-weight: lighter;
+	font-variant: normal;
+	text-transform: uppercase;
+	color: #fff;
+    margin-top: 10px;
+	position: relative;
+	padding-top: 5px;
+	padding-bottom: 6px;
+  	padding-left: 14px;
+	border-bottom:1px dashed;
+}
+#eventDescription{
+	font-family: Georgia, "Times New Roman", Times, serif;
+	padding-top: 5px;
+  	padding-left: 5px;
+  	position: relative;
+  	word-wrap:break-word;
+  	top: -20px;
+    font-size:16px;
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-bottom: 0px;
+    font-weight: normal;
+    color: #fff;
+		
+}
+.campaign{
+	  margin-left: auto;
+	  margin-right: auto;
+	  width: 1100px;
+	  color:#fff;
+}
+.date, .addEventAddress {
+	background: #fe921f;
+	color: #ffffff;
+	display: inline-block;
+	font-family: 'Lato', sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 6px;
+	letter-spacing: 1px;
+	padding: 10px 15px 8px;
+	text-transform: uppercase;
+	position: relative;
+  	top: -29px;
+  	right: -771px;
+}
+.addEventAddress{
+	right: -964px;
+}
+.events{
+	border-radius:5px;
+}
+
+h2.campaignHeader{
+	
+	font-family: 'Droid serif', serif;
+	font-size: 36px;
+	font-weight: 400;
+	font-style: italic;
+	line-height: 44px;
+	margin: 0 0 12px;
+	text-align: center;
+	padding-top:30px !important;
+}
