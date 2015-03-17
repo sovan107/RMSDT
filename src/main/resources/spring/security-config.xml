@@ -12,20 +12,19 @@
 	<!--[ use-expressions="true" ] is used to activate expression use i.e "hasRole" -->
 
 	<http auto-config="true" use-expressions="true">
+
 		<intercept-url pattern="/admin/login" access="permitAll" />
-		<!--<intercept-url pattern="/admin/**" access="hasRole('ROLE_SUPER_ADMIN')" />-->
+
 		<intercept-url pattern="/logout" access="hasRole('ROLE_SUPER_ADMIN')" />
 		<intercept-url pattern="/403.html" access="permitAll" />
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_SUPER_ADMIN')" />
 
 		<!--Mark "and" condition below -->
-		<!--<intercept-url pattern="/**" access="hasRole('ROLE_USER') and hasRole('ROLE_ADMIN')"/> -->
 		<intercept-url pattern="/**" access="permitAll" />
 		<form-login username-parameter="username" password-parameter="password" login-page="/admin/login"
 			authentication-failure-url="/admin/loginFailed" 
 			default-target-url="/admin/adminHome"/>
 		<logout logout-success-url="/admin/login" invalidate-session="true"/>
-
 		<access-denied-handler error-page="/403.html" />
 
 	</http>

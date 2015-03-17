@@ -7,11 +7,13 @@ import javax.validation.Valid;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,6 +40,7 @@ public class AdminController {
 		dataBinder.setDisallowedFields("id");
 	}
 
+	 @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
 	@RequestMapping(value = "/viewDetails", method = RequestMethod.GET)
 	public String viewDetails(Map<String, Object> model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -45,6 +48,7 @@ public class AdminController {
 		return "admin/viewAdminDetails";
 	}
 
+	 @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
 	@RequestMapping(value = "/editDetails", method = RequestMethod.GET)
 	public String editDetails(Map<String, Object> model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -54,7 +58,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/editDetails", method = RequestMethod.POST)
-	public String editDetailsPost(@Valid User user, BindingResult result,
+	public String editDetailsPost(@Valid @ModelAttribute User user, BindingResult result,
 			HttpSession session) {
 		if (result.hasErrors()) {
 			return "admin/addAdminDetails";

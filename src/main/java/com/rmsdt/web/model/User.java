@@ -30,7 +30,7 @@ public class User extends Person {
 	private String username;
 
 	@Column(name = "email")
-	@NotEmpty(message="{validaton.field.required}")
+	@NotEmpty(message = "{validaton.field.required}")
 	@Email
 	private String email;
 
@@ -46,6 +46,7 @@ public class User extends Person {
 	private DateTime dob;
 
 	@Column(name = "creation_date")
+	@Temporal(TemporalType.DATE)
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	@DateTimeFormat(pattern = "yyyy/MM/dd hh:mm:ss")
 	private DateTime creationDate;
@@ -57,11 +58,14 @@ public class User extends Person {
 	private DateTime modificationDate;
 
 	@Column(name = "password")
-	@NotEmpty(message="{validaton.field.required}")
+	@NotEmpty(message = "{validaton.field.required}")
 	private String password;
-	
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Campaigns> campaigns;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	private List<Campaigns> campaigns;
+
+	@Column(name = "enabled")
+	private int enabled;
 
 	public String getPassword() {
 		return password;
@@ -118,15 +122,15 @@ public class User extends Person {
 	public void setDob(DateTime dob) {
 		this.dob = dob;
 	}
-	
-	public void addCampaign(Campaigns campaign){
+
+	public void addCampaign(Campaigns campaign) {
 		getInternalCampaign().add(campaign);
 		campaign.setUser(this);
-		
+
 	}
 
 	private List<Campaigns> getInternalCampaign() {
-		if(campaigns == null){
+		if (campaigns == null) {
 			campaigns = new ArrayList<Campaigns>();
 		}
 		return campaigns;
@@ -138,5 +142,13 @@ public class User extends Person {
 
 	public void setCampaigns(List<Campaigns> campaigns) {
 		this.campaigns = campaigns;
+	}
+
+	public int getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
 	}
 }
