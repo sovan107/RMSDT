@@ -17,53 +17,58 @@
 	<jsp:param value="viewAllEvent" name="callingPage" />
 </jsp:include>
 
-<table border="1">
-	<tr>
-		<th>Campaign Name : ${campaign.campaignName}</th>
-	</tr>
-	<c:forEach var="event" items="${campaign.events}">
-
-		<tr>
-			<td>
-				Event Name : ${event.eventName} 
-				&nbsp;&nbsp;&nbsp;
-				<b>[
-				<c:if test="${event.eventStatus == -1}">Not Started</c:if>
-				<c:if test="${event.eventStatus == 0}">In Progress</c:if>
-				<c:if test="${event.eventStatus == 1}">Event Closed</c:if>
-				]</b>
+<div class="content">
+		<div class="campaign">
+		<h2 class="campaignHeader">Campaign Name : ${campaign.campaignName}</h2>
+		<c:forEach var="event" items="${campaign.events}">
 				
+			<div class="events" style='background-color:
+				<c:if test="${event.eventStatus == -1}">#618DD0</c:if>
+				<c:if test="${event.eventStatus == 0}">#60bf93</c:if>
+				<c:if test="${event.eventStatus == 1}">#e14f42</c:if>
+			'>
+			
+				<div id="eventName">${event.eventName}</div>
+				<div class="date">Starts : <joda:format value="${event.eventStartDate}" pattern="yyyy/MM/dd" /></div>
+				<div class="date">Ends : <joda:format value="${event.eventEndDate}" pattern="yyyy/MM/dd" /></div> 
+				<div id="eventDescription"><div>Description:</div> <br>${event.eventDescription}</div>
 				<br/>
-				Event Description : ${event.eventDescription} <br/>
-				Event Start Date : <joda:format value="${event.eventStartDate}" pattern="yyyy/MM/dd" /> <br/>
-				Event End Date :<joda:format value="${event.eventEndDate}" pattern="yyyy/MM/dd" /> <br/><br>
-			</td>
-			
-
-			<td>
-			<b>Addresses :</b> 
-				<c:forEach var="address" items="${event.addresses}">
-					<div style="border-color: black; border-style: solid;">
-						House no: ${address.houseNumber}<br/>
-						Street	: ${address.street}<br/>
-						City	: ${address.city}<br/>
-						State	: ${address.state}<br/>
-						Country	: ${address.country}<br/>
-						Zip code: ${address.postalCode}<br/>
-					</div>
-					<br/>
-				</c:forEach>
-			</td>
-			
-			<td>
-			<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
-				<spring:url value="/admin/event/addAddress/${event.id}" var="addAddressUrl"></spring:url>
-				<a href="${addAddressUrl}">New Address</a>
-			</sec:authorize>
-			</td>
-		</tr>
+				<div id="eventName"> Address</div>
+				<div class="addEventAddress">
+					<sec:authorize ifAnyGranted="ROLE_SUPER_ADMIN">
+						<spring:url value="/admin/event/addAddress/${event.id}"
+							var="addAddressUrl"></spring:url>
+						<a href="${addAddressUrl}">New Address</a>
+					</sec:authorize>
+				</div>
+				<div id="eventDescription">
+				<div class="container_12">
+				
+				<div class="gallery">
+					<c:forEach var="address" items="${event.addresses}" varStatus="count">
+						<div class="grid_3">
+								<table> 
+									<tr><td>House no &nbsp;</td><td>:</td> <td>${address.houseNumber}</td></tr>
+									<tr><td>Street	&nbsp;     <td>:</td></td> <td>${address.street}</td></tr>
+									<tr><td>City	&nbsp;</td> <td>:</td><td>${address.city}</td></tr>
+									<tr><td>State 	&nbsp;</td> <td>:</td><td>${address.state}</td></tr>
+									<tr><td>Country &nbsp;</td> <td>:</td><td>${address.country}</td></tr>
+									<tr><td>Zip code&nbsp;</td> <td>:</td><td>${address.postalCode}</td></tr>
+								</table>
+						</div>
+				<c:if test="${count.count % 4 == 0}">
+					<div class="clear"></div>
+					<br>
+				</c:if>
+			</c:forEach>
+		</div>
+	</div>
+	</div>
+		</div>
+		<br>
 	</c:forEach>
-	</table>
+	</div>
+	</div>
 <!--==============================Footer=================================-->
 <jsp:include page="../fragments/footer.jsp">
 	<jsp:param value="viewAllEvent" name="footerFor" />
