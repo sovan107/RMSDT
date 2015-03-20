@@ -40,7 +40,7 @@ public class AdminController {
 		dataBinder.setDisallowedFields("id");
 	}
 
-	 @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
 	@RequestMapping(value = "/viewDetails", method = RequestMethod.GET)
 	public String viewDetails(Map<String, Object> model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -48,7 +48,7 @@ public class AdminController {
 		return "admin/viewAdminDetails";
 	}
 
-	 @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
 	@RequestMapping(value = "/editDetails", method = RequestMethod.GET)
 	public String editDetails(Map<String, Object> model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -58,8 +58,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/editDetails", method = RequestMethod.POST)
-	public String editDetailsPost(@Valid @ModelAttribute User user, BindingResult result,
-			HttpSession session) {
+	public String editDetailsPost(@Valid @ModelAttribute User user,
+			BindingResult result, HttpSession session) {
 		if (result.hasErrors()) {
 			return "admin/addAdminDetails";
 		} else {
