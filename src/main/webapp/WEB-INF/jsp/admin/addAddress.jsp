@@ -48,15 +48,18 @@
 
 		$('.validation').hide();			
 		
-		// On submit
+		// On submit (This will work on dynamically created element)
 		$(document).on('click', '.submit', function(){
 			var formId = this.id;
 				
 			// Get form data all enabled and disabled fields.
 			var formData = $("#form" + formId).serialize();
-			$('input[disabled]').each( function() {
-              formData = formData + '&' + $(this).attr('name') + '=' + $(this).val();
-          	});
+
+			var latVal = $("#lat"+formId).val();
+			if(latVal != null){
+            	formData = formData + '&' + $("#lat"+formId).attr('name') + '=' + $("#lat"+formId).val();
+            	formData = formData + '&' + $("#lng"+formId).attr('name') + '=' + $("#lng"+formId).val();
+			}
 				
 			// Ajax submit.
 			$.ajax({
@@ -103,6 +106,7 @@
 					
 					// Json response.
 					var form = response.form;
+					form = form.replace("mapImageUrl", "${mapImageUrl}");
 					$("#form" + formLen).after(form);
 					$('#errLbl' + (formLen + 1)).hide();
 				},
@@ -125,8 +129,11 @@
 
     	});
 
-	    $("#showMap").on("click", function () {
-	        googleMap("mapDialog", 20.2700, 85.8400);
+		// On Map element click
+		$(document).on('click', '.showMap', function(){
+			var mapBtnId = this.id;
+			var frmId = mapBtnId.replace("showMap", "");
+	        googleMap("mapDialog", 20.2700, 85.8400, frmId);
 	        $('#mapDialog').dialog('open');
 	        return false;
 	    });
@@ -136,7 +143,7 @@
 		
 	});
 	
-	function googleMap(selector, lat, lng) {
+	function googleMap(selector, lat, lng, frmId) {
 	    var myLatlng = new google.maps.LatLng(lat, lng);
 	    
 	    if (!map) {
@@ -163,8 +170,8 @@
 	    }
 	    
 		google.maps.event.addListener(map, 'click', function(event) {
-			$("#lat").val(event.latLng.lat());
-			$("#lng").val(event.latLng.lng());
+			$("#lat"+frmId).val(event.latLng.lat());
+			$("#lng"+frmId).val(event.latLng.lng());
 			
 		})
 	    
@@ -229,9 +236,9 @@
     	</label>
     	<label>
 	        <span id="location">Location :</span>
-	        <input id="lat" type="text" name="lat" disabled="disabled" style="width: 300px;"/>
-	        <input id="lng" type="text" name="lng" disabled="disabled"/>
-	        <img id="showMap" alt="Not Found" src="${mapImageUrl}" />
+	        <input id="lat1" type="text" name="lat" disabled="disabled" style="width: 300px;"/>
+	        <input id="lng1" type="text" name="lng" disabled="disabled"/>
+	        <img id="showMap1" class="showMap" alt="Not Found" src="${mapImageUrl}" />
     	</label>
     	<br/><br/>
     	<div id="1" class="submit">
