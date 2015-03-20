@@ -62,8 +62,6 @@ public class EventController {
 		Campaigns campaign = campaignService.findCampaignByUserCampaignID(
 				user.getId(), campId);
 		event.setCampaign(campaign);
-		// Campaigns campaign = campaignService.findCampaignEventsByID(campId);
-		// campaign.addEvents(events);
 
 		model.addAttribute("events", event);
 		return "admin/addEvent";
@@ -107,10 +105,13 @@ public class EventController {
 			jResponse.setErrors(result.getAllErrors());
 			jResponse.setStatus("fail");
 		} else {
+			
+			// Save address id if exists.
 			address.setId(address.getAjaxId());
 			Events event = eventService.findEventById(eventId);
 			address.setEvent(event);
 			eventService.saveAddress(address);
+			
 			// Response using json
 			jResponse.setId(address.getId());
 			jResponse.setStatus("success");
@@ -142,6 +143,11 @@ public class EventController {
 
 		model.addAttribute("campaign", campaign);
 		return "common/viewAllEvent";
+	}
+
+	@RequestMapping(value = "/showMap", method = RequestMethod.GET)
+	public String showMap() {
+		return "admin/showMap";
 	}
 
 	/**
