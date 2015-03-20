@@ -32,13 +32,11 @@ public class EventRepositoryImpl implements EventRepository {
 
 	@Override
 	public void saveAddress(Address address) {
-
 		if (address.getId() == null) {
 			em.persist(address);
 		} else {
 			em.merge(address);
 		}
-
 	}
 
 	@Override
