@@ -342,7 +342,7 @@ header h1 a img {
 	display: block;
 }
 
-a.donate, a.logout, label.addAddress {
+a.donate, a.logout, label.addAddress, label.backToEvent {
     margin-bottom: 21px;
     margin-top: 12px;
     float: right;
@@ -353,6 +353,12 @@ a.donate, a.logout, label.addAddress {
     background-color: #e14f42;
     padding: 4px 26px 5px 25px;
 }
+
+label.backToEvent{
+	margin-left: 379px;
+	float: left;
+}
+
 label.addAddress{
 	margin-right: 379px;
 }
