@@ -90,8 +90,12 @@ public class CampaignRepositoryImpl implements CampaignRepository {
 	public Campaigns findCampaignEventsByUserID(int userId, int campId) {
 		return this.em
 				.createQuery(
-						"SELECT campaign FROM Campaigns campaign LEFT JOIN FETCH campaign.events "
-								+ " WHERE campaign.id = :id AND campaign.user.id = :userId", Campaigns.class)
+						"SELECT campaign FROM Campaigns campaign LEFT JOIN FETCH campaign.events ce"
+								+ " WHERE campaign.id = :id "
+								+ " AND campaign.user.id = :userId"
+								+ " ORDER BY ce.eventStartDate",
+								
+						Campaigns.class)
 				.setParameter("id", campId)
 				.setParameter("userId", userId)
 				.getSingleResult();
