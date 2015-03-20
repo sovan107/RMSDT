@@ -12,6 +12,8 @@
 	<jsp:param value="campaign" name="callingPage" />
 </jsp:include>
 
+<spring:url value="/resources/image/mapPin.png" var="mapImageUrl" />
+
 <spring:url value="/webjars/jquery/2.0.3/jquery.js" var="jQuery" />
 <script src="${jQuery}"></script>
 
@@ -28,19 +30,40 @@
 	 var contexPath = "<%=request.getContextPath()%>";
 </script>
 
+<!-- Adding for dialog -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+<!-- Map related ------------- -->
+<script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxAdEf0RDMZ5CMqObGPNTOtXAiYbfz9M0">
+</script>
+<!-- Map related ----------------------- -->
+
+
 <script type="text/javascript">
+	var map = null;
 	jQuery(document).ready(function() {
-			
-			$('.validation').hide();
-			
-			$(document).on('click', '.submit', function(){ 
+
+		$('.validation').hide();			
+		
+		// On submit
+		$(document).on('click', '.submit', function(){
 			var formId = this.id;
+				
+			// Get form data all enabled and disabled fields.
+			var formData = $("#form" + formId).serialize();
+			$('input[disabled]').each( function() {
+              formData = formData + '&' + $(this).attr('name') + '=' + $(this).val();
+          	});
+				
+			// Ajax submit.
 			$.ajax({
 				type : "POST",
 				url : contexPath + "/admin/event/addAddress/${event.id}",
-				data : $("#form" + formId).serialize(),
+				data : formData,
 				success : function(response) {
-					
 					if(response.status == "success"){
 						var addId;
 						// Json response.
@@ -88,19 +111,86 @@
 				}
 			});
 		});
+		
+		// Map functionality----------------------
+		 var mapDialog = $("#mapDialog").dialog({
+	        modal: true,
+	        width: 500,
+	        height: 500,
+	        autoOpen: false,
+	        title: "Map Service",
+	        resizeStop: function (event, ui) { google.maps.event.trigger(map, 'resize') },
+	        open: function (event, ui) { google.maps.event.trigger(map, 'resize'); },
+        
 
+    	});
+
+	    $("#showMap").on("click", function () {
+	        googleMap("mapDialog", 20.2700, 85.8400);
+	        $('#mapDialog').dialog('open');
+	        return false;
+	    });
+		
+		//------------------------------------------
+
+		
 	});
+	
+	function googleMap(selector, lat, lng) {
+	    var myLatlng = new google.maps.LatLng(lat, lng);
+	    
+	    if (!map) {
+	        var myOptions = {
+	            zoom: 15,
+	            center: myLatlng,   
+	            mapTypeId: google.maps.MapTypeId.ROADMAP
+	        }
+	        map = new google.maps.Map(document.getElementById(selector), myOptions);
+	        
+	        var populationOptions = {
+	            strokeColor: "#990000",
+	            strokeOpacity: 0.5,
+	            strokeWeight: 1,
+	            fillColor: "#FF0000",
+	            fillOpacity: 0.15,
+	            map: map,
+	            center: myLatlng,
+	            radius: 50
+	        };
+	        cityCircle = new google.maps.Circle(populationOptions);
+	    } else {
+	        map.setCenter(myLatlng);
+	    }
+	    
+		google.maps.event.addListener(map, 'click', function(event) {
+			$("#lat").val(event.latLng.lat());
+			$("#lng").val(event.latLng.lng());
+			
+		})
+	    
+	}
 </script>
 
 <!-- jquery-ui.css file is not that big so we can afford to load it -->
 <spring:url value="/webjars/jquery-ui/1.10.3/themes/base/jquery-ui.css"
 	var="jQueryUiCss" />
 <link href="${jQueryUiCss}" rel="stylesheet"></link>
+<spring:url value="/admin/event/viewAllEvent/${event.campaign.id}" var="viewAllEventUrl" />
 
 </head>
 
 <body>
+
+<div id="mapDialog">
+    
+</div>
+
+
 	<label id="newAdd" class="addAddress">New Address</label>
+	<label id="bte" class="backToEvent">
+		<a href="${viewAllEventUrl}" >Back To Events</a>
+	</label>
+	
 	
 	<form id="form1" class="form-basic-grey addressForm">
 		<h1>Add address for event 
@@ -137,7 +227,13 @@
 	        <span>Pin Code :</span>
 	        <input type="text" name="postalCode"/>
     	</label>
-    	
+    	<label>
+	        <span id="location">Location :</span>
+	        <input id="lat" type="text" name="lat" disabled="disabled" style="width: 300px;"/>
+	        <input id="lng" type="text" name="lng" disabled="disabled"/>
+	        <img id="showMap" alt="Not Found" src="${mapImageUrl}" />
+    	</label>
+    	<br/><br/>
     	<div id="1" class="submit">
 			<label id="lbl1" class="btn">Save</label>
 		</div>  	
