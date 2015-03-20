@@ -1,6 +1,7 @@
 package com.rmsdt.web.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,6 +20,8 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
+import org.springframework.beans.support.MutableSortDefinition;
+import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -109,7 +112,11 @@ public class Campaigns extends BaseEntity {
 	}
 
 	public List<Events> getEvents() {
-		return events;
+		
+		// Sort events
+        PropertyComparator.sort(events, new MutableSortDefinition("eventStatus", true, true));
+        return Collections.unmodifiableList(events);
+
 	}
 
 	public void setEvents(List<Events> events) {
