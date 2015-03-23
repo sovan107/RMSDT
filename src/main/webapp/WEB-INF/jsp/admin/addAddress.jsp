@@ -188,10 +188,7 @@
 
 <body>
 
-<div id="mapDialog">
-    
-</div>
-
+	<div id="mapDialog">  </div>
 
 	<label id="newAdd" class="addAddress">New Address</label>
 	<label id="bte" class="backToEvent">
