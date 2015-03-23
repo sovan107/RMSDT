@@ -18,7 +18,7 @@ public class FormUtil {
 				+ "\" class=\"form-basic-grey addressForm\">"
 				+
 
-				"<label id=\"errLbl"
+				"<label id=\"msgLbl"
 				+ id
 				+ "\" class=\"validation\">"
 				+ "</label>"

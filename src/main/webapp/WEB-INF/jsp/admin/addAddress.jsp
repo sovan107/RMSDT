@@ -78,8 +78,13 @@
 							// This hidden ID wil help for edit purpose.
 							$("#form" + formId).append( "<input type='hidden' id='" + hdnId + "' value='" + addId + "' name='ajaxId' />" );
 							$("#lbl" + formId).text("Edit");
-							$('#errLbl' + formId).hide();
+							//$('#msgLbl' + formId).hide();
 						}
+						// Show sucess message
+						$('#msgLbl' + formId).html("Saved Successfully.");
+						$("#msgLbl" + formId).show().delay(3000).fadeOut('slow');
+						//$('#msgLbl' + formId).delay(3000).fadeOut('slow');
+						
 					}else{
 						var errorInfo = "";
 						
@@ -87,8 +92,8 @@
 						for(i =0 ; i < response.errors.length ; i++){
 						   errorInfo += "<br>" + (i + 1) +". " + response.errors[i].defaultMessage;
 						}
-						$('#errLbl' + formId).html("Please correct following errors: " + errorInfo);
-						$('#errLbl' + formId).show('slow');
+						$('#msgLbl' + formId).html("Please correct following errors: " + errorInfo);
+						$('#msgLbl' + formId).show('slow');
 					}
 				},
 				error : function(e) {
@@ -108,7 +113,7 @@
 					var form = response.form;
 					form = form.replace("mapImageUrl", "${mapImageUrl}");
 					$("#form" + formLen).after(form);
-					$('#errLbl' + (formLen + 1)).hide();
+					$('#msgLbl' + (formLen + 1)).hide();
 				},
 				error : function(e) {
 					alert('Error: ' + e);
@@ -200,7 +205,7 @@
 		<h1>Add address for event 
       		<span>${event.eventName}</span>
 		</h1>
-		<label id="errLbl1" class="validation">
+		<label id="msgLbl1" class="validation">
 		</label>
 		<label>
 	        <span>House no. :</span>
