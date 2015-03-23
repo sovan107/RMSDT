@@ -102,9 +102,20 @@ public class AdminControllerTest {
 	}
 
 	@Test
+	public void editDetailsGetTest() throws Exception {
+		User user = adminService.findAdminByName("sambitc");
+
+		MockHttpServletRequestBuilder requestBuild = get("/admin/editDetails");
+		requestBuild.sessionAttr("user", user);
+
+		this.mockMvc.perform(requestBuild).andDo(print())
+				.andExpect(view().name("admin/addAdminDetails"));
+	}
+
+	@Test
 	@Rollback
 	@Transactional
-	public void editDetailsTest() throws Exception {
+	public void editDetailsPostTest() throws Exception {
 		User user = adminService.findAdminByName("sambitc");
 
 		MockHttpServletRequestBuilder requestBuild = post("/admin/editDetails",
@@ -117,6 +128,31 @@ public class AdminControllerTest {
 				.andExpect(redirectedUrl("/admin/" + user.getId()));
 		user = adminService.findAdminByName("sambitc");
 		assertEquals(user.getFirstName(), "sambitupdated");
+	}
+	
+	@Test
+	@Rollback
+	@Transactional
+	public void editDetailsPostTest1() throws Exception {
+		User user = adminService.findAdminByName("sambitc");
 
+		MockHttpServletRequestBuilder requestBuild = post("/admin/editDetails",
+				user).contentType(MediaType.APPLICATION_FORM_URLENCODED);
+		requestBuild.param("firstName", "");
+
+		requestBuild.sessionAttr("user", user);
+		this.mockMvc.perform(requestBuild).andDo(print())
+				.andExpect(view().name("admin/addAdminDetails"));
+	}
+
+	@Test
+	public void viewAdminByIdTest() throws Exception {
+		User user = adminService.findAdminByName("sambitc");
+
+		MockHttpServletRequestBuilder requestBuild = get("/admin/"
+				+ user.getId());
+
+		this.mockMvc.perform(requestBuild).andDo(print())
+				.andExpect(view().name("admin/viewAdminDetails"));
 	}
 }
