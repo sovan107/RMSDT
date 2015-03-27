@@ -3,6 +3,7 @@ package com.rmsdt.web.repository;
 import java.util.List;
 
 import com.rmsdt.web.model.Campaigns;
+import com.rmsdt.web.model.User;
 
 public interface CampaignRepository {
 
@@ -23,5 +24,7 @@ public interface CampaignRepository {
 	Campaigns findCampaignByUserCampaignID(int userId, int campaignId);
 
 	Campaigns findCampaignEventsByUserID(int userId, int campId);
+
+	User findAllCampaignByAdminID1(int id);
 
 }

@@ -10,7 +10,7 @@
 		</layout>
 	</appender>
 	<appender name="file" class="org.apache.log4j.RollingFileAppender">
-		<param name="append" value="false" />
+		<param name="append" value="true" />
 		<param name="maxFileSize" value="10MB" />
 		<param name="maxBackupIndex" value="10" />
 		<param name="file" value="${catalina.home}/rmsdtLog/rmsdt_log.log" />
@@ -21,24 +21,27 @@
 
 	<!-- Application Loggers -->
 	<logger name="com.rmsdt.aap">
-		<level value="info" />
+		<level value="warn" />
 	</logger>
 
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="info" />
+		<level value="warn" />
 	</logger>
 
 	<logger name="org.springframework.beans">
-		<level value="info" />
+		<level value="warn" />
 	</logger>
 
 	<logger name="org.springframework.context">
-		<level value="info" />
+		<level value="warn" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="info" />
+		<level value="warn" />
+	</logger>
+		<logger name="log4j.logger.org.apache.catalina.core">
+		<level value="warn" />
 	</logger>
 
 	<!-- Root Logger -->

@@ -70,11 +70,12 @@ public class AdminCampaignController {
 	public String viewAllCampaignList(Model model, HttpSession session) {
 		User currentUser = getCurrentUser(session);
 		int id = currentUser.getId();
+		
+		// Get campaigns using entity graph.
+		User user = campaignService
+				.findAllCampaignByAdminID1(id);
 
-		List<Campaigns> campaigns = campaignService
-				.findAllCampaignByAdminID(id);
-
-		model.addAttribute("campaigns", campaigns);
+		model.addAttribute("currUser", user);
 		return "common/viewAllCampaignList";
 	}
 

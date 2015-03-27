@@ -1,12 +1,17 @@
 package com.rmsdt.web.repository.jpa;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Repository;
 
 import com.rmsdt.web.model.Campaigns;
+import com.rmsdt.web.model.User;
 import com.rmsdt.web.repository.CampaignRepository;
 
 @Repository
@@ -33,6 +38,16 @@ public class CampaignRepositoryImpl implements CampaignRepository {
 						"SELECT campaigns FROM Campaigns campaigns "
 								+ " WHERE campaigns.user.id = :id ORDER BY campaigns.creationDate DESC ")
 				.setParameter("id", id).getResultList();
+	}
+
+	@Override
+	public User findAllCampaignByAdminID1(int id) {
+
+		EntityGraph graph = this.em.getEntityGraph("graph.User.campaigns");
+		Map hints = new HashMap();
+		hints.put("javax.persistence.fetchgraph", graph);
+
+		return this.em.find(User.class, id, hints);
 	}
 
 	@Override
@@ -94,10 +109,8 @@ public class CampaignRepositoryImpl implements CampaignRepository {
 								+ " WHERE campaign.id = :id "
 								+ " AND campaign.user.id = :userId"
 								+ " ORDER BY ce.eventStartDate",
-								
-						Campaigns.class)
-				.setParameter("id", campId)
-				.setParameter("userId", userId)
-				.getSingleResult();
+
+						Campaigns.class).setParameter("id", campId)
+				.setParameter("userId", userId).getSingleResult();
 	}
 }

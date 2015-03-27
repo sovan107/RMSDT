@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rmsdt.web.model.Campaigns;
+import com.rmsdt.web.model.User;
 import com.rmsdt.web.repository.CampaignRepository;
 
 @Service("campaignService")
@@ -30,6 +31,12 @@ public class CampaignServiceImpl implements CampaignService {
 	@Transactional(readOnly = true)
 	public List<Campaigns> findAllCampaignByAdminID(int id) {
 		return campaignRepo.findAllCampaignByAdminID(id);
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public User findAllCampaignByAdminID1(int id) {
+		return campaignRepo.findAllCampaignByAdminID1(id);
 	}
 
 	@Override

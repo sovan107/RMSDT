@@ -1,11 +1,15 @@
 package com.rmsdt.web.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -17,12 +21,26 @@ import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
+import org.springframework.beans.support.MutableSortDefinition;
+import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.rmsdt.web.form.validator.Phone;
 
 @Entity
 @Table(name = "users")
+@NamedEntityGraph(name="graph.User.campaigns",
+attributeNodes={
+@NamedAttributeNode(value="id"),
+@NamedAttributeNode(value="campaigns", subgraph="campaigns")
+},
+subgraphs={
+@NamedSubgraph(name="campaigns",
+attributeNodes={
+@NamedAttributeNode(value="id"),
+@NamedAttributeNode(value="campaignName"),
+@NamedAttributeNode(value="campaignImage")})
+})
 public class User extends Person {
 
 	@Column(name = "username")
@@ -137,7 +155,9 @@ public class User extends Person {
 	}
 
 	public List<Campaigns> getCampaigns() {
-		return campaigns;
+		// Sort events
+        PropertyComparator.sort(campaigns, new MutableSortDefinition("creationDate", true, false));
+        return Collections.unmodifiableList(campaigns);
 	}
 
 	public void setCampaigns(List<Campaigns> campaigns) {

@@ -29,7 +29,8 @@
 		</div>
 		
 		<div class="gallery">
-			<c:forEach var="campaign" items="${campaigns}" varStatus="count">
+			<c:set var="userId" value="${currUser.id}"/>
+			<c:forEach var="campaign" items="${currUser.campaigns}" varStatus="count">
 				<spring:url value="/common/campaignImage/${campaign.id}"
 					var="campaignImageUrl" />
 				<div class="grid_3">
@@ -39,7 +40,7 @@
 						style="height: 218px; width: 218px;" />
 					</a>
 					<spring:url
-						value="/common/viewCampaign/${campaign.user.id}/${campaign.id}"
+						value="/common/viewCampaign/${userId}/${campaign.id}"
 						var="editCampaignUrl" />
 					<a href="${editCampaignUrl}" class="btnLong">Learn More</a> <br />
 					
