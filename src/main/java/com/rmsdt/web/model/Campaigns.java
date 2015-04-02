@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
@@ -22,6 +24,7 @@ import org.joda.time.DateTime;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 @Entity
 @Table(name = "campaigns")
@@ -47,7 +50,7 @@ public class Campaigns extends BaseEntity {
 	private String campaignDescription;
 
 	@Column(name = "camp_image")
-	// @NotEmpty
+	@Basic(fetch=FetchType.LAZY)
 	private byte[] campaignImage;
 
 	@Column(name = "creation_date")
@@ -62,6 +65,7 @@ public class Campaigns extends BaseEntity {
 	@DateTimeFormat(pattern = "yyyy/MM/dd hh:mm:ss")
 	private DateTime modificationDate;
 
+	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN1')")
 	public String getCampaignName() {
 		return campaignName;
 	}

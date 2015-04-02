@@ -24,6 +24,7 @@ import org.joda.time.DateTime;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.rmsdt.web.form.validator.Phone;
 
@@ -39,6 +40,7 @@ subgraphs={
 attributeNodes={
 @NamedAttributeNode(value="id"),
 @NamedAttributeNode(value="campaignName"),
+@NamedAttributeNode(value="campaignImage"),
 @NamedAttributeNode(value="campaignImage")})
 })
 public class User extends Person {
@@ -154,6 +156,7 @@ public class User extends Person {
 		return campaigns;
 	}
 
+	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN1')")
 	public List<Campaigns> getCampaigns() {
 		// Sort events
         PropertyComparator.sort(campaigns, new MutableSortDefinition("creationDate", true, false));
