@@ -27,4 +27,6 @@ public interface CampaignRepository {
 
 	User findAllCampaignByAdminID1(int id);
 
+	List<Campaigns> findAllCampaignsEvents();
+
 }

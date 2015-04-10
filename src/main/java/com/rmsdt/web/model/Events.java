@@ -23,16 +23,16 @@ import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.rmsdt.web.form.validator.DateFieldEqualOrAfter;
 import com.rmsdt.web.model.entityListener.EventListener;
 
 @EntityListeners(EventListener.class)
 @DateFieldEqualOrAfter(first = "eventStartDate", second = "eventEndDate", message = "{validation.date.equalOrAfter}")
 @Entity
+@JsonIgnoreProperties({"campaign"})
 @Table(name = "events")
 public class Events extends BaseEntity {
 
@@ -57,6 +57,7 @@ public class Events extends BaseEntity {
 	private String eventDescription;
 
 	@Column(name = "event_start_date")
+	@JsonSerialize(using = CustomDateTimeSerializer.class)
 	@NotNull
 	@Temporal(TemporalType.DATE)
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
@@ -65,6 +66,7 @@ public class Events extends BaseEntity {
 	private DateTime eventStartDate;
 
 	@Column(name = "event_end_date")
+	@JsonSerialize(using = CustomDateTimeSerializer.class)
 	@Temporal(TemporalType.DATE)
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")

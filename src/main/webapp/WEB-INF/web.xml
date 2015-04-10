@@ -24,7 +24,7 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 		and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring/mvc-view-config.xml,classpath:spring/security-config.xml,classpath:spring/jpa-tx-config.xml</param-value>
+		<param-value>classpath:spring/tools-config.xml,classpath:spring/mvc-view-config.xml,classpath:spring/security-config.xml,classpath:spring/jpa-tx-config.xml</param-value>
 	</context-param>
 
 	<!-- Processes application requests -->
@@ -64,5 +64,22 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 		<filter-name>httpMethodFilter</filter-name>
 		<servlet-name>appServlet</servlet-name>
 	</filter-mapping>
+
+
+	<!-- RESTful web service -->
+	<servlet>
+		<servlet-name>restful</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/restful-config.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>restful</servlet-name>
+		<url-pattern>/restful/*</url-pattern>
+	</servlet-mapping>
 
 </web-app>

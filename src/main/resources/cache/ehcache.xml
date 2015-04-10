@@ -1,0 +1,18 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="true">
+	<diskStore path="java.io.tmpdir" />
+
+	<!-- objects are evicted from the cache every 60 seconds -->
+	<cache name="campaigns" timeToLiveSeconds="12000"
+		maxElementsInMemory="100" eternal="false" overflowToDisk="false"
+		maxElementsOnDisk="10000000" diskPersistent="false"
+		diskExpiryThreadIntervalSeconds="1" memoryStoreEvictionPolicy="LRU">
+	</cache>
+	
+	<cache name="commonCampaigns" timeToLiveSeconds="12000"
+		maxElementsInMemory="100" eternal="false" overflowToDisk="false"
+		maxElementsOnDisk="10000000" diskPersistent="false"
+		diskExpiryThreadIntervalSeconds="1" memoryStoreEvictionPolicy="LRU">
+	</cache>
+
+</ehcache>

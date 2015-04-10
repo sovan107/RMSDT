@@ -12,8 +12,12 @@ import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+
 @Table(name = "address")
+@JsonIgnoreProperties({"event"})
 public class Address extends BaseEntity {
 
 	@ManyToOne(cascade = { CascadeType.REFRESH }, fetch = FetchType.EAGER)

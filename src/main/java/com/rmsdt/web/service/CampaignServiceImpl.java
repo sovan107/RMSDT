@@ -3,7 +3,10 @@ package com.rmsdt.web.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,12 +19,18 @@ public class CampaignServiceImpl implements CampaignService {
 
 	CampaignRepository campaignRepo;
 
+	EhCacheCacheManager cacheManager;
+
 	@Autowired
-	public CampaignServiceImpl(CampaignRepository campaignRepo) {
+	public CampaignServiceImpl(CampaignRepository campaignRepo,
+			EhCacheCacheManager cacheManager) {
 		this.campaignRepo = campaignRepo;
+		this.cacheManager = cacheManager;
 	}
 
 	@Override
+	@Caching(evict = { @CacheEvict(value = "commonCampaigns", key="0"),
+			@CacheEvict(value = "campaigns", key = "#campaign.user.id") })
 	@Transactional
 	public void saveCampaign(Campaigns campaign) {
 		campaignRepo.save(campaign);
@@ -33,8 +42,9 @@ public class CampaignServiceImpl implements CampaignService {
 	public List<Campaigns> findAllCampaignByAdminID(int id) {
 		return campaignRepo.findAllCampaignByAdminID(id);
 	}
-	
+
 	@Override
+	@Cacheable(value = "campaigns", key = "#id")
 	@Transactional(readOnly = true)
 	public User findAllCampaignByAdminID1(int id) {
 		return campaignRepo.findAllCampaignByAdminID1(id);
@@ -80,6 +90,13 @@ public class CampaignServiceImpl implements CampaignService {
 	@Transactional
 	public Campaigns findCampaignEventsByUserID(int userId, int campId) {
 		return campaignRepo.findCampaignEventsByUserID(userId, campId);
+	}
+
+	@Override
+	@Transactional
+	@Cacheable(value = "commonCampaigns", key="0")
+	public List<Campaigns> findAllCampaignsEvents() {
+		return campaignRepo.findAllCampaignsEvents();
 	}
 
 }
